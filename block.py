@@ -9,6 +9,7 @@ from theme import Theme
 # properties that we always want to add as a comparer
 COMPARER_PROPERTIES = ['Rarity', 'ItemLevel', 'DropLevel', 'LinkedSockets', 'Sockets', 'Quality', 'Width', 'Height']
 
+
 class Block(FilterPart):
     show = True  # if show is false we'll make it a hide block
     properties = None
