@@ -53,6 +53,22 @@ def main():
     fragment = Theme(text_color=Colors.BLOOD_RED, background_color=Colors.BLACK, border_color=Colors.BLOOD_RED, font_size=38,
                      alert_sound=2)
 
+    meh_div_cards = Theme(text_color=Colors.BLACK, background_color=Color(200, 200, 200, 180), border_color=map_blue,
+                          font_size=45)
+    gg_div_cards = Theme(text_color=Colors.WHITE, background_color=Color(208, 32, 144), border_color=Colors.WHITE,
+                         font_size=45, alert_sound=5)
+    good_div_cards = Theme(text_color=Colors.WHITE, background_color=map_blue, border_color=Colors.WHITE, font_size=45,
+                           alert_sound=6)
+    shit_div_cards = Theme(text_color=Colors.BLACK, background_color=Color(200, 200, 200, 180), border_color=Colors.BLACK,
+                           font_size=35)
+    div_cards = Theme(text_color=Colors.BLACK, background_color=Color(200, 200, 200, 180), border_color=map_blue,
+                      font_size=45, alert_sound=3)
+
+    six_socket = Theme(text_color=Colors.WHITE, background_color=Colors.GRAY, border_color=Colors.WHITE, font_size=45,
+                       alert_sound=7)
+    six_socket_special = Theme(text_color=Color(255, 200, 0), background_color=Colors.GRAY, border_color=Color(255, 200, 0),
+                               font_size=45, alert_sound=7)
+
     xai_filter.add(Comment('Section: #0001 - Special Stuff\n'))
     xai_filter.add(Block(theme=decent_unique,
                          comment='Tabula, we have to put this before everything cause our 6L block will override otherwise',
@@ -102,7 +118,7 @@ def main():
                          comment='Trash Uniques, no sound, same look as normal unique, make sure it has no other special stuff(which we would make sound for) @TODO: add more here'))
     xai_filter.add(Block(theme=unique, rarity='Unique'))
 
-    xai_filter.add(Comment('Section: #0005 - Maps'))
+    xai_filter.add(Comment('Section: #0005 - Maps\n'))
     maps_list = OrderedDict(sorted(get_maps_by_tier().items(), reverse=True))
     for tier in maps_list:
         drop_level = maps_list[tier][0].drop_level
@@ -132,7 +148,7 @@ def main():
                                     'Yriel\'s Key']))
     xai_filter.add(Block(theme=fragment, _class='Map Fragments'))
 
-    xai_filter.add(Comment('Section: #0006 - Currency + Essences'))
+    xai_filter.add(Comment('Section: #0006 - Currency + Essences\n'))
     xai_filter.add(Block(theme=gg, base_type=['Exalted Orb', 'Eternal Orb', 'Albino Rhoa Feather']))
     xai_filter.add(Block(theme=good_currency, base_type=['Deafening Essence', 'Shrieking Essence', 'Divine Orb',
                                                          'Unshaping Orb', 'Essence of Hysteria', 'Essence of Insanity',
@@ -149,6 +165,35 @@ def main():
     xai_filter.add(Block(theme=currency, base_type=['Orb of Alchemy', 'Silver Coin', 'Orb of Chance', 'Jeweller\'s Orb',
                                                     'Orb of Alteration', 'Cartographer\'s Chisel']))
     xai_filter.add(Block(theme=shit_currency, _class=['Currency', 'Stackable Currency']))
+
+    xai_filter.add(Comment('Section: #0007 - Divination Cards\n'))
+    xai_filter.add(Block(theme=meh_div_cards, base_type='The Wolf\'s Shadow',
+                         comment='Added here so that "The Wolf" doesn\'t get confused with "The Wolf\'s Shadow"(Thanks Neversink for this tip!)'))
+    xai_filter.add(Block(theme=gg_div_cards,
+                         base_type=['Abandoned Wealth', 'The Doctor', 'The Fiend', 'Mawr Blaidd', 'The Offering',
+                                    'The Brittle Emperor', 'The Harvester', 'The Last One Standing',
+                                    'The Dragon\'s Heart', 'The Ethereal', 'The Queen', 'The Enlightened', 'The Hunger',
+                                    'Pride Before the Fall', 'The King\'s Heart', 'The Vast', 'Wealth and Power',
+                                    'The Immortal', 'The Devastator', 'Hunter\'s Reward']))
+    xai_filter.add(Block(theme=good_div_cards,
+                         base_type=['Bowyer\'s Dream', 'The Formless Sea', 'The Penitent', 'Heterochromia',
+                                    'Lucky Deck', 'The Stormcaller', 'The Wolf', 'The Artist', 'Earth Drinker',
+                                    'The Trial', 'The Celestial Justicar', 'The Surveyor', 'The Valkyrie',
+                                    'Chaotic Disposition', 'The Sephirot', 'The Void', 'The Dark Mage',
+                                    'The Dapper Prodigy', 'Time-Lost Relic', 'The Chains that Bind',
+                                    'Dialla\'s Subjugation', 'Emperor of Purity', 'The Soul']))
+    xai_filter.add(Block(theme=meh_div_cards,
+                         base_type=['The Flora\'s Gift', 'Her Mask', 'Rain of Chaos', 'Thunderous Skies', 'The Gambler']))
+    xai_filter.add(Block(theme=shit_div_cards,
+                         base_type=['The Rabid Rhoa', 'The Carrion Crow', 'Doedre\'s Madness', 'The Dragon',
+                                    'The One With All', 'The Scarred Meadow']))
+    xai_filter.add(Block(theme=div_cards, _class='Divination Card'))
+
+    xai_filter.add(Comment('Section: #0008 - Socket/Link Stuff\n'))
+    xai_filter.add(Block(theme=quest_item, play_alert_sound=Sound(1), linked_sockets=5))
+    xai_filter.add(Block(theme=six_socket_special, item_level=Comparer(75, '>='), sockets=Comparer(6, '>='), rarity='Rare'))
+    xai_filter.add(Block(theme=six_socket, sockets=Comparer(6, '>=')))
+
     print(xai_filter)
 
 if __name__ == '__main__':

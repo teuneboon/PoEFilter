@@ -7,3 +7,4 @@ class Colors(object):
     BLACK = Color(0, 0, 0)
     UNIQUE = Color(175, 96, 37)
     BLOOD_RED = Color(210, 0, 0)
+    GRAY = Color(127, 127, 127)
