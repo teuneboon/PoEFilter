@@ -99,6 +99,9 @@ def main():
     magic_jewel = Theme(text_color=Color(0, 100, 255), background_color=Color(0, 40, 60), border_color=Color(0, 75, 250),
                         font_size=36)
 
+    high_quality_flask = Theme(background_color=Color(75, 75, 75), border_color=Colors.WHITE, font_size=45)
+    utility_flask = Theme(background_color=Color(75, 75, 75), border_color=Colors.BLACK)
+
 
     f.add(Comment('Section: #0001 - Special Stuff\n'))
     f.add(Block(theme=decent_unique,
@@ -310,6 +313,41 @@ def main():
                            'Jade', 'Lapis', 'Rustic', 'Iron Ring']))
     f.add(Block(theme=magic_jewellery, item_level=Comparer(67, '>='), rarity='Magic', _class=jewellery))
     f.add(Block(theme=magic_jewel, _class='Jewel'))
+
+    f.add(Comment('Section: #0012 - Flasks\n'))
+    f.add(Block(theme=high_quality_flask, quality=Comparer(18, '>='), rarity='Magic', _class='Utility Flasks'))
+    f.add(Block(theme=high_quality_flask, quality=Comparer(15, '>='), rarity='Normal', _class='Utility Flasks'))
+    f.add(Block(theme=high_quality_flask, quality=Comparer(1, '>='), _class='Utility Flasks', set_font_size=38))
+    f.add(Block(theme=utility_flask, _class='Utility Flasks'))
+    f.add(Block(_class=['Life Flask', 'Mana Flask'], item_level=Comparer(72, '>='), set_font_size=20))
+    hybrid_flask_ilvl_to_keyword = {
+        15: 'Small',
+        25: 'Medium',
+        35: 'Large',
+        45: 'Colossal',
+        55: 'Sacred',
+        67: 'Hallowed',
+    }
+    for ilvl, base_type in sorted(hybrid_flask_ilvl_to_keyword.items()):
+        f.add(Block(set_font_size=38, item_level=Comparer(ilvl, '<='), _class='Hybrid Flask', base_type=base_type))
+
+    normal_flask_ilvl_to_keyword = {
+        5: 'Small',
+        8: 'Medium',
+        12: 'Large',
+        18: 'Greater',
+        24: 'Grand',
+        30: 'Giant',
+        37: 'Colossal',
+        42: 'Sacred',
+        48: 'Hallowed',
+        55: 'Sanctified',
+        66: ['Divine', 'Eternal'],
+    }
+    for ilvl, base_type in sorted(normal_flask_ilvl_to_keyword.items()):
+        f.add(Block(set_font_size=38, item_level=Comparer(ilvl, '<='), _class='Flask', base_type=base_type))
+
+    f.add(Block(rarity=Comparer('Magic', '<='), base_type='Flask', set_font_size=30))
 
     with open('xai.filter', 'w') as file:
         file.write(str(f))
