@@ -1,7 +1,7 @@
 from properties.property import Property
 
 
-class SoundProperty(Property):
+class Sound(Property):
     sound = 1
     volume = 300
 

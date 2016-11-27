@@ -1,7 +1,7 @@
 from properties.property import Property
 
 
-class StringProperty(Property):
+class String(Property):
     value = ''
 
     def __init__(self, value):

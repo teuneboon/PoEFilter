@@ -1,7 +1,7 @@
 from properties.property import Property
 
 
-class ColorProperty(Property):
+class Color(Property):
     red = 0
     green = 0
     blue = 0

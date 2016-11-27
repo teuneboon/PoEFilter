@@ -1,8 +1,8 @@
 from properties.property import Property
 
 
-class BooleanProperty(Property):
-    value = None
+class Boolean(Property):
+    value = False
 
     def __init__(self, value):
         self.value = value

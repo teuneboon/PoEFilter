@@ -1,7 +1,8 @@
 from filter_part import FilterPart
-from properties.boolean_property import BooleanProperty
+from properties.boolean import Boolean
 from properties.property import Property
-from properties.string_property import StringProperty
+from properties.string import String
+from properties.string_list import StringList
 from theme import Theme
 
 
@@ -32,10 +33,12 @@ class Block(FilterPart):
         if not isinstance(value, Property):
             # not already passed as a property, we'll try to guess what the user intended
             if isinstance(value, bool):
-                value = BooleanProperty(value)
+                value = Boolean(value)
+            elif isinstance(value, list):
+                value = StringList(value)
             else:
                 # we'll assume it's wanted as a string
-                value = StringProperty(value)
+                value = String(value)
 
         self.properties[key] = value
 
