@@ -3,6 +3,7 @@ from collections import OrderedDict
 from block import Block
 from comment import Comment
 from filter import Filter
+from helpers.base_types import atlas_bases
 from helpers.colors import Colors
 from helpers.map import get_maps_by_tier
 from properties.color import Color
@@ -73,6 +74,12 @@ def main():
     ok_quality_gems = Theme(border_color=Colors.GEM, font_size=45, alert_sound=1)
     quality_gems = Theme(border_color=Colors.GEM)
     good_gems = Theme(border_color=Colors.BLOOD_RED)
+
+    rare_jewels = Theme(text_color=Colors.YELLOW, background_color=Color(75, 75, 0), border_color=Colors.YELLOW, font_size=45)
+    rare_atlas_bases = Theme(text_color=Color(255, 255, 119), background_color=Color(74, 230, 58), border_color=Color(255, 255, 119),
+                            font_size=45, alert_sound=5)
+    max_ilvl_bases = Theme(text_color=Color(0, 128, 0), background_color=Color(255, 200, 0), border_color=(0, 128, 0),
+                           font_size=45)
 
     xai_filter.add(Comment('Section: #0001 - Special Stuff\n'))
     xai_filter.add(Block(theme=decent_unique,
@@ -208,6 +215,31 @@ def main():
     xai_filter.add(Block(theme=good_gems, _class='Skill Gems', base_type=['Vaal', 'Detonate Mines', 'Added Chaos Damage']))
     xai_filter.add(Block(theme=quality_gems, _class='Skill Gems', quality=Comparer(1, '>=')))
     xai_filter.add(Block(_class='Skill Gems'))
+
+    xai_filter.add(Comment('Section: #0010 - Rare Evaluation\n'))
+    gg_es_bases = ['Titanium Spirit Shield', 'Hubris Circlet', 'Sorcerer Boots', 'Sorcerer Gloves', 'Vaal Regalia']
+    gg_spell_bases = ['Platinum Kris']
+    jewellery = ['Rings', 'Amulets', 'Belts']
+    good_spell_bases = ['Void Sceptre', 'Opal Sceptre', 'Profane Wand', 'Opal Wand', 'Sambar Sceptre']
+    # not literally armour(aka red) bases, but stuff you wear like boots/gloves/chest
+    good_armour_bases = ['Saintly Chainmail', 'Harmonic Spirit Shield', 'Fossilised Spirit Shield', 'Titan Gauntlets',
+                         'Slink Gloves', 'Eternal Burgonet', 'Lion Pelt', 'Titan Greaves', 'Slink Boots']
+    gg_phys_bases = ['Vaal Axe', 'Coronal Maul', 'Harbinger Bow', 'Ambusher', 'Imbued Wand', 'Prophecy Wand']
+    good_phys_bases = ['Lion Sword', 'Vaal Greatsword', 'Exquisite Blade', 'Fleshripper', 'Gemini Claw', 'Demon Dagger',
+                       'Imperial Skean', 'Tiger Hook', 'Jewelled Foil', 'Runic Hatchet', 'Behemoth Mace', 'Eternal Sword',
+                       'Eclipse Staff', 'Maelström Staff', 'Judgement Staff', 'Dragoon Sword', 'Vaal Hatchet']
+
+    xai_filter.add(Block(theme=rare_jewels, _class='Jewel', rarity='Rare'))
+    xai_filter.add(Block(theme=rare_atlas_bases, item_level=Comparer(84, '>='), base_type=atlas_bases, rarity='Rare'))
+    xai_filter.add(Block(theme=max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare', base_type=gg_es_bases + gg_spell_bases))
+    xai_filter.add(Block(theme=max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare', _class=jewellery))
+    xai_filter.add(Block(theme=max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare',
+                         base_type=good_spell_bases + good_armour_bases, set_font_size=38))
+    xai_filter.add(Block(theme=max_ilvl_bases, item_level=Comparer(83, '>='), rarity='Rare', base_type=gg_phys_bases))
+    xai_filter.add(Block(theme=max_ilvl_bases, item_level=Comparer(83, '>='), rarity='Rare', base_type=good_phys_bases,
+                         set_font_size=38))
+    xai_filter.add(Block(theme=max_ilvl_bases, item_level=Comparer(83, '>='), rarity='Rare', base_type='Sai',
+                         _class='Daggers', set_font_size=38))
 
     with open('xai.filter', 'w') as file:
         file.write(str(xai_filter))
