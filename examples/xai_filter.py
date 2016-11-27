@@ -69,6 +69,11 @@ def main():
     six_socket_special = Theme(text_color=Color(255, 200, 0), background_color=Colors.GRAY, border_color=Color(255, 200, 0),
                                font_size=45, alert_sound=7)
 
+    gg_gems = Theme(text_color=Colors.GEM, background_color=Colors.WHITE, border_color=Colors.GEM, font_size=45, alert_sound=5)
+    ok_quality_gems = Theme(border_color=Colors.GEM, font_size=45, alert_sound=1)
+    quality_gems = Theme(border_color=Colors.GEM)
+    good_gems = Theme(border_color=Colors.BLOOD_RED)
+
     xai_filter.add(Comment('Section: #0001 - Special Stuff\n'))
     xai_filter.add(Block(theme=decent_unique,
                          comment='Tabula, we have to put this before everything cause our 6L block will override otherwise',
@@ -194,7 +199,18 @@ def main():
     xai_filter.add(Block(theme=six_socket_special, item_level=Comparer(75, '>='), sockets=Comparer(6, '>='), rarity='Rare'))
     xai_filter.add(Block(theme=six_socket, sockets=Comparer(6, '>=')))
 
-    print(xai_filter)
+    xai_filter.add(Comment('Section: #0009 - Gems\n'))
+    xai_filter.add(Block(theme=gg_gems, _class='Skill Gems', base_type=['Empower', 'Enlighten'], quality=Comparer(10, '>=')))
+    xai_filter.add(Block(theme=gg_gems, _class='Skill Gems', quality=Comparer(19, '>=')))
+    xai_filter.add(Block(theme=quest_item, play_alert_sound=Sound(1), _class='Skill Gems', base_type=['Portal', 'Empower',
+                                                                                                      'Enlighten', 'Vaal Haste']))
+    xai_filter.add(Block(theme=ok_quality_gems, _class='Skill Gems', quality=Comparer(13, '>=')))
+    xai_filter.add(Block(theme=good_gems, _class='Skill Gems', base_type=['Vaal', 'Detonate Mines', 'Added Chaos Damage']))
+    xai_filter.add(Block(theme=quality_gems, _class='Skill Gems', quality=Comparer(1, '>=')))
+    xai_filter.add(Block(_class='Skill Gems'))
+
+    with open('xai.filter', 'w') as file:
+        file.write(str(xai_filter))
 
 if __name__ == '__main__':
     main()
