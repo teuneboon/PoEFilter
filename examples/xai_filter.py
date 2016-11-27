@@ -370,7 +370,20 @@ def main():
     f.add(Block(item_level=Comparer(25, '<='), linked_sockets=Comparer(3, '>='), _class=['Gloves', 'Boots', 'Helmets'], set_font_size=36))
     f.add(Block(item_level=Comparer(60, '<='), linked_sockets=Comparer(3, '>='), _class=['Gloves', 'Boots', 'Helmets']))
     f.add(Block(item_level=Comparer(12, '<'), linked_sockets=Comparer(3, '>='), theme=Theme(font_size=36, background_color=Color(0, 0, 0, 185))))
-
+    f.add(Block(item_level=Comparer(12, '<'), rarity='Normal', width=2, height=Comparer(3, '>='), _class=['Body Armours', 'Shields'],
+                theme=Theme(text_color=Color(200, 200, 200, 180), background_color=Color(0, 0, 0, 165))))
+    f.add(Block(item_level=Comparer(12, '<'), rarity='Normal', width=2, height=Comparer(4, '>='),
+                theme=Theme(text_color=Color(200, 200, 200, 180), background_color=Color(0, 0, 0, 165))))
+    small_sizes(f, Block(item_level=Comparer(12, '<='), rarity='Normal',
+                theme=Theme(text_color=Color(200, 200, 200), background_color=Color(0, 0, 0, 185))))
+    f.add(Block(item_level=Comparer(12, '<'), rarity='Normal', theme=Theme(font_size=32, background_color=Color(0, 0, 0, 165))))
+    leveling_weapon_classes = ['Two Hand', 'Bows', 'One Hand', 'Wand', 'Sceptre', 'Staves', 'Claws']
+    item_and_drop_levels = [(13, 8), (14, 9), (16, 11), (18, 14), (20, 17), (22, 19), (24, 21), (26, 24), (28, 26),
+                           (30, 28), (32, 30), (34, 32), (36, 34), (38, 37), (40, 39), (42, 41), (48, 46), (50, 48),
+                           (52, 50), (54, 52), (56, 54), (58, 56), (62, 60), (66, 65), (68, 67)]
+    for i_and_d in item_and_drop_levels:
+        f.add(Block(item_level=Comparer(i_and_d[0], '<'), drop_level=Comparer(i_and_d[1], '>='), rarity=Comparer('Magic', '<='),
+                    _class=leveling_weapon_classes, theme=Theme(font_size=32, background_color=Color(0, 0, 0, 165))))
 
     with open('xai.filter', 'w') as file:
         file.write(str(f))
