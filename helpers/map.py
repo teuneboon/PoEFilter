@@ -126,6 +126,15 @@ def get_maps_by_tier():
     return result
 
 
+def get_maps_by_drop_level():
+    result = {}
+    for _map in get_all_maps():
+        if _map.tier not in result:
+            result[_map.drop_level] = []
+        result[_map.drop_level].append(_map)
+    return result
+
+
 class Map(object):
     tier = 0
     name = ''

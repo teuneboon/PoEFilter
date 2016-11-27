@@ -1,7 +1,10 @@
+from collections import OrderedDict
+
 from block import Block
 from comment import Comment
 from filter import Filter
 from helpers.colors import Colors
+from helpers.map import get_maps_by_tier
 from properties.color import Color
 from properties.comparer import Comparer
 from properties.sound import Sound
@@ -100,8 +103,10 @@ def main():
     xai_filter.add(Block(theme=unique, rarity='Unique'))
 
     xai_filter.add(Comment('Section: #0005 - Maps'))
-    tier = 16
-    for drop_level in range(84, 67, -1):
+    maps_list = OrderedDict(sorted(get_maps_by_tier().items(), reverse=True))
+    for tier in maps_list:
+        drop_level = maps_list[tier][0].drop_level
+
         block_args = {'drop_level': Comparer(drop_level, '>='), '_class': 'Maps'}
         if tier >= 15:
             block_args['theme'] = shaper_maps
@@ -118,7 +123,6 @@ def main():
                 block_args['play_alert_sound'] = None
 
         xai_filter.add(Block(**block_args))
-        tier -= 1
 
     xai_filter.add(Block(theme=gg_fragment, _class='Map Fragments',
                          base_type=['Mortal Hope', 'Mortal Ignorance', 'Fragment of the Phoenix',
