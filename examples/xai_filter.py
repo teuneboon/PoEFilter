@@ -30,7 +30,7 @@ def main():
                 comment='Tabula, we have to put this before everything cause our 6L block will override otherwise',
                 socket_group='W'*6,
                 rarity='Unique',
-                _class='Simple Robe'))
+                base_type='Simple Robe'))
     f.add(Block(theme=special_quest_item, _class='Quest Items', base_type='Shaper\'s Orb'))
     f.add(Block(theme=quest_item, _class=['Quest Items', 'Microtransactions']))
     # @TODO: Add more base types
