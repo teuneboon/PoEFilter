@@ -6,7 +6,7 @@ from filter import Filter
 from helpers.base_types_and_classes import atlas_bases, gg_es_bases, gg_spell_bases, jewellery, good_armour_bases, good_spell_bases, \
     gg_phys_bases, good_phys_bases, gg_atlas_bases, other_atlas_bases, melee_only_classes
 from helpers.colors import Colors
-from helpers.general import ilvl_swap
+from helpers.general import ilvl_swap, small_sizes
 from helpers.map import get_maps_by_tier
 from properties.color import Color
 from properties.comparer import Comparer
@@ -270,6 +270,11 @@ def main():
                 item_level=Comparer(20, '<'), rarity='Rare'))
     f.add(Block(theme=Theme(background_color=Color(0, 0, 0, 180), border_color=Color(150, 150, 150), font_size=35),
                 item_level=Comparer(65, '<'), rarity='Rare'))
+    f.add(Block(theme=Theme(background_color=Color(0, 0, 0, 225), border_color=Color(150, 150, 150), font_size=26),
+                rarity='Rare', width=Comparer(2, '>='), height=Comparer(4, '>=')))
+    small_sizes(f, Block(rarity='Rare', theme=Theme(background_color=Colors.BLACK, border_color=Color(150, 150, 150),
+                                                    font_size=35)))
+    f.add(Block(theme=Theme(background_color=Color(0, 0, 0, 180), border_color=Color(150, 150, 150), font_size=35), rarity='Rare'))
 
     with open('xai.filter', 'w') as file:
         file.write(str(f))
