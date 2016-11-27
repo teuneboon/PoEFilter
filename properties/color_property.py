@@ -1,5 +1,3 @@
-from typing import List
-
 from properties.property import Property
 
 
@@ -33,5 +31,5 @@ class ColorProperty(Property):
         self.blue = blue
         self.opacity = opacity
 
-    def process(self) -> List[str]:
-        return ['{0} {1} {2} {3}'.format(self.red, self.green, self.blue, self.opacity)]
+    def __str__(self):
+        return '{0} {1} {2} {3}'.format(self.red, self.green, self.blue, self.opacity)

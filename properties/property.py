@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Property(object):
-    def process(self) -> List[str]:
+    def __str__(self):
         raise NotImplementedError()

@@ -46,8 +46,7 @@ class Block(FilterPart):
 
         property_string = ''
         for key, value in self.properties.items():
-            for sub_value in value.process():
-                property_string += '    {0} {1}\n'.format(key, sub_value)
+            property_string += '    {0} {1}\n'.format(key, str(value))
 
         result = '{0}\n{1}'.format(keyword, property_string)
         return result

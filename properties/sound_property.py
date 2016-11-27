@@ -1,5 +1,3 @@
-from typing import List
-
 from properties.property import Property
 
 
@@ -11,5 +9,5 @@ class SoundProperty(Property):
         self.sound = sound
         self.volume = volume
 
-    def process(self) -> List[str]:
-        return ['{0} {1}'.format(self.sound, self.volume)]
+    def __str__(self):
+        return '{0} {1}'.format(self.sound, self.volume)
