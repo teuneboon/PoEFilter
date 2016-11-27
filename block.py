@@ -1,3 +1,4 @@
+from comment import Comment
 from filter_part import FilterPart
 from properties.boolean import Boolean
 from properties.comparer import Comparer
@@ -13,10 +14,24 @@ COMPARER_PROPERTIES = ['Rarity', 'ItemLevel', 'DropLevel', 'LinkedSockets', 'Soc
 class Block(FilterPart):
     show = True  # if show is false we'll make it a hide block
     properties = None
+    comment = None
 
-    def __init__(self, show=True, theme: Theme=None, **kwargs):
+    def __init__(self, show=True, theme: Theme=None, comment=None, **kwargs):
+        """
+
+        :param show: if this is false we explicitly make it a Hide: block
+        :param theme: a Theme object, this will get overwritten by kwargs if you use them
+        :param comment: optional comment we want to attach, this is just a shorthand since you can also add it manually
+        :param kwargs:
+        :return:
+        """
         self.properties = {}
         self.show = show
+        if comment is not None:
+            if isinstance(comment, Comment):
+                self.comment = comment
+            else:
+                self.comment = Comment(comment)
 
         if theme is not None:
             theme.process(self.properties)
@@ -56,5 +71,9 @@ class Block(FilterPart):
         for key, value in self.properties.items():
             property_string += '    {0} {1}\n'.format(key, str(value))
 
-        result = '{0}\n{1}'.format(keyword, property_string)
+        result = ''
+        if self.comment is not None:
+            result += '{0}\n'.format(str(self.comment))
+
+        result += '{0}\n{1}'.format(keyword, property_string)
         return result
