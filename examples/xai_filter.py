@@ -15,7 +15,7 @@ from theme import Theme
 
 
 def main():
-    xai_filter = Filter()
+    f = Filter()
     
     map_blue = Color(30, 144, 255)
 
@@ -87,40 +87,40 @@ def main():
     rare_shit_bases = Theme(background_color=Color(120, 20, 20, 150), border_color=Color(150, 150, 150, 150), font_size=25)
 
 
-    xai_filter.add(Comment('Section: #0001 - Special Stuff\n'))
-    xai_filter.add(Block(theme=decent_unique,
+    f.add(Comment('Section: #0001 - Special Stuff\n'))
+    f.add(Block(theme=decent_unique,
                          comment='Tabula, we have to put this before everything cause our 6L block will override otherwise',
                          socket_group='W'*6,
                          rarity='Unique'))
-    xai_filter.add(Block(theme=special_quest_item, _class='Quest Items', base_type='Shaper\'s Orb'))
-    xai_filter.add(Block(theme=quest_item, _class=['Quest Items', 'Microtransactions']))
+    f.add(Block(theme=special_quest_item, _class='Quest Items', base_type='Shaper\'s Orb'))
+    f.add(Block(theme=quest_item, _class=['Quest Items', 'Microtransactions']))
     # @TODO: Add more base types
-    xai_filter.add(Block(theme=gg, item_level=1, rarity='Normal', base_type=['Glass Shank', 'Driftwoord Wand'], play_alert_sound=None,
+    f.add(Block(theme=gg, item_level=1, rarity='Normal', base_type=['Glass Shank', 'Driftwoord Wand'], play_alert_sound=None,
                          comment='Make ilvl 1 of starter weapons ugly so people know they forgot their racing filter @TODO: add others'))
 
-    xai_filter.add(Comment('Section: #0002 - Labyrinth\n'))
-    xai_filter.add(Block(theme=special_quest_item, base_type='Offering to the Goddess'))
-    xai_filter.add(Block(theme=quest_item, _class='Labyrinth', play_alert_sound=Sound(1)))
+    f.add(Comment('Section: #0002 - Labyrinth\n'))
+    f.add(Block(theme=special_quest_item, base_type='Offering to the Goddess'))
+    f.add(Block(theme=quest_item, _class='Labyrinth', play_alert_sound=Sound(1)))
 
-    xai_filter.add(Comment('Section: #0003 - GG!!!\n'))
-    xai_filter.add(Block(theme=gg, base_type=['Mirror of Kalandra', 'Fishing Rod']))
-    xai_filter.add(Block(theme=gg, linked_sockets=Comparer(6, '>=')))
+    f.add(Comment('Section: #0003 - GG!!!\n'))
+    f.add(Block(theme=gg, base_type=['Mirror of Kalandra', 'Fishing Rod']))
+    f.add(Block(theme=gg, linked_sockets=Comparer(6, '>=')))
 
-    xai_filter.add(Comment('Section: #0004 - Uniques\n'))
-    xai_filter.add(Block(theme=good_unique, item_level=84, rarity='Unique', base_type=['Infernal Sword', 'Ruby Flask'],
+    f.add(Comment('Section: #0004 - Uniques\n'))
+    f.add(Block(theme=good_unique, item_level=84, rarity='Unique', base_type=['Infernal Sword', 'Ruby Flask'],
                          comment='This is probably a Starforge or Dying Sun'))
-    xai_filter.add(Block(theme=good_unique, item_level=82, rarity='Unique', base_type=['Vaal Gauntlets', 'Vaal Axe'],
+    f.add(Block(theme=good_unique, item_level=82, rarity='Unique', base_type=['Vaal Gauntlets', 'Vaal Axe'],
                          comment='Acuity+Disfavour from Atziri(They drop ilvl 82 from Atziri, div card version should never be on the ground anyway), put it here so we don\'t show other vaal gauntlets or vaal axes as GG'))
-    xai_filter.add(Block(theme=good_unique, item_level=74, rarity='Unique', base_type='Spine Bow',
+    f.add(Block(theme=good_unique, item_level=74, rarity='Unique', base_type='Spine Bow',
                          comment='Reach of the Council(so we don\'t show Voltaxic as GG)'))
-    xai_filter.add(Block(theme=good_unique, comment='Uniques that are usually 1ex+', rarity='Unique',
+    f.add(Block(theme=good_unique, comment='Uniques that are usually 1ex+', rarity='Unique',
                          base_type=['Occultist\'s Vestment', 'Jewelled Foil', 'Glorious Plate', 'Prismatic Jewel',
                                     'Citrine Amulet', 'Gladiator Plate', 'Assassin\'s Garb', 'Golden Mantle',
                                     'Sorcerer Boots', 'Crusader Boots', 'Murder Boots', 'Nightmare Bascinet',
                                     'Deicide Mask', 'Champion Kite Shield', 'Gavel', 'Vaal Sceptre', 'Judgement Staff',
                                     'Prophecy Wand', 'Grand Mana Flask', 'Sapphire Flask', 'Granite Flask',
                                     'Silver Flask', 'Stibnite Flask', 'Topaz Flask', 'Siege Axe', 'Museum Map']))
-    xai_filter.add(Block(theme=decent_unique, comment='Uniques that are usually 2c-1ex', rarity='Unique',
+    f.add(Block(theme=decent_unique, comment='Uniques that are usually 2c-1ex', rarity='Unique',
                          base_type=['Onyx Amulet', 'Paua Ring', 'Unset Ring', 'Gold Ring', 'Two-Stone Ring',
                                     'Moonstone Ring', 'Broadhead Arrow Quiver', 'Penetrating Arrow Quiver',
                                     'Spike-Point Arrow Quiver', 'Desert Brigandine', 'Savan', 'Vaal Regalia',
@@ -128,15 +128,15 @@ def main():
                                     'Sharkskin Boots', 'Slink Boots', 'Conjurer Boots', 'Deerskin Gloves',
                                     'Strapped Mitts', 'Imperial Bow', 'Fiend Dagger', 'Slaughter Knife',
                                     'Imperial Skean', 'Eternal Sword', 'Imperial Staff']))
-    xai_filter.add(Block(theme=decent_unique, comment='Unique maps are almost always worth something', rarity='Unique',
+    f.add(Block(theme=decent_unique, comment='Unique maps are almost always worth something', rarity='Unique',
                          _class='Maps'))
     # @TODO: add more shit uniques
-    xai_filter.add(Block(theme=shit_unique, sockets=Comparer(6, '<'), linked_sockets=Comparer(5, '<'),
+    f.add(Block(theme=shit_unique, sockets=Comparer(6, '<'), linked_sockets=Comparer(5, '<'),
                          base_type=['Simple Robe', 'Strapped Boots'], rarity='Unique',
                          comment='Trash Uniques, no sound, same look as normal unique, make sure it has no other special stuff(which we would make sound for) @TODO: add more here'))
-    xai_filter.add(Block(theme=unique, rarity='Unique'))
+    f.add(Block(theme=unique, rarity='Unique'))
 
-    xai_filter.add(Comment('Section: #0005 - Maps\n'))
+    f.add(Comment('Section: #0005 - Maps\n'))
     maps_list = OrderedDict(sorted(get_maps_by_tier().items(), reverse=True))
     for tier in maps_list:
         drop_level = maps_list[tier][0].drop_level
@@ -156,99 +156,99 @@ def main():
             if tier == 1:
                 block_args['play_alert_sound'] = None
 
-        xai_filter.add(Block(**block_args))
+        f.add(Block(**block_args))
 
-    xai_filter.add(Block(theme=gg_fragment, _class='Map Fragments',
+    f.add(Block(theme=gg_fragment, _class='Map Fragments',
                          base_type=['Mortal Hope', 'Mortal Ignorance', 'Fragment of the Phoenix',
                                     'Fragment of the Minotaur', 'Fragment of the Chimera', 'Fragment of the Hydra']))
-    xai_filter.add(Block(theme=good_fragment, _class='Map Fragments',
+    f.add(Block(theme=good_fragment, _class='Map Fragments',
                          base_type=['Mortal', 'Sacrifice at Midnight', 'Eber\'s Key', 'Inya\'s Key', 'Volkuur\'s Key',
                                     'Yriel\'s Key']))
-    xai_filter.add(Block(theme=fragment, _class='Map Fragments'))
+    f.add(Block(theme=fragment, _class='Map Fragments'))
 
-    xai_filter.add(Comment('Section: #0006 - Currency + Essences\n'))
-    xai_filter.add(Block(theme=gg, base_type=['Exalted Orb', 'Eternal Orb', 'Albino Rhoa Feather']))
-    xai_filter.add(Block(theme=good_currency, base_type=['Deafening Essence', 'Shrieking Essence', 'Divine Orb',
+    f.add(Comment('Section: #0006 - Currency + Essences\n'))
+    f.add(Block(theme=gg, base_type=['Exalted Orb', 'Eternal Orb', 'Albino Rhoa Feather']))
+    f.add(Block(theme=good_currency, base_type=['Deafening Essence', 'Shrieking Essence', 'Divine Orb',
                                                          'Unshaping Orb', 'Essence of Hysteria', 'Essence of Insanity',
                                                          'Essence of Horror', 'Essence of Delirium']))
-    xai_filter.add(Block(theme=decent_currency,
+    f.add(Block(theme=decent_currency,
                          base_type=['Cartographer\'s Sextant', 'Chaos Orb', 'Cartographer\'s Seal', 'Orb of Fusing',
                                     'Orb of Regret', 'Regal Orb', 'Blessed Orb', 'Gemcutter\'s Prism',
                                     'Orb of Scouring', 'Vaal Orb', 'Remnant of Corruption', 'Essence of']))
-    xai_filter.add(Block(theme=Theme(text_color=Color(231, 180, 120),
+    f.add(Block(theme=Theme(text_color=Color(231, 180, 120),
                                      background_color=Color(0, 0, 0, 180),
                                      border_color=Color(231, 180, 120),
                                      font_size=45),
                          base_type='Perandus Coin'))
-    xai_filter.add(Block(theme=currency, base_type=['Orb of Alchemy', 'Silver Coin', 'Orb of Chance', 'Jeweller\'s Orb',
+    f.add(Block(theme=currency, base_type=['Orb of Alchemy', 'Silver Coin', 'Orb of Chance', 'Jeweller\'s Orb',
                                                     'Orb of Alteration', 'Cartographer\'s Chisel']))
-    xai_filter.add(Block(theme=shit_currency, _class=['Currency', 'Stackable Currency']))
+    f.add(Block(theme=shit_currency, _class=['Currency', 'Stackable Currency']))
 
-    xai_filter.add(Comment('Section: #0007 - Divination Cards\n'))
-    xai_filter.add(Block(theme=meh_div_cards, base_type='The Wolf\'s Shadow',
+    f.add(Comment('Section: #0007 - Divination Cards\n'))
+    f.add(Block(theme=meh_div_cards, base_type='The Wolf\'s Shadow',
                          comment='Added here so that "The Wolf" doesn\'t get confused with "The Wolf\'s Shadow"(Thanks Neversink for this tip!)'))
-    xai_filter.add(Block(theme=gg_div_cards,
+    f.add(Block(theme=gg_div_cards,
                          base_type=['Abandoned Wealth', 'The Doctor', 'The Fiend', 'Mawr Blaidd', 'The Offering',
                                     'The Brittle Emperor', 'The Harvester', 'The Last One Standing',
                                     'The Dragon\'s Heart', 'The Ethereal', 'The Queen', 'The Enlightened', 'The Hunger',
                                     'Pride Before the Fall', 'The King\'s Heart', 'The Vast', 'Wealth and Power',
                                     'The Immortal', 'The Devastator', 'Hunter\'s Reward']))
-    xai_filter.add(Block(theme=good_div_cards,
+    f.add(Block(theme=good_div_cards,
                          base_type=['Bowyer\'s Dream', 'The Formless Sea', 'The Penitent', 'Heterochromia',
                                     'Lucky Deck', 'The Stormcaller', 'The Wolf', 'The Artist', 'Earth Drinker',
                                     'The Trial', 'The Celestial Justicar', 'The Surveyor', 'The Valkyrie',
                                     'Chaotic Disposition', 'The Sephirot', 'The Void', 'The Dark Mage',
                                     'The Dapper Prodigy', 'Time-Lost Relic', 'The Chains that Bind',
                                     'Dialla\'s Subjugation', 'Emperor of Purity', 'The Soul']))
-    xai_filter.add(Block(theme=meh_div_cards,
+    f.add(Block(theme=meh_div_cards,
                          base_type=['The Flora\'s Gift', 'Her Mask', 'Rain of Chaos', 'Thunderous Skies', 'The Gambler']))
-    xai_filter.add(Block(theme=shit_div_cards,
+    f.add(Block(theme=shit_div_cards,
                          base_type=['The Rabid Rhoa', 'The Carrion Crow', 'Doedre\'s Madness', 'The Dragon',
                                     'The One With All', 'The Scarred Meadow']))
-    xai_filter.add(Block(theme=div_cards, _class='Divination Card'))
+    f.add(Block(theme=div_cards, _class='Divination Card'))
 
-    xai_filter.add(Comment('Section: #0008 - Socket/Link Stuff\n'))
-    xai_filter.add(Block(theme=quest_item, play_alert_sound=Sound(1), linked_sockets=5))
-    xai_filter.add(Block(theme=six_socket_special, item_level=Comparer(75, '>='), sockets=Comparer(6, '>='), rarity='Rare'))
-    xai_filter.add(Block(theme=six_socket, sockets=Comparer(6, '>=')))
+    f.add(Comment('Section: #0008 - Socket/Link Stuff\n'))
+    f.add(Block(theme=quest_item, play_alert_sound=Sound(1), linked_sockets=5))
+    f.add(Block(theme=six_socket_special, item_level=Comparer(75, '>='), sockets=Comparer(6, '>='), rarity='Rare'))
+    f.add(Block(theme=six_socket, sockets=Comparer(6, '>=')))
 
-    xai_filter.add(Comment('Section: #0009 - Gems\n'))
-    xai_filter.add(Block(theme=gg_gems, _class='Skill Gems', base_type=['Empower', 'Enlighten'], quality=Comparer(10, '>=')))
-    xai_filter.add(Block(theme=gg_gems, _class='Skill Gems', quality=Comparer(19, '>=')))
-    xai_filter.add(Block(theme=quest_item, play_alert_sound=Sound(1), _class='Skill Gems', base_type=['Portal', 'Empower',
+    f.add(Comment('Section: #0009 - Gems\n'))
+    f.add(Block(theme=gg_gems, _class='Skill Gems', base_type=['Empower', 'Enlighten'], quality=Comparer(10, '>=')))
+    f.add(Block(theme=gg_gems, _class='Skill Gems', quality=Comparer(19, '>=')))
+    f.add(Block(theme=quest_item, play_alert_sound=Sound(1), _class='Skill Gems', base_type=['Portal', 'Empower',
                                                                                                       'Enlighten', 'Vaal Haste']))
-    xai_filter.add(Block(theme=ok_quality_gems, _class='Skill Gems', quality=Comparer(13, '>=')))
-    xai_filter.add(Block(theme=good_gems, _class='Skill Gems', base_type=['Vaal', 'Detonate Mines', 'Added Chaos Damage']))
-    xai_filter.add(Block(theme=quality_gems, _class='Skill Gems', quality=Comparer(1, '>=')))
-    xai_filter.add(Block(_class='Skill Gems'))
+    f.add(Block(theme=ok_quality_gems, _class='Skill Gems', quality=Comparer(13, '>=')))
+    f.add(Block(theme=good_gems, _class='Skill Gems', base_type=['Vaal', 'Detonate Mines', 'Added Chaos Damage']))
+    f.add(Block(theme=quality_gems, _class='Skill Gems', quality=Comparer(1, '>=')))
+    f.add(Block(_class='Skill Gems'))
 
-    xai_filter.add(Comment('Section: #0010 - Rare Evaluation\n'))
-    xai_filter.add(Block(theme=rare_jewels, _class='Jewel', rarity='Rare'))
-    xai_filter.add(Block(theme=rare_atlas_bases, item_level=Comparer(84, '>='), base_type=atlas_bases, rarity='Rare'))
-    xai_filter.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare', base_type=gg_es_bases + gg_spell_bases))
-    xai_filter.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare', _class=jewellery))
-    xai_filter.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare',
+    f.add(Comment('Section: #0010 - Rare Evaluation\n'))
+    f.add(Block(theme=rare_jewels, _class='Jewel', rarity='Rare'))
+    f.add(Block(theme=rare_atlas_bases, item_level=Comparer(84, '>='), base_type=atlas_bases, rarity='Rare'))
+    f.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare', base_type=gg_es_bases + gg_spell_bases))
+    f.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare', _class=jewellery))
+    f.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare',
                          base_type=good_spell_bases + good_armour_bases, set_font_size=38))
-    xai_filter.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(83, '>='), rarity='Rare', base_type=gg_phys_bases))
-    xai_filter.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(83, '>='), rarity='Rare', base_type=good_phys_bases,
+    f.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(83, '>='), rarity='Rare', base_type=gg_phys_bases))
+    f.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(83, '>='), rarity='Rare', base_type=good_phys_bases,
                          set_font_size=38))
-    xai_filter.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(83, '>='), rarity='Rare', base_type='Sai',
+    f.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(83, '>='), rarity='Rare', base_type='Sai',
                          _class='Daggers', set_font_size=38))
-    xai_filter.add(Block(theme=rare_atlas_bases, rarity='Rare', base_type=gg_atlas_bases))
-    xai_filter.add(Block(theme=rare_atlas_bases, rarity='Rare', play_alert_sound=None, set_font_size=42, base_type=other_atlas_bases))
-    xai_filter.add(Block(theme=rare_decent_ilvl_bases, rarity='Rare', base_type=good_phys_bases, item_level=Comparer(73, '>=')))
-    xai_filter.add(Block(theme=rare_decent_ilvl_bases, item_level=Comparer(73, '>='), rarity='Rare', base_type='Sai', _class='Daggers'))
-    xai_filter.add(Block(theme=rare_decent_ilvl_bases, item_level=Comparer(72, '>='), rarity='Rare', base_type=good_armour_bases + gg_es_bases))
-    xai_filter.add(Block(theme=rare_good_bases, rarity='Rare', base_type=good_phys_bases + gg_es_bases + good_armour_bases + gg_spell_bases + good_spell_bases))
-    ilvl_swap(xai_filter, Block(theme=rare_decent_ilvl_bases, item_level=Comparer(75, '>='), rarity='Rare', _class=jewellery, set_font_size=40), rare_good_bases, set_font_size=40)
-    ilvl_swap(xai_filter, Block(theme=rare_decent_ilvl_bases, set_font_size=35, rarity='Rare', item_level=Comparer(73, '>='),
+    f.add(Block(theme=rare_atlas_bases, rarity='Rare', base_type=gg_atlas_bases))
+    f.add(Block(theme=rare_atlas_bases, rarity='Rare', play_alert_sound=None, set_font_size=42, base_type=other_atlas_bases))
+    f.add(Block(theme=rare_decent_ilvl_bases, rarity='Rare', base_type=good_phys_bases, item_level=Comparer(73, '>=')))
+    f.add(Block(theme=rare_decent_ilvl_bases, item_level=Comparer(73, '>='), rarity='Rare', base_type='Sai', _class='Daggers'))
+    f.add(Block(theme=rare_decent_ilvl_bases, item_level=Comparer(72, '>='), rarity='Rare', base_type=good_armour_bases + gg_es_bases))
+    f.add(Block(theme=rare_good_bases, rarity='Rare', base_type=good_phys_bases + gg_es_bases + good_armour_bases + gg_spell_bases + good_spell_bases))
+    ilvl_swap(f, Block(theme=rare_decent_ilvl_bases, item_level=Comparer(75, '>='), rarity='Rare', _class=jewellery, set_font_size=40), rare_good_bases, set_font_size=40)
+    ilvl_swap(f, Block(theme=rare_decent_ilvl_bases, set_font_size=35, rarity='Rare', item_level=Comparer(73, '>='),
                          drop_level=Comparer(59, '>='), _class=['Wands', 'Daggers', 'Sceptres']), rare_good_bases, set_font_size=35)
-    xai_filter.add(Block(theme=rare_shit_bases, item_level=Comparer(65, '>='), drop_level=Comparer(55, '<='),
+    f.add(Block(theme=rare_shit_bases, item_level=Comparer(65, '>='), drop_level=Comparer(55, '<='),
                          _class=melee_only_classes, rarity='Rare'))
 
 
     with open('xai.filter', 'w') as file:
-        file.write(str(xai_filter))
+        file.write(str(f))
 
 if __name__ == '__main__':
     main()
