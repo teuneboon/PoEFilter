@@ -6,7 +6,7 @@ from filter import Filter
 from helpers.base_types_and_classes import atlas_bases, gg_es_bases, gg_spell_bases, jewellery, good_armour_bases, good_spell_bases, \
     gg_phys_bases, good_phys_bases, gg_atlas_bases, other_atlas_bases, melee_only_classes
 from helpers.colors import Colors
-from helpers.general import ilvl_swap, small_sizes
+from helpers.general import ilvl_swap, small_sizes, add_failsafe
 from helpers.map import get_maps_by_tier
 from properties.color import Color
 from properties.comparer import Comparer
@@ -279,7 +279,7 @@ def main():
                                                                                             'Sceptres', 'Daggers', 'Wands']))
     f.add(Block(theme=rare_good_bases, item_level=Comparer(10, '<'), rarity='Rare'))
     # nice example of what you can do with PoEFilter
-    for drop_level in range(5, 60, 5):
+    for drop_level in range(5, 56):
         f.add(Block(theme=rare_good_bases, item_level=Comparer(drop_level + 10, '<'), drop_level=Comparer(drop_level, '>'),
                     rarity='Rare', set_font_size=35))
 
@@ -384,8 +384,19 @@ def main():
     for i_and_d in item_and_drop_levels:
         f.add(Block(item_level=Comparer(i_and_d[0], '<'), drop_level=Comparer(i_and_d[1], '>='), rarity=Comparer('Magic', '<='),
                     _class=leveling_weapon_classes, theme=Theme(font_size=32, background_color=Color(0, 0, 0, 165))))
+    f.add(Block(item_level=Comparer(12, '<'), rarity='Magic', width=2, height=Comparer(3, '>='), _class=['Body Armours', 'Shields'],
+                theme=Theme(text_color=Color(156, 156, 235, 150), background_color=Color(0, 0, 0, 165))))
+    f.add(Block(item_level=Comparer(12, '<'), rarity='Magic', width=2, height=Comparer(4, '>='),
+                theme=Theme(text_color=Color(156, 156, 235, 150), background_color=Color(0, 0, 0, 165))))
+    small_sizes(f, Block(item_level=Comparer(12, '<='), rarity='Magic',
+                theme=Theme(background_color=Color(0, 0, 0, 185))))
+    f.add(Block(item_level=Comparer(24, '<'), rarity='Magic', theme=Theme(font_size=32, background_color=Color(0, 0, 0, 165))))
+    f.add(Block(item_level=Comparer(36, '<'), rarity='Magic', theme=Theme(font_size=26, background_color=Color(0, 0, 0, 165))))
 
-    with open('xai.filter', 'w') as file:
+    f.add(Comment('Section: #0014 - Failsafe\n'))
+    add_failsafe(f)
+
+    with open('Xai.filter', 'w') as file:
         file.write(str(f))
 
 if __name__ == '__main__':

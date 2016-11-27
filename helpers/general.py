@@ -2,6 +2,7 @@ from copy import deepcopy
 
 from block import Block
 from filter import Filter
+from properties.color import Color
 from properties.comparer import Comparer
 from theme import Theme
 
@@ -24,3 +25,14 @@ def small_sizes(_filter: Filter, block: Block):
     other_block.set_property('width', Comparer(1, '<='))
     other_block.set_property('height', Comparer(3, '<='))
     _filter.add(other_block)
+
+
+def add_failsafe(_filter: Filter):
+    _filter.add(Block(show=False,
+                      rarity=Comparer('Magic', '<='),
+                      _class=['Bows', 'Wand', 'Sceptre', 'Staves', 'Claws', 'Body Armour', 'Gloves', 'Boots', 'Helmets',
+                              'Quivers', 'Flask', 'Daggers', 'Shields', 'Belts', 'Rings', 'Amulets', 'Two Hand Axes',
+                              'Two Hand Maces', 'Two Hand Swords', 'One Hand Axes', 'One Hand Maces', 'One Hand Swords',
+                              'Thrusting One Hand Swords'],
+                      theme=Theme(background_color=Color(0, 0, 0, 165), font_size=20)))
+    _filter.add(Block(theme=Theme(text_color=Color(255, 0, 255), border_color=Color(255, 0, 255), font_size=45)))
