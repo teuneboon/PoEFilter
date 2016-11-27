@@ -96,6 +96,7 @@ def main():
             block_args['set_font_size'] = drop_level - 32
             if tier == 1:
                 block_args['play_alert_sound'] = None
+                block_args['drop_level'] = None
 
         f.add(Block(**block_args))
 
