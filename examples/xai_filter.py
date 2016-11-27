@@ -101,6 +101,7 @@ def main():
 
     high_quality_flask = Theme(background_color=Color(75, 75, 75), border_color=Colors.WHITE, font_size=45)
     utility_flask = Theme(background_color=Color(75, 75, 75), border_color=Colors.BLACK)
+    early_survival = Theme(border_color=Colors.BLOOD_RED, font_size=40)
 
 
     f.add(Comment('Section: #0001 - Special Stuff\n'))
@@ -348,6 +349,28 @@ def main():
         f.add(Block(set_font_size=38, item_level=Comparer(ilvl, '<='), _class='Flask', base_type=base_type))
 
     f.add(Block(rarity=Comparer('Magic', '<='), base_type='Flask', set_font_size=30))
+
+    f.add(Comment('Section: #0013 - Leveling\n'))
+    f.add(Block(theme=early_survival, item_level=Comparer(12, '<'), base_type=['Coral Ring', 'Sapphire Ring', 'Leather Belt']))
+    f.add(Block(theme=early_survival, item_level=Comparer(12, '<'), set_font_size=38,
+                base_type=['Padded Vest', 'Light Brigandine', 'Leather Cap', 'Shabby Jerkin', 'Scale Vest',
+                           'Rawhide Boots', 'Rawhide Gloves', 'Leatherscale Boots', 'Wrapped Boots', 'Goathide Gloves',
+                           'Fishscale Gauntlets', 'Wrapped Mitts', 'Battered Helm', 'Scare Mask', 'Goathide Buckler',
+                           'Pine Buckler', 'Rotted Round Shield', 'Spiked Bundle']))
+    f.add(Block(item_level=Comparer(35, '<'), rarity='Normal', _class=jewellery))
+    f.add(Block(item_level=Comparer(66, '<='), rarity='Magic', _class=jewellery))
+    f.add(Block(item_level=Comparer(68, '<'), rarity='Magic', linked_sockets=4, _class='Boots', theme=Theme(
+        border_color=Color(255, 255, 255), font_size=38
+    )))
+    f.add(Block(item_level=Comparer(25, '<'), rarity='Magic', set_font_size=38, _class='Boots'))
+    f.add(Block(item_level=Comparer(35, '<'), rarity=Comparer('Magic', '<='), linked_sockets=3, _class=['Sceptres', 'Wands', 'Daggers'],
+                theme=Theme(border_color=Color(255, 255, 255), font_size=36)))
+    f.add(Block(item_level=Comparer(25, '<'), rarity=Comparer('Magic', '<='), _class=['Sceptres', 'Wands', 'Daggers'], set_font_size=36))
+    f.add(Block(item_level=Comparer(66, '<='), linked_sockets=Comparer(4, '>='), theme=Theme(border_color=Color(255, 255, 255), font_size=36)))
+    f.add(Block(item_level=Comparer(25, '<='), linked_sockets=Comparer(3, '>='), _class=['Gloves', 'Boots', 'Helmets'], set_font_size=36))
+    f.add(Block(item_level=Comparer(60, '<='), linked_sockets=Comparer(3, '>='), _class=['Gloves', 'Boots', 'Helmets']))
+    f.add(Block(item_level=Comparer(12, '<'), linked_sockets=Comparer(3, '>='), theme=Theme(font_size=36, background_color=Color(0, 0, 0, 185))))
+
 
     with open('xai.filter', 'w') as file:
         file.write(str(f))
