@@ -25,6 +25,13 @@ def main():
     quest_item = Theme(text_color=Color(50, 230, 100), border_color=Color(74, 230, 58), font_size=45)
     gg = Theme(text_color=Color(210, 0, 220), background_color=Colors.WHITE, border_color=Color(208, 32, 144),
                font_size=45, alert_sound=8)
+    good_currency = Theme(text_color=Colors.WHITE, background_color=Color(30, 144, 255), border_color=Colors.WHITE,
+                          font_size=45, alert_sound=5)
+    decent_currency = Theme(text_color=Colors.BLACK, background_color=Color(255, 165, 0), border_color=Colors.BLACK,
+                            font_size=45, alert_sound=1)
+    currency = Theme(text_color=Color(163, 141, 109), background_color=Colors.BLACK, border_color=Colors.WHITE, font_size=45)
+    shit_currency = Theme(text_color=Color(163, 141, 109), background_color=Color(0, 0, 0, 180),
+                          border_color=Color(163, 141, 109), font_size=45)
 
     shaper_maps = Theme(text_color=Colors.BLOOD_RED, background_color=Colors.WHITE, border_color=Colors.BLOOD_RED,
                         font_size=45, alert_sound=2)
@@ -36,10 +43,17 @@ def main():
                     alert_sound=2)
     maps = Theme(text_color=Colors.WHITE, background_color=Colors.BLACK, border_color=Colors.WHITE, alert_sound=2)
 
+    gg_fragment = Theme(text_color=Colors.BLACK, background_color=Colors.WHITE, border_color=Colors.BLACK, font_size=45,
+                        alert_sound=6)
+    good_fragment = Theme(text_color=Colors.BLACK, background_color=Colors.BLOOD_RED, border_color=Colors.BLACK, font_size=45,
+                          alert_sound=2)
+    fragment = Theme(text_color=Colors.BLOOD_RED, background_color=Colors.BLACK, border_color=Colors.BLOOD_RED, font_size=38,
+                     alert_sound=2)
+
     xai_filter.add(Comment('Section: #0001 - Special Stuff\n'))
     xai_filter.add(Block(theme=decent_unique,
                          comment='Tabula, we have to put this before everything cause our 6L block will override otherwise',
-                         socket_group='WWWWWW',
+                         socket_group='W'*6,
                          rarity='Unique'))
     xai_filter.add(Block(theme=special_quest_item, _class='Quest Items', base_type='Shaper\'s Orb'))
     xai_filter.add(Block(theme=quest_item, _class=['Quest Items', 'Microtransactions']))
@@ -106,6 +120,31 @@ def main():
         xai_filter.add(Block(**block_args))
         tier -= 1
 
+    xai_filter.add(Block(theme=gg_fragment, _class='Map Fragments',
+                         base_type=['Mortal Hope', 'Mortal Ignorance', 'Fragment of the Phoenix',
+                                    'Fragment of the Minotaur', 'Fragment of the Chimera', 'Fragment of the Hydra']))
+    xai_filter.add(Block(theme=good_fragment, _class='Map Fragments',
+                         base_type=['Mortal', 'Sacrifice at Midnight', 'Eber\'s Key', 'Inya\'s Key', 'Volkuur\'s Key',
+                                    'Yriel\'s Key']))
+    xai_filter.add(Block(theme=fragment, _class='Map Fragments'))
+
+    xai_filter.add(Comment('Section: #0006 - Currency + Essences'))
+    xai_filter.add(Block(theme=gg, base_type=['Exalted Orb', 'Eternal Orb', 'Albino Rhoa Feather']))
+    xai_filter.add(Block(theme=good_currency, base_type=['Deafening Essence', 'Shrieking Essence', 'Divine Orb',
+                                                         'Unshaping Orb', 'Essence of Hysteria', 'Essence of Insanity',
+                                                         'Essence of Horror', 'Essence of Delirium']))
+    xai_filter.add(Block(theme=decent_currency,
+                         base_type=['Cartographer\'s Sextant', 'Chaos Orb', 'Cartographer\'s Seal', 'Orb of Fusing',
+                                    'Orb of Regret', 'Regal Orb', 'Blessed Orb', 'Gemcutter\'s Prism',
+                                    'Orb of Scouring', 'Vaal Orb', 'Remnant of Corruption', 'Essence of']))
+    xai_filter.add(Block(theme=Theme(text_color=Color(231, 180, 120),
+                                     background_color=Color(0, 0, 0, 180),
+                                     border_color=Color(231, 180, 120),
+                                     font_size=45),
+                         base_type='Perandus Coin'))
+    xai_filter.add(Block(theme=currency, base_type=['Orb of Alchemy', 'Silver Coin', 'Orb of Chance', 'Jeweller\'s Orb',
+                                                    'Orb of Alteration', 'Cartographer\'s Chisel']))
+    xai_filter.add(Block(theme=shit_currency, _class=['Currency', 'Stackable Currency']))
     print(xai_filter)
 
 if __name__ == '__main__':
