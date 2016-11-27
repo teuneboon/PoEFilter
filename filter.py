@@ -1,3 +1,4 @@
+from comment import Comment
 from filter_part import FilterPart
 
 
@@ -15,7 +16,7 @@ class Filter(object):
 
     def __str__(self):
         result = ''
-        for part in self.parts:
+        for part in [Comment('Script generated with PoEFilter - https://github.com/teuneboon/PoEFilter\n')] + self.parts:
             result += '{0}\n'.format(str(part))
 
         return result

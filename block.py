@@ -7,9 +7,10 @@ from theme import Theme
 
 class Block(FilterPart):
     show = True  # if show is false we'll make it a hide block
-    properties = {}
+    properties = None
 
     def __init__(self, show=True, theme: Theme=None, **kwargs):
+        self.properties = {}
         self.show = show
 
         if theme is not None:

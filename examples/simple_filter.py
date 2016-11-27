@@ -11,6 +11,7 @@ def main():
     test_theme = Theme(text_color=ColorProperty(255, 255, 0), alert_sound=SoundProperty(5))
 
     simple_filter.add_part(Block(identified=True, theme=test_theme))
+    simple_filter.add_part(Block(show=False, base_type='Simple Robe'))
     print(simple_filter)
 
 if __name__ == '__main__':
