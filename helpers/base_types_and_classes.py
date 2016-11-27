@@ -18,3 +18,5 @@ gg_phys_bases = ['Vaal Axe', 'Coronal Maul', 'Harbinger Bow', 'Ambusher', 'Imbue
 good_phys_bases = ['Lion Sword', 'Vaal Greatsword', 'Exquisite Blade', 'Fleshripper', 'Gemini Claw', 'Demon Dagger',
                    'Imperial Skean', 'Tiger Hook', 'Jewelled Foil', 'Runic Hatchet', 'Behemoth Mace', 'Eternal Sword',
                    'Eclipse Staff', 'Maelström Staff', 'Judgement Staff', 'Dragoon Sword', 'Vaal Hatchet']
+# stuff that can't be used as a spell base... and staves
+melee_only_classes = ['One Hand Maces', 'One Hand Axes', 'One Hand Swords', 'Claws', 'Staves', 'Two Hand']

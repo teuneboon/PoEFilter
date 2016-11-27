@@ -3,8 +3,8 @@ from collections import OrderedDict
 from block import Block
 from comment import Comment
 from filter import Filter
-from helpers.base_types import atlas_bases, gg_es_bases, gg_spell_bases, jewellery, good_armour_bases, good_spell_bases, \
-    gg_phys_bases, good_phys_bases, gg_atlas_bases, other_atlas_bases
+from helpers.base_types_and_classes import atlas_bases, gg_es_bases, gg_spell_bases, jewellery, good_armour_bases, good_spell_bases, \
+    gg_phys_bases, good_phys_bases, gg_atlas_bases, other_atlas_bases, melee_only_classes
 from helpers.colors import Colors
 from helpers.general import ilvl_swap
 from helpers.map import get_maps_by_tier
@@ -80,10 +80,12 @@ def main():
     rare_jewels = Theme(text_color=Colors.YELLOW, background_color=Color(75, 75, 0), border_color=Colors.YELLOW, font_size=45)
     rare_atlas_bases = Theme(text_color=Color(255, 255, 119), background_color=Color(74, 230, 58), border_color=Color(255, 255, 119),
                             font_size=45, alert_sound=5)
-    max_ilvl_bases = Theme(text_color=Color(0, 128, 0), background_color=Color(255, 200, 0), border_color=(0, 128, 0),
+    rare_max_ilvl_bases = Theme(text_color=Color(0, 128, 0), background_color=Color(255, 200, 0), border_color=(0, 128, 0),
                            font_size=45)
-    decent_ilvl_bases = Theme(text_color=Color(255, 190, 0), background_color=Color(30, 90, 45), border_color=Colors.WHITE, font_size=38)
-    good_bases = Theme(background_color=Color(30, 90, 45), border_color=Color(255, 255, 119), font_size=38)
+    rare_decent_ilvl_bases = Theme(text_color=Color(255, 190, 0), background_color=Color(30, 90, 45), border_color=Colors.WHITE, font_size=38)
+    rare_good_bases = Theme(background_color=Color(30, 90, 45), border_color=Color(255, 255, 119), font_size=38)
+    rare_shit_bases = Theme(background_color=Color(120, 20, 20, 150), border_color=Color(150, 150, 150, 150), font_size=25)
+
 
     xai_filter.add(Comment('Section: #0001 - Special Stuff\n'))
     xai_filter.add(Block(theme=decent_unique,
@@ -223,24 +225,26 @@ def main():
     xai_filter.add(Comment('Section: #0010 - Rare Evaluation\n'))
     xai_filter.add(Block(theme=rare_jewels, _class='Jewel', rarity='Rare'))
     xai_filter.add(Block(theme=rare_atlas_bases, item_level=Comparer(84, '>='), base_type=atlas_bases, rarity='Rare'))
-    xai_filter.add(Block(theme=max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare', base_type=gg_es_bases + gg_spell_bases))
-    xai_filter.add(Block(theme=max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare', _class=jewellery))
-    xai_filter.add(Block(theme=max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare',
+    xai_filter.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare', base_type=gg_es_bases + gg_spell_bases))
+    xai_filter.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare', _class=jewellery))
+    xai_filter.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare',
                          base_type=good_spell_bases + good_armour_bases, set_font_size=38))
-    xai_filter.add(Block(theme=max_ilvl_bases, item_level=Comparer(83, '>='), rarity='Rare', base_type=gg_phys_bases))
-    xai_filter.add(Block(theme=max_ilvl_bases, item_level=Comparer(83, '>='), rarity='Rare', base_type=good_phys_bases,
+    xai_filter.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(83, '>='), rarity='Rare', base_type=gg_phys_bases))
+    xai_filter.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(83, '>='), rarity='Rare', base_type=good_phys_bases,
                          set_font_size=38))
-    xai_filter.add(Block(theme=max_ilvl_bases, item_level=Comparer(83, '>='), rarity='Rare', base_type='Sai',
+    xai_filter.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(83, '>='), rarity='Rare', base_type='Sai',
                          _class='Daggers', set_font_size=38))
     xai_filter.add(Block(theme=rare_atlas_bases, rarity='Rare', base_type=gg_atlas_bases))
     xai_filter.add(Block(theme=rare_atlas_bases, rarity='Rare', play_alert_sound=None, set_font_size=42, base_type=other_atlas_bases))
-    xai_filter.add(Block(theme=decent_ilvl_bases, rarity='Rare', base_type=good_phys_bases, item_level=Comparer(73, '>=')))
-    xai_filter.add(Block(theme=decent_ilvl_bases, item_level=Comparer(73, '>='), rarity='Rare', base_type='Sai', _class='Daggers'))
-    xai_filter.add(Block(theme=decent_ilvl_bases, item_level=Comparer(72, '>='), rarity='Rare', base_type=good_armour_bases + gg_es_bases))
-    xai_filter.add(Block(theme=good_bases, rarity='Rare', base_type=good_phys_bases + gg_es_bases + good_armour_bases + gg_spell_bases + good_spell_bases))
-    ilvl_swap(xai_filter, Block(theme=decent_ilvl_bases, item_level=Comparer(75, '>='), rarity='Rare', _class=jewellery, set_font_size=40), good_bases, set_font_size=40)
-    ilvl_swap(xai_filter, Block(theme=decent_ilvl_bases, set_font_size=35, rarity='Rare', item_level=Comparer(73, '>='),
-                         drop_level=Comparer(59, '>='), _class=['Wands', 'Daggers', 'Sceptres']), good_bases, set_font_size=35)
+    xai_filter.add(Block(theme=rare_decent_ilvl_bases, rarity='Rare', base_type=good_phys_bases, item_level=Comparer(73, '>=')))
+    xai_filter.add(Block(theme=rare_decent_ilvl_bases, item_level=Comparer(73, '>='), rarity='Rare', base_type='Sai', _class='Daggers'))
+    xai_filter.add(Block(theme=rare_decent_ilvl_bases, item_level=Comparer(72, '>='), rarity='Rare', base_type=good_armour_bases + gg_es_bases))
+    xai_filter.add(Block(theme=rare_good_bases, rarity='Rare', base_type=good_phys_bases + gg_es_bases + good_armour_bases + gg_spell_bases + good_spell_bases))
+    ilvl_swap(xai_filter, Block(theme=rare_decent_ilvl_bases, item_level=Comparer(75, '>='), rarity='Rare', _class=jewellery, set_font_size=40), rare_good_bases, set_font_size=40)
+    ilvl_swap(xai_filter, Block(theme=rare_decent_ilvl_bases, set_font_size=35, rarity='Rare', item_level=Comparer(73, '>='),
+                         drop_level=Comparer(59, '>='), _class=['Wands', 'Daggers', 'Sceptres']), rare_good_bases, set_font_size=35)
+    xai_filter.add(Block(theme=rare_shit_bases, item_level=Comparer(65, '>='), drop_level=Comparer(55, '<='),
+                         _class=melee_only_classes, rarity='Rare'))
 
 
     with open('xai.filter', 'w') as file:
