@@ -74,9 +74,9 @@ class Block(FilterPart):
 
     def __str__(self):
         if self.show:
-            keyword = 'Show:'
+            keyword = 'Show'
         else:
-            keyword = 'Hide:'
+            keyword = 'Hide'
 
         property_string = ''
         for key, value in self.properties.items():
