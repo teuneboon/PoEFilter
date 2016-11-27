@@ -1,3 +1,5 @@
+from typing import List
+
 from properties.property import Property
 
 
@@ -7,5 +9,5 @@ class StringProperty(Property):
     def __init__(self, value):
         self.value = value
 
-    def __str__(self):
-        return str(self.value)
+    def process(self) -> List[str]:
+        return [str(self.value)]

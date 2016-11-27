@@ -1,3 +1,5 @@
+from typing import List
+
 from properties.property import Property
 
 
@@ -7,8 +9,8 @@ class BooleanProperty(Property):
     def __init__(self, value):
         self.value = value
 
-    def __str__(self):
+    def process(self) -> List[str]:
         if self.value:
-            return 'True'
+            return ['True']
         else:
-            return 'False'
+            return ['False']

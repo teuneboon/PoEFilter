@@ -1,5 +1,3 @@
-from collections import OrderedDict
-
 from filter_part import FilterPart
 from properties.boolean_property import BooleanProperty
 from properties.property import Property
@@ -48,7 +46,8 @@ class Block(FilterPart):
 
         property_string = ''
         for key, value in self.properties.items():
-            property_string += '    {0} {1}\n'.format(key, str(value))
+            for sub_value in value.process():
+                property_string += '    {0} {1}\n'.format(key, sub_value)
 
         result = '{0}\n{1}'.format(keyword, property_string)
         return result
