@@ -34,11 +34,9 @@ class Block(FilterPart):
             # not already passed as a property, we'll try to guess what the user intended
             if isinstance(value, bool):
                 value = Boolean(value)
-            elif isinstance(value, list):
-                value = StringList(value)
             else:
-                # we'll assume it's wanted as a string
-                value = String(value)
+                # we'll assume it's wanted as a string with "" around it
+                value = StringList(value)
 
         self.properties[key] = value
 

@@ -9,6 +9,9 @@ class StringList(Property):
     def __init__(self, values: List[str]=None):
         if values is None:
             values = []
+        if isinstance(values, str):
+            values = [values]
+
         self.values = values
 
     def add_value(self, value):
