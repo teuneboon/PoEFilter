@@ -388,7 +388,7 @@ def get_themes():
                              border_color=Color(255, 255, 119),
                              font_size=45, alert_sound=5)
     rare_max_ilvl_bases = Theme(text_color=Color(0, 128, 0), background_color=Color(255, 200, 0),
-                                border_color=(0, 128, 0),
+                                border_color=Color(0, 128, 0),
                                 font_size=45)
     rare_decent_ilvl_bases = Theme(text_color=Color(255, 190, 0), background_color=Color(30, 90, 45),
                                    border_color=Colors.WHITE, font_size=38)
