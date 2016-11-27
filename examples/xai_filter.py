@@ -242,10 +242,34 @@ def main():
     f.add(Block(theme=rare_good_bases, rarity='Rare', base_type=good_phys_bases + gg_es_bases + good_armour_bases + gg_spell_bases + good_spell_bases))
     ilvl_swap(f, Block(theme=rare_decent_ilvl_bases, item_level=Comparer(75, '>='), rarity='Rare', _class=jewellery, set_font_size=40), rare_good_bases, set_font_size=40)
     ilvl_swap(f, Block(theme=rare_decent_ilvl_bases, set_font_size=35, rarity='Rare', item_level=Comparer(73, '>='),
-                         drop_level=Comparer(59, '>='), _class=['Wands', 'Daggers', 'Sceptres']), rare_good_bases, set_font_size=35)
+              drop_level=Comparer(59, '>='), _class=['Wands', 'Daggers', 'Sceptres']), rare_good_bases, set_font_size=35)
     f.add(Block(theme=rare_shit_bases, item_level=Comparer(65, '>='), drop_level=Comparer(55, '<='),
                          _class=melee_only_classes, rarity='Rare'))
+    ilvl_swap(f, Block(theme=rare_decent_ilvl_bases, item_level=Comparer(74, '>='), rarity='Rare', _class='Quivers', set_font_size=35,
+                       base_type=['Spike-Point Arrow Quiver', 'Broadhead Arrow Quiver', 'Two-Point Arrow Quiver']),
+              lower_theme=rare_good_bases, set_font_size=35)
+    ilvl_swap(f, Block(theme=rare_decent_ilvl_bases, item_level=Comparer(72, '>='), drop_level=Comparer(44, '>='),
+                       rarity='Rare', _class=['Gloves', 'Boots', 'Helmets'], set_font_size=35), lower_theme=rare_good_bases,
+              set_font_size=35)
+    f.add(Block(theme=rare_shit_bases, item_level=Comparer(65, '>='), drop_level=Comparer(15, '<='), _class=['Gloves', 'Boots', 'Helmets'],
+                rarity='Rare'))
+    f.add(Block(theme=rare_shit_bases, item_level=Comparer(65, '>='), drop_level=Comparer(50, '<='), _class='Shields',
+                rarity='Rare'))
+    f.add(Block(theme=rare_shit_bases, item_level=Comparer(65, '>='), drop_level=Comparer(47, '<='), _class='Body Armour',
+                rarity='Rare'))
+    f.add(Block(theme=rare_good_bases, set_font_size=45, item_level=Comparer(30, '<'), rarity='Rare', _class='Boots'))
+    f.add(Block(theme=rare_good_bases, item_level=Comparer(65, '<'), rarity='Rare', _class=['Boots', 'Helmets', 'Gloves',
+                                                                                            'Sceptres', 'Daggers', 'Wands']))
+    f.add(Block(theme=rare_good_bases, item_level=Comparer(10, '<'), rarity='Rare'))
+    # nice example of what you can do with PoEFilter
+    for drop_level in range(5, 60, 5):
+        f.add(Block(theme=rare_good_bases, item_level=Comparer(drop_level + 10, '<'), drop_level=Comparer(drop_level, '>'),
+                    rarity='Rare', set_font_size=35))
 
+    f.add(Block(theme=Theme(background_color=Colors.BLACK, border_color=Color(150, 150, 150), font_size=35),
+                item_level=Comparer(20, '<'), rarity='Rare'))
+    f.add(Block(theme=Theme(background_color=Color(0, 0, 0, 180), border_color=Color(150, 150, 150), font_size=35),
+                item_level=Comparer(65, '<'), rarity='Rare'))
 
     with open('xai.filter', 'w') as file:
         file.write(str(f))
