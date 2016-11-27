@@ -11,7 +11,7 @@ class Filter(object):
 
         self.parts = parts
 
-    def add_part(self, part: FilterPart):
+    def add(self, part: FilterPart):
         self.parts.append(part)
 
     def __str__(self):

@@ -46,6 +46,9 @@ class Block(FilterPart):
         :param key:
         :return:
         """
+        if key == '_class':
+            key = 'class'
+
         return ''.join([word.capitalize() for word in key.split('_')])
 
     def set_property(self, key, value):
