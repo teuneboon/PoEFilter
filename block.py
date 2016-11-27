@@ -52,17 +52,21 @@ class Block(FilterPart):
         return ''.join([word.capitalize() for word in key.split('_')])
 
     def set_property(self, key, value):
-        if not isinstance(value, Property):
-            # not already passed as a property, we'll try to guess what the user intended
-            if isinstance(value, bool):
-                value = Boolean(value)
-            elif key in COMPARER_PROPERTIES:
-                value = Comparer(value)
-            else:
-                # we'll assume it's wanted as a string with "" around it
-                value = StringList(value)
+        if value is None:
+            if key in self.properties:
+                del self.properties[key]
+        else:
+            if not isinstance(value, Property):
+                # not already passed as a property, we'll try to guess what the user intended
+                if isinstance(value, bool):
+                    value = Boolean(value)
+                elif key in COMPARER_PROPERTIES:
+                    value = Comparer(value)
+                else:
+                    # we'll assume it's wanted as a string with "" around it
+                    value = StringList(value)
 
-        self.properties[key] = value
+            self.properties[key] = value
 
     def __str__(self):
         if self.show:
