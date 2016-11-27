@@ -10,6 +10,8 @@ from theme import Theme
 
 def main():
     xai_filter = Filter()
+    
+    map_blue = Color(30, 144, 255)
 
     decent_unique = Theme(text_color=Colors.WHITE, background_color=Colors.UNIQUE, border_color=Colors.WHITE,
                           font_size=45, alert_sound=6)
@@ -23,6 +25,16 @@ def main():
     quest_item = Theme(text_color=Color(50, 230, 100), border_color=Color(74, 230, 58), font_size=45)
     gg = Theme(text_color=Color(210, 0, 220), background_color=Colors.WHITE, border_color=Color(208, 32, 144),
                font_size=45, alert_sound=8)
+
+    shaper_maps = Theme(text_color=Colors.BLOOD_RED, background_color=Colors.WHITE, border_color=Colors.BLOOD_RED,
+                        font_size=45, alert_sound=2)
+    gg_maps = Theme(text_color=Colors.BLOOD_RED, background_color=Color(184, 218, 242), border_color=Colors.BLOOD_RED,
+                    font_size=45, alert_sound=2)
+    good_maps = Theme(text_color=Color(150, 0, 0), background_color=map_blue, border_color=Color(150, 0, 0),
+                      font_size=42, alert_sound=2)
+    ok_maps = Theme(text_color=map_blue, background_color=Color(0, 0, 0), border_color=map_blue, font_size=40,
+                    alert_sound=2)
+    maps = Theme(text_color=Colors.WHITE, background_color=Colors.BLACK, border_color=Colors.WHITE, alert_sound=2)
 
     xai_filter.add(Comment('Section: #0001 - Special Stuff\n'))
     xai_filter.add(Block(theme=decent_unique,
@@ -74,7 +86,25 @@ def main():
     xai_filter.add(Block(theme=unique, rarity='Unique'))
 
     xai_filter.add(Comment('Section: #0005 - Maps'))
+    tier = 16
+    for drop_level in range(84, 67, -1):
+        block_args = {'drop_level': Comparer(drop_level, '>='), '_class': 'Maps'}
+        if tier >= 15:
+            block_args['theme'] = shaper_maps
+        elif tier >= 12:
+            block_args['theme'] = gg_maps
+        elif tier >= 9:
+            block_args['theme'] = good_maps
+        elif tier >= 5:
+            block_args['theme'] = ok_maps
+        else:
+            block_args['theme'] = maps
+            block_args['set_font_size'] = drop_level - 32
+            if tier == 1:
+                block_args['play_alert_sound'] = None
 
+        xai_filter.add(Block(**block_args))
+        tier -= 1
 
     print(xai_filter)
 

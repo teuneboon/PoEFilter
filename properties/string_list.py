@@ -9,7 +9,7 @@ class StringList(Property):
     def __init__(self, values: List[str]=None):
         if values is None:
             values = []
-        if isinstance(values, str):
+        if not isinstance(values, list):
             values = [values]
 
         self.values = values
@@ -18,4 +18,5 @@ class StringList(Property):
         self.values.append(value)
 
     def __str__(self):
-        return ' '.join(['"{0}"'.format(value) for value in self.values])
+        # please don't kill me for this code
+        return ' '.join([str(value) if isinstance(value, int) else '"{0}"'.format(value) for value in self.values])
