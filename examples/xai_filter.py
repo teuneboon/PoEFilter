@@ -86,6 +86,19 @@ def main():
     rare_good_bases = Theme(background_color=Color(30, 90, 45), border_color=Color(255, 255, 119), font_size=38)
     rare_shit_bases = Theme(background_color=Color(120, 20, 20, 150), border_color=Color(150, 150, 150, 150), font_size=25)
 
+    white_atlas_bases = Theme(text_color=Color(255, 255, 119), border_color=Color(255, 255, 119),
+                              background_color=Colors.BLACK, font_size=45, alert_sound=1)
+    white_gg_bases = Theme(border_color=Color(255, 255, 0), font_size=40, background_color=Colors.BLACK)
+    white_ok_bases = Theme(border_color=Color(255, 255, 0, 180), background_color=Color(0, 0, 0, 180), font_size=38)
+
+    chromatic_item = Theme(border_color=Color(27, 162, 155), background_color=Color(107, 107, 107), font_size=36)
+    chance_item = Theme(border_color=Color(74, 230, 58))
+
+    alch_base = Theme(border_color=Color(255, 190, 0, 150), font_size=32)
+    magic_jewellery = Theme(border_color=Colors.BLACK, font_size=28, background_color=Color(0, 0, 0, 165))
+    magic_jewel = Theme(text_color=Color(0, 100, 255), background_color=Color(0, 40, 60), border_color=Color(0, 75, 250),
+                        font_size=36)
+
 
     f.add(Comment('Section: #0001 - Special Stuff\n'))
     f.add(Block(theme=decent_unique,
@@ -275,6 +288,28 @@ def main():
     small_sizes(f, Block(rarity='Rare', theme=Theme(background_color=Colors.BLACK, border_color=Color(150, 150, 150),
                                                     font_size=35)))
     f.add(Block(theme=Theme(background_color=Color(0, 0, 0, 180), border_color=Color(150, 150, 150), font_size=35), rarity='Rare'))
+
+    f.add(Comment('Section: #0011 - Normal and Magic Items\n'))
+    f.add(Block(comment='Redblade(potentially)', rarity='Magic', _class='Helmets', identified=True, set_border_color=Color(210, 0, 0)))
+    f.add(Block(theme=white_atlas_bases, base_type=atlas_bases, item_level=Comparer(84, '>=')))
+    f.add(Block(theme=white_gg_bases, item_level=Comparer(84, '>='), base_type=gg_es_bases + gg_spell_bases))
+    f.add(Block(theme=white_gg_bases, item_level=Comparer(84, '>='), _class=jewellery))
+    f.add(Block(theme=white_ok_bases, item_level=Comparer(84, '>='), base_type=good_spell_bases + good_armour_bases))
+    f.add(Block(theme=white_gg_bases, item_level=Comparer(83, '>='), base_type=gg_phys_bases))
+    f.add(Block(theme=white_ok_bases, item_level=Comparer(83, '>='), base_type=good_phys_bases))
+    f.add(Block(theme=white_ok_bases, item_level=Comparer(83, '>='), base_type='Sai', _class='Daggers'))
+    f.add(Block(theme=white_atlas_bases, base_type=gg_atlas_bases))
+    f.add(Block(theme=white_atlas_bases, base_type=other_atlas_bases, play_alert_sound=None, set_font_size=36))
+    small_sizes(f, Block(theme=chromatic_item, socket_group='RGB'))
+    f.add(Block(theme=chromatic_item, set_font_size=30, socket_group='RGB'))
+    f.add(Block(theme=chance_item, rarity='Normal', base_type=['Sorcerer Boots', 'Jewelled Foil', 'Occultist\'s Vestment',
+                                                               'Deicide Mask', 'Sapphire Flask']))
+    f.add(Block(theme=alch_base, item_level=Comparer(67, '>='), rarity='Normal', _class=jewellery,
+                base_type=['Onyx', 'Ruby', 'Sapphire', 'Topaz', 'Two-Stone', 'Diamond', 'Prismatic', 'Unset', 'Gold',
+                           'Citrine', 'Turquoise', 'Agate', 'Coral Ring', 'Moonstone', 'Leather', 'Heavy', 'Amber',
+                           'Jade', 'Lapis', 'Rustic', 'Iron Ring']))
+    f.add(Block(theme=magic_jewellery, item_level=Comparer(67, '>='), rarity='Magic', _class=jewellery))
+    f.add(Block(theme=magic_jewel, _class='Jewel'))
 
     with open('xai.filter', 'w') as file:
         file.write(str(f))
