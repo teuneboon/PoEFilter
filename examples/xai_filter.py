@@ -3,8 +3,10 @@ from collections import OrderedDict
 from block import Block
 from comment import Comment
 from filter import Filter
-from helpers.base_types import atlas_bases
+from helpers.base_types import atlas_bases, gg_es_bases, gg_spell_bases, jewellery, good_armour_bases, good_spell_bases, \
+    gg_phys_bases, good_phys_bases, gg_atlas_bases, other_atlas_bases
 from helpers.colors import Colors
+from helpers.general import ilvl_swap
 from helpers.map import get_maps_by_tier
 from properties.color import Color
 from properties.comparer import Comparer
@@ -80,6 +82,8 @@ def main():
                             font_size=45, alert_sound=5)
     max_ilvl_bases = Theme(text_color=Color(0, 128, 0), background_color=Color(255, 200, 0), border_color=(0, 128, 0),
                            font_size=45)
+    decent_ilvl_bases = Theme(text_color=Color(255, 190, 0), background_color=Color(30, 90, 45), border_color=Colors.WHITE, font_size=38)
+    good_bases = Theme(background_color=Color(30, 90, 45), border_color=Color(255, 255, 119), font_size=38)
 
     xai_filter.add(Comment('Section: #0001 - Special Stuff\n'))
     xai_filter.add(Block(theme=decent_unique,
@@ -217,18 +221,6 @@ def main():
     xai_filter.add(Block(_class='Skill Gems'))
 
     xai_filter.add(Comment('Section: #0010 - Rare Evaluation\n'))
-    gg_es_bases = ['Titanium Spirit Shield', 'Hubris Circlet', 'Sorcerer Boots', 'Sorcerer Gloves', 'Vaal Regalia']
-    gg_spell_bases = ['Platinum Kris']
-    jewellery = ['Rings', 'Amulets', 'Belts']
-    good_spell_bases = ['Void Sceptre', 'Opal Sceptre', 'Profane Wand', 'Opal Wand', 'Sambar Sceptre']
-    # not literally armour(aka red) bases, but stuff you wear like boots/gloves/chest
-    good_armour_bases = ['Saintly Chainmail', 'Harmonic Spirit Shield', 'Fossilised Spirit Shield', 'Titan Gauntlets',
-                         'Slink Gloves', 'Eternal Burgonet', 'Lion Pelt', 'Titan Greaves', 'Slink Boots']
-    gg_phys_bases = ['Vaal Axe', 'Coronal Maul', 'Harbinger Bow', 'Ambusher', 'Imbued Wand', 'Prophecy Wand']
-    good_phys_bases = ['Lion Sword', 'Vaal Greatsword', 'Exquisite Blade', 'Fleshripper', 'Gemini Claw', 'Demon Dagger',
-                       'Imperial Skean', 'Tiger Hook', 'Jewelled Foil', 'Runic Hatchet', 'Behemoth Mace', 'Eternal Sword',
-                       'Eclipse Staff', 'Maelström Staff', 'Judgement Staff', 'Dragoon Sword', 'Vaal Hatchet']
-
     xai_filter.add(Block(theme=rare_jewels, _class='Jewel', rarity='Rare'))
     xai_filter.add(Block(theme=rare_atlas_bases, item_level=Comparer(84, '>='), base_type=atlas_bases, rarity='Rare'))
     xai_filter.add(Block(theme=max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare', base_type=gg_es_bases + gg_spell_bases))
@@ -240,6 +232,16 @@ def main():
                          set_font_size=38))
     xai_filter.add(Block(theme=max_ilvl_bases, item_level=Comparer(83, '>='), rarity='Rare', base_type='Sai',
                          _class='Daggers', set_font_size=38))
+    xai_filter.add(Block(theme=rare_atlas_bases, rarity='Rare', base_type=gg_atlas_bases))
+    xai_filter.add(Block(theme=rare_atlas_bases, rarity='Rare', play_alert_sound=None, set_font_size=42, base_type=other_atlas_bases))
+    xai_filter.add(Block(theme=decent_ilvl_bases, rarity='Rare', base_type=good_phys_bases, item_level=Comparer(73, '>=')))
+    xai_filter.add(Block(theme=decent_ilvl_bases, item_level=Comparer(73, '>='), rarity='Rare', base_type='Sai', _class='Daggers'))
+    xai_filter.add(Block(theme=decent_ilvl_bases, item_level=Comparer(72, '>='), rarity='Rare', base_type=good_armour_bases + gg_es_bases))
+    xai_filter.add(Block(theme=good_bases, rarity='Rare', base_type=good_phys_bases + gg_es_bases + good_armour_bases + gg_spell_bases + good_spell_bases))
+    ilvl_swap(xai_filter, Block(theme=decent_ilvl_bases, item_level=Comparer(75, '>='), rarity='Rare', _class=jewellery, set_font_size=40), good_bases, set_font_size=40)
+    ilvl_swap(xai_filter, Block(theme=decent_ilvl_bases, set_font_size=35, rarity='Rare', item_level=Comparer(73, '>='),
+                         drop_level=Comparer(59, '>='), _class=['Wands', 'Daggers', 'Sceptres']), good_bases, set_font_size=35)
+
 
     with open('xai.filter', 'w') as file:
         file.write(str(xai_filter))

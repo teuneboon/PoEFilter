@@ -17,14 +17,9 @@ class Theme(object):
             alert_sound = Sound(alert_sound)
         self.alert_sound = alert_sound
 
-    def process(self, properties):
-        if self.text_color is not None:
-            properties['SetTextColor'] = self.text_color
-        if self.border_color is not None:
-            properties['SetBorderColor'] = self.border_color
-        if self.background_color is not None:
-            properties['SetBackgroundColor'] = self.background_color
-        if self.font_size is not None:
-            properties['SetFontSize'] = self.font_size
-        if self.alert_sound is not None:
-            properties['PlayAlertSound'] = self.alert_sound
+    def process(self, block):
+        block.set_property('set_text_color', self.text_color)
+        block.set_property('set_border_color', self.border_color)
+        block.set_property('set_background_color', self.background_color)
+        block.set_property('set_font_size', self.font_size)
+        block.set_property('play_alert_sound', self.alert_sound)

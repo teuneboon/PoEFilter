@@ -33,11 +33,14 @@ class Block(FilterPart):
             else:
                 self.comment = Comment(comment)
 
-        if theme is not None:
-            theme.process(self.properties)
+        self.set_theme(theme)
 
         for key, value in kwargs.items():
-            self.set_property(self.__translate_property_key(key), value)
+            self.set_property(key, value)
+
+    def set_theme(self, theme: Theme):
+        if theme is not None:
+            theme.process(self)
 
     @staticmethod
     def __translate_property_key(key):
@@ -52,6 +55,7 @@ class Block(FilterPart):
         return ''.join([word.capitalize() for word in key.split('_')])
 
     def set_property(self, key, value):
+        key = self.__translate_property_key(key)
         if value is None:
             if key in self.properties:
                 del self.properties[key]
