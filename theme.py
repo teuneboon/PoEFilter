@@ -1,3 +1,6 @@
+from properties.sound import Sound
+
+
 class Theme(object):
     text_color = None
     border_color = None
@@ -10,6 +13,8 @@ class Theme(object):
         self.border_color = border_color
         self.background_color = background_color
         self.font_size = font_size
+        if isinstance(alert_sound, int):
+            alert_sound = Sound(alert_sound)
         self.alert_sound = alert_sound
 
     def process(self, properties):
