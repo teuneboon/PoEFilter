@@ -1,10 +1,13 @@
 from filter_part import FilterPart
 from properties.boolean import Boolean
+from properties.comparer import Comparer
 from properties.property import Property
-from properties.string import String
 from properties.string_list import StringList
 from theme import Theme
 
+
+# properties that we always want to add as a comparer
+COMPARER_PROPERTIES = ['Rarity', 'ItemLevel', 'DropLevel', 'LinkedSockets', 'Sockets', 'Quality', 'Width', 'Height']
 
 class Block(FilterPart):
     show = True  # if show is false we'll make it a hide block
@@ -34,6 +37,8 @@ class Block(FilterPart):
             # not already passed as a property, we'll try to guess what the user intended
             if isinstance(value, bool):
                 value = Boolean(value)
+            elif key in COMPARER_PROPERTIES:
+                value = Comparer(value)
             else:
                 # we'll assume it's wanted as a string with "" around it
                 value = StringList(value)

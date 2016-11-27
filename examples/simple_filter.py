@@ -1,6 +1,7 @@
 from block import Block
 from filter import Filter
 from properties.color import Color
+from properties.comparer import Comparer
 from properties.sound import Sound
 from theme import Theme
 
@@ -11,7 +12,7 @@ def main():
     test_theme = Theme(text_color=Color(255, 255, 0), alert_sound=Sound(5))
 
     simple_filter.add_part(Block(identified=True, theme=test_theme))
-    simple_filter.add_part(Block(show=False, base_type=['Simple Robe']))
+    simple_filter.add_part(Block(show=False, base_type=['Simple Robe'], rarity='Unique', item_level=Comparer(80, '>=')))
     print(simple_filter)
 
 if __name__ == '__main__':
