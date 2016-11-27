@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from collections import OrderedDict
 
 from block import Block
@@ -318,7 +320,7 @@ def main():
     f.add(Comment('Section: #0014 - Failsafe\n'))
     add_failsafe(f)
 
-    with open('Xai.filter', 'w') as file:
+    with open('Xai.filter', encoding='utf-8', mode='w') as file:
         file.write(str(f))
 
 
