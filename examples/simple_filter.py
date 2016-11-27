@@ -1,10 +1,16 @@
 from block import Block
 from filter import Filter
+from properties.color_property import ColorProperty
+from properties.sound_property import SoundProperty
+from theme import Theme
 
 
 def main():
     simple_filter = Filter()
-    simple_filter.add_part(Block(Identified=True, SetTextColor='255 255 0'))
+
+    test_theme = Theme(text_color=ColorProperty(255, 255, 0), alert_sound=SoundProperty(5))
+
+    simple_filter.add_part(Block(identified=True, theme=test_theme))
     print(simple_filter)
 
 if __name__ == '__main__':
