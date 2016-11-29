@@ -22,7 +22,7 @@ class Map(object):
         return 'Shaped {0}'.format(self.base_name) if self.shaped else self.base_name
 
     def make_block(self) -> Block:
-        return Block(drop_level=self.drop_level, base_type=self.name)
+        return Block(drop_level=self.drop_level, base_type=self.name,_class='Maps')
 
 
 def get_all_maps() -> List[Map]:

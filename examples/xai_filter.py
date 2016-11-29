@@ -81,12 +81,17 @@ def main():
     f.add(Comment('Section: #0005 - Maps\n'))
     # map basenames and what bonus in "tier" they get(because they're either good or bad)
     bonus_maps = {
-        'Strand Map': 4
+        'Strand Map': 4,
+        'Promenade Map': 2,
+        'Quay Map': 1,
+        'Mesa Map': 2,
     }
     for _map in get_all_maps():
         map_block = _map.make_block()
         map_block.set_theme(map_theme(_map.tier + bonus_maps.get(_map.base_name, 0)))
         f.add(map_block)
+
+    f.add(Block(play_alert_sound=2, _class='Maps'))
 
     f.add(Block(theme=gg_fragment, _class='Map Fragments',
                          base_type=['Mortal Hope', 'Mortal Ignorance', 'Fragment of the Phoenix',
