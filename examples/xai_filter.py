@@ -36,7 +36,7 @@ def main():
     f.add(Block(theme=special_quest_item, _class='Quest Items', base_type='Shaper\'s Orb'))
     f.add(Block(theme=quest_item, _class=['Quest Items', 'Microtransactions']))
     # @TODO: Add more base types
-    f.add(Block(theme=gg, item_level=1, rarity='Normal', base_type=['Glass Shank', 'Driftwood Wand'], play_alert_sound=None,
+    f.add(Block(theme=gg, item_level=1, rarity='Normal', base_type=['Glass Shank', 'Driftwood Wand', 'Rusted Sword', 'Crude Bow'], play_alert_sound=None,
                 comment='Make ilvl 1 of starter weapons ugly so people know they forgot their racing filter @TODO: add others'))
 
     f.add(Comment('Section: #0002 - Labyrinth\n'))
