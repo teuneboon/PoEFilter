@@ -91,7 +91,7 @@ def main():
         map_block.set_theme(map_theme(_map.tier + bonus_maps.get(_map.base_name, 0)))
         f.add(map_block)
 
-    f.add(Block(play_alert_sound=2, _class='Maps'))
+    f.add(Block(play_alert_sound=Sound(2), _class='Maps'))
 
     f.add(Block(theme=gg_fragment, _class='Map Fragments',
                          base_type=['Mortal Hope', 'Mortal Ignorance', 'Fragment of the Phoenix',
