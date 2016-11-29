@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from collections import OrderedDict
+from colorsys import hsv_to_rgb
 
 from block import Block
 from comment import Comment
@@ -9,7 +10,7 @@ from helpers.base_types_and_classes import atlas_bases, gg_es_bases, gg_spell_ba
     gg_phys_bases, good_phys_bases, gg_atlas_bases, other_atlas_bases, melee_only_classes
 from helpers.colors import Colors
 from helpers.general import ilvl_swap, small_sizes, add_failsafe
-from helpers.map import get_maps_by_tier
+from helpers.map import get_maps_by_tier, get_all_maps
 from properties.color import Color
 from properties.comparer import Comparer
 from properties.sound import Sound
@@ -21,11 +22,11 @@ def main():
 
     # please don't shoot me for this code
     alch_base, chance_item, chromatic_item, currency, decent_currency, decent_unique, div_cards, early_survival,\
-    fragment, gg, gg_div_cards, gg_fragment, gg_gems, gg_maps, good_currency, good_div_cards, good_fragment, good_gems,\
-    good_maps, good_unique, high_quality_flask, magic_jewel, magic_jewellery, maps, meh_div_cards, ok_maps, ok_quality_gems,\
+    fragment, gg, gg_div_cards, gg_fragment, gg_gems, good_currency, good_div_cards, good_fragment, good_gems,\
+    good_unique, high_quality_flask, magic_jewel, magic_jewellery, meh_div_cards, ok_quality_gems,\
     quality_gems, quest_item, rare_atlas_bases, rare_decent_ilvl_bases, rare_good_bases, rare_jewels, rare_max_ilvl_bases,\
     rare_shit_bases, shaper_maps, shit_currency, shit_div_cards, shit_unique, six_socket, six_socket_special, special_quest_item,\
-    unique, utility_flask, white_atlas_bases, white_gg_bases, white_ok_bases = get_themes()
+    unique, utility_flask, white_atlas_bases, white_gg_bases, white_ok_bases, map_theme = get_themes()
 
     f.add(Comment('Section: #0001 - Special Stuff\n'))
     f.add(Block(theme=decent_unique,
@@ -36,7 +37,7 @@ def main():
     f.add(Block(theme=special_quest_item, _class='Quest Items', base_type='Shaper\'s Orb'))
     f.add(Block(theme=quest_item, _class=['Quest Items', 'Microtransactions']))
     # @TODO: Add more base types
-    f.add(Block(theme=gg, item_level=1, rarity='Normal', base_type=['Glass Shank', 'Driftwood Wand', 'Rusted Sword', 'Crude Bow'], play_alert_sound=None,
+    f.add(Block(theme=gg, item_level=1, rarity='Normal', base_type=['Glass Shank', 'Driftwood Wand', 'Rusted Sword', 'Crude Bow', 'Driftwood Sceptre'], play_alert_sound=None,
                 comment='Make ilvl 1 of starter weapons ugly so people know they forgot their racing filter @TODO: add others'))
 
     f.add(Comment('Section: #0002 - Labyrinth\n'))
@@ -78,27 +79,14 @@ def main():
     f.add(Block(theme=unique, rarity='Unique'))
 
     f.add(Comment('Section: #0005 - Maps\n'))
-    maps_list = OrderedDict(sorted(get_maps_by_tier().items(), reverse=True))
-    for tier in maps_list:
-        drop_level = maps_list[tier][0].drop_level
-
-        block_args = {'drop_level': Comparer(drop_level, '>='), '_class': 'Maps'}
-        if tier >= 16:
-            block_args['theme'] = shaper_maps
-        elif tier >= 13:
-            block_args['theme'] = gg_maps
-        elif tier >= 10:
-            block_args['theme'] = good_maps
-        elif tier >= 5:
-            block_args['theme'] = ok_maps
-        else:
-            block_args['theme'] = maps
-            block_args['set_font_size'] = drop_level - 32
-            if tier == 1:
-                block_args['play_alert_sound'] = None
-                block_args['drop_level'] = None
-
-        f.add(Block(**block_args))
+    # map basenames and what bonus in "tier" they get(because they're either good or bad)
+    bonus_maps = {
+        'Strand Map': 4
+    }
+    for _map in get_all_maps():
+        map_block = _map.make_block()
+        map_block.set_theme(map_theme(_map.tier + bonus_maps.get(_map.base_name, 0)))
+        f.add(map_block)
 
     f.add(Block(theme=gg_fragment, _class='Map Fragments',
                          base_type=['Mortal Hope', 'Mortal Ignorance', 'Fragment of the Phoenix',
@@ -349,13 +337,16 @@ def get_themes():
                           border_color=Color(163, 141, 109), font_size=45)
     shaper_maps = Theme(text_color=Colors.BLOOD_RED, background_color=Colors.WHITE, border_color=Colors.BLOOD_RED,
                         font_size=45, alert_sound=2)
-    gg_maps = Theme(text_color=Colors.BLOOD_RED, background_color=Color(184, 218, 242), border_color=Colors.BLOOD_RED,
-                    font_size=45, alert_sound=2)
-    good_maps = Theme(text_color=Color(150, 0, 0), background_color=map_blue, border_color=Color(150, 0, 0),
-                      font_size=42, alert_sound=2)
-    ok_maps = Theme(text_color=map_blue, background_color=Color(0, 0, 0), border_color=map_blue, font_size=40,
-                    alert_sound=2)
-    maps = Theme(text_color=Colors.WHITE, background_color=Colors.BLACK, border_color=Colors.WHITE, alert_sound=2)
+
+    def map_theme(tier):
+        font_size = min(45, max(tier + 32, 33)) # kind of put the font size between 33 and 45
+        val = 1.0 - min((float(tier) * 17.0) / 255.0, 1.0)
+        colors = hsv_to_rgb(val / 3.0, 1.0, 1.0)
+        shade_color = Color(colors[0], colors[1], colors[2])
+        theme = Theme(font_size=font_size, background_color=Color(0, 30, 255), text_color=shade_color, border_color=shade_color)
+        if tier > 1:
+            theme.alert_sound = Sound(2)
+        return theme
     gg_fragment = Theme(text_color=Colors.BLACK, background_color=Colors.WHITE, border_color=Colors.BLACK, font_size=45,
                         alert_sound=6)
     good_fragment = Theme(text_color=Colors.BLACK, background_color=Colors.BLOOD_RED, border_color=Colors.BLACK,
@@ -412,7 +403,7 @@ def get_themes():
     high_quality_flask = Theme(background_color=Color(75, 75, 75), border_color=Colors.WHITE, font_size=45)
     utility_flask = Theme(background_color=Color(75, 75, 75), border_color=Colors.BLACK)
     early_survival = Theme(border_color=Colors.BLOOD_RED, font_size=40)
-    return alch_base, chance_item, chromatic_item, currency, decent_currency, decent_unique, div_cards, early_survival, fragment, gg, gg_div_cards, gg_fragment, gg_gems, gg_maps, good_currency, good_div_cards, good_fragment, good_gems, good_maps, good_unique, high_quality_flask, magic_jewel, magic_jewellery, maps, meh_div_cards, ok_maps, ok_quality_gems, quality_gems, quest_item, rare_atlas_bases, rare_decent_ilvl_bases, rare_good_bases, rare_jewels, rare_max_ilvl_bases, rare_shit_bases, shaper_maps, shit_currency, shit_div_cards, shit_unique, six_socket, six_socket_special, special_quest_item, unique, utility_flask, white_atlas_bases, white_gg_bases, white_ok_bases
+    return alch_base, chance_item, chromatic_item, currency, decent_currency, decent_unique, div_cards, early_survival, fragment, gg, gg_div_cards, gg_fragment, gg_gems, good_currency, good_div_cards, good_fragment, good_gems, good_unique, high_quality_flask, magic_jewel, magic_jewellery, meh_div_cards, ok_quality_gems, quality_gems, quest_item, rare_atlas_bases, rare_decent_ilvl_bases, rare_good_bases, rare_jewels, rare_max_ilvl_bases, rare_shit_bases, shaper_maps, shit_currency, shit_div_cards, shit_unique, six_socket, six_socket_special, special_quest_item, unique, utility_flask, white_atlas_bases, white_gg_bases, white_ok_bases, map_theme
 
 
 if __name__ == '__main__':

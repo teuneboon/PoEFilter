@@ -17,13 +17,13 @@ class Color(Property):
         :param opacity:
         :return:
         """
-        if 1 >= red > 0:
+        if 1.0 >= red >= 0.0:
             red = int(red * 255.0)
-        if 1 >= green > 0:
+        if 1.0 >= green >= 0.0:
             green = int(green * 255.0)
-        if 1 >= blue > 0:
+        if 1.0 >= blue >= 0.0:
             blue = int(blue * 255.0)
-        if 1 >= opacity > 0:
+        if 1.0 >= opacity >= 0.0:
             opacity = int(opacity * 255.0)
 
         self.red = red

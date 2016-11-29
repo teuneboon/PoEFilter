@@ -1,4 +1,31 @@
-def get_all_maps():
+from typing import List
+
+from block import Block
+
+
+class Map(object):
+    tier = 0
+    base_name = ''
+    shaped = False
+
+    def __init__(self, tier, base_name, shaped=False):
+        self.tier = tier
+        self.base_name = base_name
+        self.shaped = shaped
+
+    @property
+    def drop_level(self):
+        return self.tier + 67
+
+    @property
+    def name(self):
+        return 'Shaped {0}'.format(self.base_name) if self.shaped else self.base_name
+
+    def make_block(self) -> Block:
+        return Block(drop_level=self.drop_level, base_type=self.name)
+
+
+def get_all_maps() -> List[Map]:
     result = [
         Map(1, 'Arcade Map'),
         Map(1, 'Crystal Ore Map'),
@@ -112,7 +139,7 @@ def get_all_maps():
     ]
     for _map in result:
         if _map.tier <= 10:
-            result.append(Map(_map.tier + 5, 'Shaped {0}'.format(_map.name)))
+            result.append(Map(_map.tier + 5, _map.name, True))
 
     return sorted(result, key=lambda _map: _map.tier)
 
@@ -133,16 +160,3 @@ def get_maps_by_drop_level():
             result[_map.drop_level] = []
         result[_map.drop_level].append(_map)
     return result
-
-
-class Map(object):
-    tier = 0
-    name = ''
-
-    def __init__(self, tier, name):
-        self.tier = tier
-        self.name = name
-
-    @property
-    def drop_level(self):
-        return self.tier + 67
