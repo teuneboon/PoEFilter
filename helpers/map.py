@@ -22,7 +22,7 @@ class Map(object):
         return 'Shaped {0}'.format(self.base_name) if self.shaped else self.base_name
 
     def make_block(self) -> Block:
-        return Block(drop_level=self.drop_level, base_type=self.name,_class='Maps')
+        return Block(drop_level=self.drop_level, base_type=self.name, _class='Maps')
 
 
 def get_all_maps() -> List[Map]:
@@ -138,7 +138,7 @@ def get_all_maps() -> List[Map]:
         Map(16, 'Vaal Temple Map'),
     ]
     for _map in result:
-        if _map.tier <= 10:
+        if _map.tier <= 10 and not _map.shaped:
             result.append(Map(_map.tier + 5, _map.name, True))
 
     return sorted(result, key=lambda _map: _map.tier)
