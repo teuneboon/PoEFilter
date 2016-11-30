@@ -59,7 +59,7 @@ def main():
                          base_type=['Occultist\'s Vestment', 'Jewelled Foil', 'Glorious Plate', 'Prismatic Jewel',
                                     'Citrine Amulet', 'Gladiator Plate', 'Assassin\'s Garb', 'Golden Mantle',
                                     'Sorcerer Boots', 'Crusader Boots', 'Murder Boots', 'Nightmare Bascinet',
-                                    'Deicide Mask', 'Champion Kite Shield', 'Gavel', 'Vaal Sceptre', 'Judgement Staff',
+                                    'Deicide Mask', 'Champion Kite Shield', 'Vaal Sceptre', 'Judgement Staff',
                                     'Prophecy Wand', 'Grand Mana Flask', 'Sapphire Flask', 'Granite Flask',
                                     'Silver Flask', 'Stibnite Flask', 'Topaz Flask', 'Siege Axe', 'Museum Map']))
     f.add(Block(theme=decent_unique, comment='Uniques that are usually 2c-1ex', rarity='Unique',
@@ -73,9 +73,9 @@ def main():
     f.add(Block(theme=decent_unique, comment='Unique maps are almost always worth something', rarity='Unique',
                          _class='Maps'))
     # @TODO: add more shit uniques
-    f.add(Block(theme=shit_unique, sockets=Comparer(6, '<'), linked_sockets=Comparer(5, '<'),
-                         base_type=['Simple Robe', 'Strapped Boots'], rarity='Unique',
-                         comment='Trash Uniques, no sound, same look as normal unique, make sure it has no other special stuff(which we would make sound for) @TODO: add more here'))
+    # f.add(Block(theme=shit_unique, sockets=Comparer(6, '<'), linked_sockets=Comparer(5, '<'),
+    #                      base_type=['Simple Robe', 'Strapped Boots'], rarity='Unique',
+    #                      comment='Trash Uniques, no sound, same look as normal unique, make sure it has no other special stuff(which we would make sound for) @TODO: add more here'))
     f.add(Block(theme=unique, rarity='Unique'))
 
     f.add(Comment('Section: #0005 - Maps\n'))
