@@ -237,6 +237,9 @@ def main():
     f.add(Block(theme=high_quality_flask, quality=Comparer(18, '>='), rarity='Magic', _class='Utility Flasks'))
     f.add(Block(theme=high_quality_flask, quality=Comparer(15, '>='), rarity='Normal', _class='Utility Flasks'))
     f.add(Block(theme=high_quality_flask, quality=Comparer(1, '>='), _class='Utility Flasks', set_font_size=38))
+    f.add(Block(theme=utility_flask, _class='Utility Flasks', item_level=Comparer(10, '<='), set_font_size=38))
+    f.add(Block(theme=utility_flask, _class='Utility Flasks', item_level=Comparer(25, '<='), set_font_size=37))
+    f.add(Block(theme=utility_flask, _class='Utility Flasks', item_level=Comparer(50, '<='), set_font_size=36))
     f.add(Block(theme=utility_flask, _class='Utility Flasks'))
     f.add(Block(_class=['Life Flask', 'Mana Flask'], item_level=Comparer(72, '>='), set_font_size=20))
     hybrid_flask_ilvl_to_keyword = {
