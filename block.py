@@ -79,7 +79,7 @@ class Block(FilterPart):
             keyword = 'Hide'
 
         property_string = ''
-        for key, value in self.properties.items():
+        for key, value in sorted(self.properties.items()):
             property_string += '    {0} {1}\n'.format(key, str(value))
 
         result = ''
