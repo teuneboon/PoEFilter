@@ -55,13 +55,17 @@ def main():
                 comment='Acuity+Disfavour from Atziri(They drop ilvl 82 from Atziri, div card version should never be on the ground anyway), put it here so we don\'t show other vaal gauntlets or vaal axes as GG'))
     f.add(Block(theme=good_unique, item_level=74, rarity='Unique', base_type='Spine Bow',
                 comment='Reach of the Council(so we don\'t show Voltaxic as GG)'))
+
+    good_breach_uniques = ['Lapis Amulet']
+    decent_breach_uniques = ['Bone Bow']
+
     f.add(Block(theme=good_unique, comment='Uniques that are usually 1ex+', rarity='Unique',
                          base_type=['Occultist\'s Vestment', 'Jewelled Foil', 'Glorious Plate', 'Prismatic Jewel',
                                     'Citrine Amulet', 'Gladiator Plate', 'Assassin\'s Garb', 'Golden Mantle',
                                     'Sorcerer Boots', 'Crusader Boots', 'Murder Boots', 'Nightmare Bascinet',
                                     'Deicide Mask', 'Champion Kite Shield', 'Vaal Sceptre', 'Judgement Staff',
                                     'Prophecy Wand', 'Grand Mana Flask', 'Sapphire Flask', 'Silver Flask',
-                                    'Stibnite Flask', 'Topaz Flask', 'Siege Axe', 'Museum Map']))
+                                    'Stibnite Flask', 'Topaz Flask', 'Siege Axe', 'Museum Map'] + good_breach_uniques))
     f.add(Block(theme=decent_unique, comment='Uniques that are usually 2c-1ex', rarity='Unique',
                          base_type=['Onyx Amulet', 'Paua Ring', 'Unset Ring', 'Gold Ring', 'Two-Stone Ring',
                                     'Moonstone Ring', 'Broadhead Arrow Quiver', 'Penetrating Arrow Quiver',
@@ -69,7 +73,7 @@ def main():
                                     'Full Wyrmscale', 'Varnished Coat', 'Sacrificial Garb', 'Nubuck Boots',
                                     'Sharkskin Boots', 'Slink Boots', 'Conjurer Boots', 'Deerskin Gloves',
                                     'Strapped Mitts', 'Imperial Bow', 'Fiend Dagger', 'Slaughter Knife',
-                                    'Imperial Skean', 'Eternal Sword', 'Imperial Staff', 'Granite Flask']))
+                                    'Imperial Skean', 'Eternal Sword', 'Imperial Staff', 'Granite Flask'] + decent_breach_uniques))
     f.add(Block(theme=decent_unique, comment='Unique maps are almost always worth something', rarity='Unique',
                          _class='Maps'))
     # @TODO: add more shit uniques
@@ -98,14 +102,14 @@ def main():
                                     'Fragment of the Minotaur', 'Fragment of the Chimera', 'Fragment of the Hydra']))
     f.add(Block(theme=good_fragment, _class='Map Fragments',
                          base_type=['Mortal', 'Sacrifice at Midnight', 'Eber\'s Key', 'Inya\'s Key', 'Volkuur\'s Key',
-                                    'Yriel\'s Key']))
+                                    'Yriel\'s Key', 'Breachstone']))
     f.add(Block(theme=fragment, _class='Map Fragments'))
 
     f.add(Comment('Section: #0006 - Currency + Essences\n'))
     f.add(Block(theme=gg, base_type=['Exalted Orb', 'Eternal Orb', 'Albino Rhoa Feather']))
-    f.add(Block(theme=good_currency, base_type=['Deafening Essence', 'Shrieking Essence', 'Divine Orb',
-                                                         'Unshaping Orb', 'Essence of Hysteria', 'Essence of Insanity',
-                                                         'Essence of Horror', 'Essence of Delirium']))
+    f.add(Block(theme=good_currency, base_type=['Deafening Essence', 'Shrieking Essence', 'Divine Orb', 'Unshaping Orb',
+                                                'Essence of Hysteria', 'Essence of Insanity', 'Essence of Horror',
+                                                'Essence of Delirium', 'Blessing']))
     f.add(Block(theme=decent_currency,
                          base_type=['Cartographer\'s Sextant', 'Chaos Orb', 'Cartographer\'s Seal', 'Orb of Fusing',
                                     'Orb of Regret', 'Regal Orb', 'Blessed Orb', 'Gemcutter\'s Prism',
@@ -116,7 +120,7 @@ def main():
                                      font_size=45),
                          base_type='Perandus Coin'))
     f.add(Block(theme=currency, base_type=['Orb of Alchemy', 'Silver Coin', 'Orb of Chance', 'Jeweller\'s Orb',
-                                                    'Orb of Alteration', 'Cartographer\'s Chisel']))
+                                                    'Orb of Alteration', 'Cartographer\'s Chisel', 'Splinter']))
     f.add(Block(theme=shit_currency, _class=['Currency', 'Stackable Currency']))
 
     f.add(Comment('Section: #0007 - Divination Cards\n'))
