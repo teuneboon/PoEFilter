@@ -59,8 +59,8 @@ def main():
     f.add(Block(theme=good_unique, item_level=74, rarity='Unique', base_type='Spine Bow',
                 comment='Reach of the Council(so we don\'t show Voltaxic as GG)'))
 
-    good_breach_uniques = ['Lapis Amulet']
-    decent_breach_uniques = ['Bone Bow']
+    good_breach_uniques = ['Lapis Amulet', 'Ezomyte Tower Shield']
+    decent_breach_uniques = ['Bone Bow', 'Jingling Spirit Shield']
 
     f.add(Block(theme=good_unique, comment='Uniques that are usually 1ex+', rarity='Unique',
                 base_type=['Occultist\'s Vestment', 'Jewelled Foil', 'Glorious Plate', 'Prismatic Jewel',
