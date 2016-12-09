@@ -59,8 +59,8 @@ def main():
     f.add(Block(theme=good_unique, item_level=74, rarity='Unique', base_type='Spine Bow',
                 comment='Reach of the Council(so we don\'t show Voltaxic as GG)'))
 
-    good_breach_uniques = ['Lapis Amulet', 'Ezomyte Tower Shield']
-    decent_breach_uniques = ['Bone Bow', 'Jingling Spirit Shield']
+    good_breach_uniques = ['Ezomyte Tower Shield']
+    decent_breach_uniques = ['Lapis Amulet', 'Jingling Spirit Shield']
 
     f.add(Block(theme=good_unique, comment='Uniques that are usually 1ex+', rarity='Unique',
                 base_type=['Occultist\'s Vestment', 'Jewelled Foil', 'Glorious Plate', 'Prismatic Jewel',
@@ -68,7 +68,7 @@ def main():
                            'Sorcerer Boots', 'Crusader Boots', 'Murder Boots', 'Nightmare Bascinet',
                            'Deicide Mask', 'Champion Kite Shield', 'Vaal Sceptre', 'Judgement Staff',
                            'Prophecy Wand', 'Grand Mana Flask', 'Sapphire Flask', 'Silver Flask',
-                           'Stibnite Flask', 'Topaz Flask', 'Siege Axe', 'Museum Map'] + good_breach_uniques))
+                           'Stibnite Flask', 'Topaz Flask', 'Siege Axe', 'Museum Map', 'Titanium Spirit Shield'] + good_breach_uniques))
     f.add(Block(theme=decent_unique, comment='Uniques that are usually 2c-1ex', rarity='Unique',
                 base_type=['Onyx Amulet', 'Paua Ring', 'Unset Ring', 'Gold Ring', 'Two-Stone Ring',
                            'Moonstone Ring', 'Broadhead Arrow Quiver', 'Penetrating Arrow Quiver',
@@ -131,6 +131,7 @@ def main():
     ))
     f.add(Block(theme=currency, base_type=['Orb of Alchemy', 'Silver Coin', 'Orb of Chance', 'Jeweller\'s Orb',
                                            'Orb of Alteration', 'Cartographer\'s Chisel']))
+    f.add(Block(_class=['Currency'], base_type=['Portal', 'Wisdom']))
     f.add(Block(theme=shit_currency, _class=['Currency', 'Stackable Currency']))
 
     f.add(Comment('Section: #0007 - Divination Cards\n'))
