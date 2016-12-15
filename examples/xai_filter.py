@@ -20,6 +20,7 @@ from theme import Theme
 
 def main():
     f = Filter()
+    animate_weapon = False
 
     # please don't shoot me for this code
     alch_base, chance_item, chromatic_item, currency, decent_currency, decent_unique, div_cards, early_survival, \
@@ -243,6 +244,8 @@ def main():
                 rarity='Rare'))
 
     f.add(Comment('Section: #0011 - Normal and Magic Items\n'))
+    if animate_weapon:
+        f.add(Block(theme=Theme(background_color=Color(0, 0, 0, 0), border_color=Colors.BLOOD_RED, text_color=Colors.BLOOD_RED), comment='Animate Weapon', rarity='Normal', _class=['One Hand', 'Two Hand', 'Staves', 'Daggers', 'Thrusting', 'Sceptres', 'Claws']))
     f.add(Block(comment='Redblade(potentially)', rarity='Magic', _class='Helmets', identified=True,
                 set_border_color=Color(210, 0, 0)))
     f.add(Block(theme=white_atlas_bases, base_type=atlas_bases, item_level=Comparer(84, '>=')))
