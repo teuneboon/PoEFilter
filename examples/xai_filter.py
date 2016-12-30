@@ -17,9 +17,11 @@ from properties.sound import Sound
 from theme import Theme
 
 
-def main():
+def generate_xai_filter(config=None):
     f = Filter()
-    animate_weapon = False
+    if config is None:
+        config = {}
+    animate_weapon = config.get('animate_weapon', 'off') == 'on'
 
     # please don't shoot me for this code
     alch_base, chance_item, chromatic_item, currency, decent_currency, decent_unique, div_cards, early_survival, \
@@ -88,13 +90,11 @@ def main():
     f.add(Block(theme=unique, rarity='Unique'))
 
     f.add(Comment('Section: #0005 - Maps\n'))
-    # map basenames and what bonus in "tier" they get(because they're either good or bad)
-    bonus_maps = {
-        'Strand Map': 4,
-        'Promenade Map': 2,
-        'Quay Map': 1,
-        'Mesa Map': 2,
-    }
+    bonus_maps = {}
+    for map_tier_setting in config.get('map_tiers', 'Strand Map,4\r\nPromenade Map,2\r\nQuay Map,1\r\nMesa Map,1').splitlines():
+        split_setting = map_tier_setting.split(',')
+        bonus_maps[split_setting[0]] = int(split_setting[1])
+
     for _map in get_all_maps():
         map_block = _map.make_block()
         map_block.set_theme(map_theme(_map.tier + bonus_maps.get(_map.base_name, 0)))
@@ -132,7 +132,22 @@ def main():
     ))
     f.add(Block(theme=currency, base_type=['Orb of Alchemy', 'Silver Coin', 'Orb of Chance', 'Jeweller\'s Orb',
                                            'Orb of Alteration', 'Cartographer\'s Chisel']))
-    f.add(Block(_class=['Currency'], base_type=['Portal', 'Wisdom']))
+    wisdom_scrolls = int(config.get('wisdom_scrolls', '1'))
+    portal_scrolls = int(config.get('portal_scrolls', '1'))
+    if wisdom_scrolls == 1:
+        f.add(Block(_class=['Currency'], base_type=['Wisdom']))
+    elif wisdom_scrolls == 2:
+        f.add(Block(_class=['Currency'], base_type=['Wisdom'], theme=shit_currency))
+    elif wisdom_scrolls == 0:
+        f.add(Block(_class=['Currency'], base_type=['Wisdom'], show=False))
+    
+    if portal_scrolls == 1:
+        f.add(Block(_class=['Currency'], base_type=['Portal']))
+    elif portal_scrolls == 2:
+        f.add(Block(_class=['Currency'], base_type=['Portal'], theme=shit_currency))
+    elif portal_scrolls == 0:
+        f.add(Block(_class=['Currency'], base_type=['Portal'], show=False))
+
     f.add(Block(theme=shit_currency, _class=['Currency', 'Stackable Currency']))
 
     f.add(Comment('Section: #0007 - Divination Cards\n'))
@@ -258,8 +273,11 @@ def main():
     f.add(Block(theme=white_ok_bases, item_level=Comparer(83, '>='), base_type='Sai', _class='Daggers'))
     f.add(Block(theme=white_atlas_bases, base_type=gg_atlas_bases))
     f.add(Block(theme=white_atlas_bases, base_type=other_atlas_bases, play_alert_sound=None, set_font_size=36))
-    small_sizes(f, Block(theme=chromatic_item, socket_group='RGB'))
-    f.add(Block(theme=chromatic_item, set_font_size=30, socket_group='RGB'))
+    chromatic_recipe = int(config.get('chromatic_recipe', '2'))
+    if chromatic_recipe >= 1:
+        small_sizes(f, Block(theme=chromatic_item, socket_group='RGB'))
+    if chromatic_recipe == 2:
+        f.add(Block(theme=chromatic_item, set_font_size=30, socket_group='RGB'))
     f.add(Block(theme=chance_item, rarity='Normal', base_type=['Sorcerer Boots', 'Occultist\'s Vestment', 'Sapphire Flask',
                                                                'Ebony Tower Shield']))
     f.add(Block(theme=alch_base, item_level=Comparer(67, '>='), rarity='Normal', _class=jewellery,
@@ -364,6 +382,11 @@ def main():
 
     f.add(Comment('Section: #0014 - Failsafe\n'))
     add_failsafe(f)
+    return f
+
+
+def main():
+    f = generate_xai_filter()
 
     with open('Xai.filter', encoding='utf-8', mode='w') as file:
         file.write(str(f))

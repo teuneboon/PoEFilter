@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
+<p style="margin-bottom: 20px;"><em>Just select what you want and click generate filter to generate the filter based on your preferences, easy as that!<br />
+I didn't build in any failsafes yet, so if you do stuff like the map tiers wrong it will probably just give you an error</em></p>
 <form method="POST" action="{{ url_for('generate_filter') }}">
     <div class="row">
         <div class="col-lg-6">
@@ -40,14 +42,14 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <span>Animate Weapon</span>
+            <span>Chromatic Recipe</span>
         </div>
         <div class="col-lg-6">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="animate_weapon"> I play Animate Weapon
-                </label>
-            </div>
+            <select class="selectpicker form-control" name="chromatic_recipe">
+                <option selected="selected" value="2">Show all chromatic items(big sizes will be smaller in filter)</option>
+                <option value="1">Only show small chromatic items</option>
+                <option value="0">Don't show chromatic items</option>
+            </select>
         </div>
     </div>
     <div class="row">
@@ -66,9 +68,27 @@ Mesa Map,1</textarea>
         </div>
     </div>
     <div class="row">
+        <div class="col-lg-6">
+            <span>Animate Weapon</span>
+        </div>
+        <div class="col-lg-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="animate_weapon"> I play Animate Weapon
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-6 col-lg-offset-6">
             <button type="submit" class="btn btn-lg btn-default">Generate Filter</button>
         </div>
     </div>
 </form>
+<h2>Patch Notes</h2>
+<p>
+    <ul>
+        <li>0.0.1b: Initial release, expect a lot of bugs</li>
+    </ul>
+</p>
 {% endblock %}
