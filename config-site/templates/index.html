@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row">
+    <div class="col-lg-6">
+        <span>Portal Scrolls</span>
+    </div>
+    <div class="col-lg-6">
+        <select class="selectpicker">
+            <option>I care about portal scrolls</option>
+            <option>I pick up portals when I walk over them</option>
+            <option>I don't care about portal scrolls</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <button type="submit" class="btn btn-lg btn-default">Generate Filter</button>
+    </div>
+    <div class="col-lg-6">
+        <button type="submit" class="btn btn-lg btn-default">Save Config</button>
+    </div>
+</div>
+{% endblock %}
