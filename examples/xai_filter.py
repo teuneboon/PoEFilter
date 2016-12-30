@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-from collections import OrderedDict
 from colorsys import hsv_to_rgb
 
 from block import Block
