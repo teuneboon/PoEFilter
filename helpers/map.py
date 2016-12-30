@@ -1,6 +1,7 @@
 from typing import List
 
 from block import Block
+from properties.comparer import Comparer
 
 
 class Map(object):
@@ -22,7 +23,11 @@ class Map(object):
         return 'Shaped {0}'.format(self.base_name) if self.shaped else self.base_name
 
     def make_block(self) -> Block:
-        return Block(drop_level=self.drop_level, base_type=self.name, _class='Maps')
+        if self.drop_level == 68:
+            # there's a bug where drop level = 68 doesn't work somehow
+            return Block(drop_level=Comparer(self.drop_level, '<='), base_type=self.name, _class='Maps')
+        else:
+            return Block(drop_level=self.drop_level, base_type=self.name, _class='Maps')
 
 
 def get_all_maps() -> List[Map]:
