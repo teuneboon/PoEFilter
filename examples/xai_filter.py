@@ -260,7 +260,7 @@ def main():
     f.add(Block(theme=white_atlas_bases, base_type=other_atlas_bases, play_alert_sound=None, set_font_size=36))
     small_sizes(f, Block(theme=chromatic_item, socket_group='RGB'))
     f.add(Block(theme=chromatic_item, set_font_size=30, socket_group='RGB'))
-    f.add(Block(theme=chance_item, rarity='Normal', base_type=['Sorcerer Boots', 'Jewelled Foil', 'Occultist\'s Vestment',
+    f.add(Block(theme=chance_item, rarity='Normal', base_type=['Sorcerer Boots', 'Occultist\'s Vestment',
                                                                'Deicide Mask', 'Sapphire Flask']))
     f.add(Block(theme=alch_base, item_level=Comparer(67, '>='), rarity='Normal', _class=jewellery,
                 base_type=['Onyx', 'Ruby', 'Sapphire', 'Topaz', 'Two-Stone', 'Diamond', 'Prismatic', 'Unset', 'Gold',
