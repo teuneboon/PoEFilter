@@ -60,8 +60,9 @@ def main():
     f.add(Block(theme=good_unique, item_level=74, rarity='Unique', base_type='Spine Bow',
                 comment='Reach of the Council(so we don\'t show Voltaxic as GG)'))
 
-    good_breach_uniques = ['Ezomyte Tower Shield']
-    decent_breach_uniques = ['Lapis Amulet', 'Jingling Spirit Shield']
+    good_breach_uniques = ['Ezomyte Tower Shield', 'Amber Amulet', 'Goathide Boots', 'Cutlass', 'Stibnite Flask', 'Void Axe',
+                           'Ebony Tower Shield']
+    decent_breach_uniques = ['Jingling Spirit Shield', 'Sage Wand', 'Abyssal Axe']
 
     f.add(Block(theme=good_unique, comment='Uniques that are usually 1ex+', rarity='Unique',
                 base_type=['Occultist\'s Vestment', 'Jewelled Foil', 'Glorious Plate', 'Prismatic Jewel',
@@ -73,7 +74,7 @@ def main():
     f.add(Block(theme=decent_unique, comment='Uniques that are usually 2c-1ex', rarity='Unique',
                 base_type=['Onyx Amulet', 'Paua Ring', 'Unset Ring', 'Gold Ring', 'Two-Stone Ring',
                            'Moonstone Ring', 'Broadhead Arrow Quiver', 'Penetrating Arrow Quiver',
-                           'Spike-Point Arrow Quiver', 'Desert Brigandine', 'Savan', 'Vaal Regalia',
+                           'Desert Brigandine', 'Savan', 'Vaal Regalia',
                            'Full Wyrmscale', 'Varnished Coat', 'Sacrificial Garb', 'Nubuck Boots',
                            'Sharkskin Boots', 'Slink Boots', 'Conjurer Boots', 'Deerskin Gloves',
                            'Strapped Mitts', 'Imperial Bow', 'Fiend Dagger', 'Slaughter Knife',
@@ -143,14 +144,15 @@ def main():
                            'The Brittle Emperor', 'The Harvester', 'The Last One Standing',
                            'The Dragon\'s Heart', 'The Ethereal', 'The Queen', 'The Enlightened', 'The Hunger',
                            'Pride Before the Fall', 'The King\'s Heart', 'The Vast', 'Wealth and Power',
-                           'The Immortal', 'The Devastator', 'Hunter\'s Reward']))
+                           'The Immortal', 'The Devastator', 'Hunter\'s Reward', 'The Spark and the Flame']))
     f.add(Block(theme=good_div_cards,
                 base_type=['Bowyer\'s Dream', 'The Formless Sea', 'The Penitent', 'Heterochromia',
                            'Lucky Deck', 'The Stormcaller', 'The Wolf', 'The Artist', 'Earth Drinker',
                            'The Trial', 'The Celestial Justicar', 'The Surveyor', 'The Valkyrie',
                            'Chaotic Disposition', 'The Sephirot', 'The Void', 'The Dark Mage',
                            'The Dapper Prodigy', 'Time-Lost Relic', 'The Chains that Bind',
-                           'Dialla\'s Subjugation', 'Emperor of Purity', 'The Soul']))
+                           'Dialla\'s Subjugation', 'Emperor of Purity', 'The Soul', 'The Polymath', 'The Porcupine',
+                           'The Saint\'s Treasure', 'The Wolven King\'s Bite']))
     f.add(Block(theme=meh_div_cards,
                 base_type=['The Flora\'s Gift', 'Her Mask', 'Rain of Chaos', 'Thunderous Skies', 'The Gambler']))
     f.add(Block(theme=shit_div_cards,
