@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for, request
+from werkzeug.utils import redirect
 
 app = Flask(__name__)
 
@@ -6,6 +7,12 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/generate_filter', methods=['POST'])
+def generate_filter():
+    print(request.form)
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,23 +1,74 @@
 {% extends "layout.html" %}
 {% block body %}
-<div class="row">
-    <div class="col-lg-6">
-        <span>Portal Scrolls</span>
+<form method="POST" action="{{ url_for('generate_filter') }}">
+    <div class="row">
+        <div class="col-lg-6">
+            <span>Economy(only supports HC temp league for now)</span>
+        </div>
+        <div class="col-lg-6">
+            <select class="selectpicker" name="economy">
+                <option disabled="disabled" value="tmpsc">Softcore Temp League</option>
+                <option selected="selected" value="tmphc">Hardcore Temp League</option>
+                <option disabled="disabled" value="sc">Standard</option>
+                <option disabled="disabled" value="hc">Hardcore</option>
+            </select>
+        </div>
     </div>
-    <div class="col-lg-6">
-        <select class="selectpicker">
-            <option>I care about portal scrolls</option>
-            <option>I pick up portals when I walk over them</option>
-            <option>I don't care about portal scrolls</option>
-        </select>
+    <div class="row">
+        <div class="col-lg-6">
+            <span>Portal Scrolls</span>
+        </div>
+        <div class="col-lg-6">
+            <select class="selectpicker form-control" name="portal_scrolls">
+                <option value="2">I care about portal scrolls</option>
+                <option selected="selected" value="1">I pick up portals when I walk over them</option>
+                <option value="0">I don't care about portal scrolls/I have a portal gem</option>
+            </select>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-lg-6">
-        <button type="submit" class="btn btn-lg btn-default">Generate Filter</button>
+    <div class="row">
+        <div class="col-lg-6">
+            <span>Wisdom Scrolls</span>
+        </div>
+        <div class="col-lg-6">
+            <select class="selectpicker form-control" name="wisdom_scrolls">
+                <option value="2">I care about wisdom scrolls</option>
+                <option selected="selected" value="1">I pick up wisdoms when I walk over them</option>
+                <option value="0">I don't care about wisdom scrolls</option>
+            </select>
+        </div>
     </div>
-    <div class="col-lg-6">
-        <button type="submit" class="btn btn-lg btn-default">Save Config</button>
+    <div class="row">
+        <div class="col-lg-6">
+            <span>Animate Weapon</span>
+        </div>
+        <div class="col-lg-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="animate_weapon"> I play Animate Weapon
+                </label>
+            </div>
+        </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-lg-6">
+            <span>Map Tiers</span>
+            <p><em>Seperate maps by newlines, write the full name, don't edit if you don't know what you're doing<br />
+            Shows how the filter should edit the tiers of certain maps(including shaped versions), so in this example Strand Map becomes +4 tiers and dungeon -1:<br />
+            Strand Map,4<br />
+            Dungeon Map,-1</em></p>
+        </div>
+        <div class="col-lg-6">
+            <textarea name="map_tiers" class="form-control" rows="8">Strand Map,4
+Promenade Map,2
+Quay Map,1
+Mesa Map,1</textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-6">
+            <button type="submit" class="btn btn-lg btn-default">Generate Filter</button>
+        </div>
+    </div>
+</form>
 {% endblock %}
