@@ -402,7 +402,9 @@ def get_themes():
         shade_color = Color(colors[0], colors[1], colors[2])
         theme = Theme(font_size=font_size, background_color=Color(0, 30, 255), text_color=shade_color,
                       border_color=shade_color)
-        if tier > 1:
+        if tier == 1:
+            theme.alert_sound = Sound(2, 1) # play at 1 volume so we don't hear it
+        else:
             theme.alert_sound = Sound(2)
         return theme
 
