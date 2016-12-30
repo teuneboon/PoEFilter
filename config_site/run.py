@@ -1,5 +1,7 @@
+import sys
 from flask import Flask, render_template, request, make_response
 
+sys.path.append('../')
 from examples.xai_filter import generate_xai_filter
 
 app = Flask(__name__)
