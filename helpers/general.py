@@ -33,6 +33,6 @@ def add_failsafe(_filter: Filter):
                       _class=['Bows', 'Wand', 'Sceptre', 'Staves', 'Claws', 'Body Armour', 'Gloves', 'Boots', 'Helmets',
                               'Quivers', 'Flask', 'Daggers', 'Shields', 'Belts', 'Rings', 'Amulets', 'Two Hand Axes',
                               'Two Hand Maces', 'Two Hand Swords', 'One Hand Axes', 'One Hand Maces', 'One Hand Swords',
-                              'Thrusting One Hand Swords'],
+                              'Thrusting One Hand Swords', 'Skill Gems'],
                       theme=Theme(background_color=Color(0, 0, 0, 165), font_size=20)))
     _filter.add(Block(theme=Theme(text_color=Color(255, 0, 255), border_color=Color(255, 0, 255), font_size=45)))
