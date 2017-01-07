@@ -332,7 +332,8 @@ def generate_xai_filter(config=None):
     for ilvl, base_type in sorted(normal_flask_ilvl_to_keyword.items()):
         f.add(Block(set_font_size=38, item_level=Comparer(ilvl, '<='), _class='Flask', base_type=base_type))
 
-    f.add(Block(rarity=Comparer('Magic', '<='), base_type='Flask', set_font_size=30))
+    if flasks >= 2:
+        f.add(Block(rarity=Comparer('Magic', '<='), base_type='Flask', set_font_size=30))
 
     f.add(Comment('Section: #0013 - Leveling\n'))
     f.add(Block(theme=early_survival, item_level=Comparer(12, '<'),
