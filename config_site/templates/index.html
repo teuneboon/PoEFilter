@@ -22,7 +22,7 @@ I didn't build in any failsafes yet, so if you do stuff like the map tiers wrong
         </div>
         <div class="col-lg-6">
             <select class="selectpicker form-control" name="portal_scrolls">
-                <option value="2">I care about portal scrolls</option>
+                <option value="2">I always pickup portal scrolls</option>
                 <option selected="selected" value="1">I pick up portals when I walk over them</option>
                 <option value="0">I don't care about portal scrolls/I have a portal gem</option>
             </select>
@@ -34,7 +34,7 @@ I didn't build in any failsafes yet, so if you do stuff like the map tiers wrong
         </div>
         <div class="col-lg-6">
             <select class="selectpicker form-control" name="wisdom_scrolls">
-                <option value="2">I care about wisdom scrolls</option>
+                <option value="2">I always pickup wisdom scrolls</option>
                 <option selected="selected" value="1">I pick up wisdoms when I walk over them</option>
                 <option value="0">I don't care about wisdom scrolls</option>
             </select>
@@ -49,6 +49,42 @@ I didn't build in any failsafes yet, so if you do stuff like the map tiers wrong
                 <option selected="selected" value="2">Show all chromatic items(big sizes will be smaller in filter)</option>
                 <option value="1">Only show small chromatic items</option>
                 <option value="0">Don't show chromatic items</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <span>Flasks(after lvl 68)</span>
+        </div>
+        <div class="col-lg-6">
+            <select class="selectpicker form-control" name="flasks">
+                <option selected="selected" value="2">Show all flasks</option>
+                <option value="1">Only show quality flasks</option>
+                <option value="0">Don't show flasks</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <span>Gems</span>
+        </div>
+        <div class="col-lg-6">
+            <select class="selectpicker form-control" name="gems">
+                <option selected="selected" value="2">Show all gems</option>
+                <option value="1">Only show quality and special(vaal/empower/portal etc.) gems</option>
+                <option value="0">Don't show gems</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <span>Non-Atlas Jewellery(68+)</span>
+        </div>
+        <div class="col-lg-6">
+            <select class="selectpicker form-control" name="jewellery">
+                <option selected="selected" value="2">Show all jewellery</option>
+                <option value="1">Only show magic jewellery</option>
+                <option value="0">Don't show jewellery that's not rare</option>
             </select>
         </div>
     </div>

@@ -180,15 +180,18 @@ def generate_xai_filter(config=None):
     f.add(Block(theme=six_socket, sockets=Comparer(6, '>=')))
 
     f.add(Comment('Section: #0009 - Gems\n'))
-    f.add(Block(theme=gg_gems, _class='Skill Gems', base_type=['Empower', 'Enlighten'], quality=Comparer(10, '>=')))
-    f.add(Block(theme=gg_gems, _class='Skill Gems', quality=Comparer(19, '>=')))
-    f.add(Block(theme=quest_item, play_alert_sound=Sound(1), _class='Skill Gems', base_type=['Portal', 'Empower',
-                                                                                             'Enlighten',
-                                                                                             'Vaal Haste']))
-    f.add(Block(theme=ok_quality_gems, _class='Skill Gems', quality=Comparer(13, '>=')))
-    f.add(Block(theme=good_gems, _class='Skill Gems', base_type=['Vaal', 'Detonate Mines', 'Added Chaos Damage']))
-    f.add(Block(theme=quality_gems, _class='Skill Gems', quality=Comparer(1, '>=')))
-    f.add(Block(_class='Skill Gems'))
+    gems = int(config.get('gems', '2'))
+    if gems >= 1:
+        f.add(Block(theme=gg_gems, _class='Skill Gems', base_type=['Empower', 'Enlighten'], quality=Comparer(10, '>=')))
+        f.add(Block(theme=gg_gems, _class='Skill Gems', quality=Comparer(19, '>=')))
+        f.add(Block(theme=quest_item, play_alert_sound=Sound(1), _class='Skill Gems', base_type=['Portal', 'Empower',
+                                                                                                 'Enlighten',
+                                                                                                 'Vaal Haste']))
+        f.add(Block(theme=ok_quality_gems, _class='Skill Gems', quality=Comparer(13, '>=')))
+        f.add(Block(theme=good_gems, _class='Skill Gems', base_type=['Vaal', 'Detonate Mines', 'Added Chaos Damage']))
+        f.add(Block(theme=quality_gems, _class='Skill Gems', quality=Comparer(1, '>=')))
+    if gems >= 2:
+        f.add(Block(_class='Skill Gems'))
 
     f.add(Comment('Section: #0010 - Rare Evaluation\n'))
     f.add(Block(theme=rare_jewels, _class='Jewel', rarity='Rare'))
@@ -260,6 +263,7 @@ def generate_xai_filter(config=None):
                 rarity='Rare'))
 
     f.add(Comment('Section: #0011 - Normal and Magic Items\n'))
+    show_jewellery = int(config.get('jewellery', '2'))
     if animate_weapon:
         f.add(Block(theme=Theme(background_color=Color(0, 0, 0, 0), border_color=Colors.BLOOD_RED, text_color=Colors.BLOOD_RED), comment='Animate Weapon', rarity='Normal', _class=['One Hand', 'Two Hand', 'Staves', 'Daggers', 'Thrusting', 'Sceptres', 'Claws']))
     f.add(Block(comment='Redblade(potentially)', rarity='Magic', _class='Helmets', identified=True,
@@ -280,22 +284,27 @@ def generate_xai_filter(config=None):
         f.add(Block(theme=chromatic_item, set_font_size=30, socket_group='RGB'))
     f.add(Block(theme=chance_item, rarity='Normal', base_type=['Sorcerer Boots', 'Occultist\'s Vestment', 'Sapphire Flask',
                                                                'Ebony Tower Shield']))
-    f.add(Block(theme=alch_base, item_level=Comparer(67, '>='), rarity='Normal', _class=jewellery,
-                base_type=['Onyx', 'Ruby', 'Sapphire', 'Topaz', 'Two-Stone', 'Diamond', 'Prismatic', 'Unset', 'Gold',
-                           'Citrine', 'Turquoise', 'Agate', 'Coral Ring', 'Moonstone', 'Leather', 'Heavy', 'Amber',
-                           'Jade', 'Lapis', 'Rustic', 'Iron Ring']))
-    f.add(Block(theme=magic_jewellery, item_level=Comparer(67, '>='), rarity='Magic', _class=jewellery))
+    if show_jewellery >= 2:
+        f.add(Block(theme=alch_base, item_level=Comparer(67, '>='), rarity='Normal', _class=jewellery,
+                    base_type=['Onyx', 'Ruby', 'Sapphire', 'Topaz', 'Two-Stone', 'Diamond', 'Prismatic', 'Unset', 'Gold',
+                               'Citrine', 'Turquoise', 'Agate', 'Coral Ring', 'Moonstone', 'Leather', 'Heavy', 'Amber',
+                               'Jade', 'Lapis', 'Rustic', 'Iron Ring']))
+    if show_jewellery >= 1:
+        f.add(Block(theme=magic_jewellery, item_level=Comparer(67, '>='), rarity='Magic', _class=jewellery))
     f.add(Block(theme=magic_jewel, _class='Jewel'))
 
     f.add(Comment('Section: #0012 - Flasks\n'))
-    f.add(Block(theme=high_quality_flask, quality=Comparer(18, '>='), rarity='Magic', _class='Utility Flasks'))
-    f.add(Block(theme=high_quality_flask, quality=Comparer(15, '>='), rarity='Normal', _class='Utility Flasks'))
-    f.add(Block(theme=high_quality_flask, quality=Comparer(1, '>='), _class='Utility Flasks', set_font_size=38))
+    flasks = int(config.get('flasks', '2'))
+    if flasks >= 1:
+        f.add(Block(theme=high_quality_flask, quality=Comparer(18, '>='), rarity='Magic', _class='Utility Flasks'))
+        f.add(Block(theme=high_quality_flask, quality=Comparer(15, '>='), rarity='Normal', _class='Utility Flasks'))
+        f.add(Block(theme=high_quality_flask, quality=Comparer(1, '>='), _class='Utility Flasks', set_font_size=38))
     f.add(Block(theme=utility_flask, _class='Utility Flasks', item_level=Comparer(10, '<='), set_font_size=38))
     f.add(Block(theme=utility_flask, _class='Utility Flasks', item_level=Comparer(25, '<='), set_font_size=37))
     f.add(Block(theme=utility_flask, _class='Utility Flasks', item_level=Comparer(50, '<='), set_font_size=36))
-    f.add(Block(theme=utility_flask, _class='Utility Flasks'))
-    f.add(Block(_class=['Life Flask', 'Mana Flask'], item_level=Comparer(72, '>='), set_font_size=20))
+    if flasks >= 2:
+        f.add(Block(theme=utility_flask, _class='Utility Flasks'))
+        f.add(Block(_class=['Life Flask', 'Mana Flask'], item_level=Comparer(72, '>='), set_font_size=20))
     hybrid_flask_ilvl_to_keyword = {
         15: 'Small',
         25: 'Medium',
