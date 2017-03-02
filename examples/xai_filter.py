@@ -71,7 +71,8 @@ def generate_xai_filter(config=None):
                            'Sorcerer Boots', 'Crusader Boots', 'Murder Boots', 'Nightmare Bascinet',
                            'Deicide Mask', 'Champion Kite Shield', 'Vaal Sceptre', 'Judgement Staff',
                            'Prophecy Wand', 'Grand Mana Flask', 'Sapphire Flask', 'Silver Flask',
-                           'Stibnite Flask', 'Topaz Flask', 'Siege Axe', 'Museum Map', 'Titanium Spirit Shield'] + good_breach_uniques))
+                           'Stibnite Flask', 'Topaz Flask', 'Siege Axe', 'Museum Map', 'Titanium Spirit Shield',
+                           'Crystal Belt'] + good_breach_uniques))
     f.add(Block(theme=decent_unique, comment='Uniques that are usually 2c-1ex', rarity='Unique',
                 base_type=['Onyx Amulet', 'Paua Ring', 'Unset Ring', 'Gold Ring', 'Two-Stone Ring',
                            'Moonstone Ring', 'Broadhead Arrow Quiver', 'Penetrating Arrow Quiver',
@@ -79,8 +80,9 @@ def generate_xai_filter(config=None):
                            'Full Wyrmscale', 'Varnished Coat', 'Sacrificial Garb', 'Nubuck Boots',
                            'Sharkskin Boots', 'Slink Boots', 'Conjurer Boots', 'Deerskin Gloves',
                            'Strapped Mitts', 'Imperial Bow', 'Fiend Dagger', 'Slaughter Knife',
-                           'Imperial Skean', 'Eternal Sword', 'Imperial Staff',
-                           'Granite Flask'] + decent_breach_uniques))
+                           'Imperial Skean', 'Eternal Sword', 'Imperial Staff', 'Spidersilk Robe',
+                           'Granite Flask', 'Saintly Chainmail', 'Void Sceptre',
+                           'Triumphant Lamellar', 'Murder Mitts'] + decent_breach_uniques))
     f.add(Block(theme=decent_unique, comment='Unique maps are almost always worth something', rarity='Unique',
                 _class='Maps'))
     # @TODO: add more shit uniques
