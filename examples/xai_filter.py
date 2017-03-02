@@ -110,11 +110,12 @@ def generate_xai_filter(config=None):
                            'Yriel\'s Key', 'Breachstone']))
     f.add(Block(theme=fragment, _class='Map Fragments'))
 
-    f.add(Comment('Section: #0006 - Currency + Essences\n'))
-    f.add(Block(theme=gg, base_type=['Exalted Orb', 'Eternal Orb', 'Albino Rhoa Feather']))
+    f.add(Comment('Section: #0006 - Currency + Essences + Leaguestones\n'))
+    f.add(Block(theme=gg, base_type=['Exalted Orb', 'Eternal Orb', 'Albino Rhoa Feather', 'Ancient Reliquary Key']))
     f.add(Block(theme=good_currency, base_type=['Deafening Essence', 'Shrieking Essence', 'Divine Orb', 'Unshaping Orb',
                                                 'Essence of Hysteria', 'Essence of Insanity', 'Essence of Horror',
                                                 'Essence of Delirium', 'Blessing']))
+    f.add(Block(theme=gg_fragment, _class='Leaguestone'))
     f.add(Block(theme=decent_currency,
                 base_type=['Cartographer\'s Sextant', 'Chaos Orb', 'Cartographer\'s Seal', 'Orb of Fusing',
                            'Orb of Regret', 'Regal Orb', 'Blessed Orb', 'Gemcutter\'s Prism',
