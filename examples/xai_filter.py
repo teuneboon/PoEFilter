@@ -115,7 +115,7 @@ def generate_xai_filter(config=None):
     f.add(Block(theme=good_currency, base_type=['Deafening Essence', 'Shrieking Essence', 'Divine Orb', 'Unshaping Orb',
                                                 'Essence of Hysteria', 'Essence of Insanity', 'Essence of Horror',
                                                 'Essence of Delirium', 'Blessing']))
-    f.add(Block(theme=gg_fragment, _class='Leaguestone'))
+    f.add(Block(theme=good_fragment, _class='Leaguestone'))
     f.add(Block(theme=decent_currency,
                 base_type=['Cartographer\'s Sextant', 'Chaos Orb', 'Cartographer\'s Seal', 'Orb of Fusing',
                            'Orb of Regret', 'Regal Orb', 'Blessed Orb', 'Gemcutter\'s Prism',
