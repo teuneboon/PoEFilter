@@ -198,6 +198,7 @@ def generate_xai_filter(config=None):
 
     f.add(Comment('Section: #0010 - Rare Evaluation\n'))
     f.add(Block(theme=rare_jewels, _class='Jewel', rarity='Rare'))
+    f.add(Block(theme=rare_atlas_bases, base_type=['Talisman'], rarity=Comparer('Unique', '<')))
     f.add(Block(theme=rare_atlas_bases, item_level=Comparer(84, '>='), base_type=atlas_bases, rarity='Rare'))
     f.add(Block(theme=rare_max_ilvl_bases, item_level=Comparer(84, '>='), rarity='Rare',
                 base_type=gg_es_bases + gg_spell_bases))
