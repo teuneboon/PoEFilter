@@ -414,7 +414,7 @@ def themes():
                          alert_sound=6),
         't2_gems': Theme(text_color=break_3, border_color=break_3, background_color=Colors.WHITE, font_size=42,
                          alert_sound=1),
-        't3_gems': Theme(text_color=gem_colour, border_color=gem_colour, background_color=Colors.WHITE, font_size=37),
+        't3_gems': Theme(text_color=gem_colour, border_color=gem_colour, font_size=37),
 
         'five_link': Theme(background_color=highlight_1, border_color=Colors.WHITE, font_size=38, alert_sound=1),
         'six_socket': Theme(background_color=break_3, border_color=Colors.WHITE, alert_sound=7, font_size=45),
