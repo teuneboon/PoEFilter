@@ -155,7 +155,8 @@ def main():
     f.add(Block(theme=t['six_socket'], sockets=Comparer(6, '>=')))
 
     f.add(Comment('Section: #009 - Gems\n'))
-    f.add(Block(theme=t['t1_gems'], _class='Skill Gems', base_type=['Empower', 'Enlighten'], quality=Comparer(10, '>=')))
+    f.add(
+        Block(theme=t['t1_gems'], _class='Skill Gems', base_type=['Empower', 'Enlighten'], quality=Comparer(10, '>=')))
     f.add(Block(theme=t['t1_gems'], _class='Skill Gems', quality=Comparer(19, '>=')))
     f.add(Block(theme=t['t2_gems'], _class='Skill Gems', base_type=['Portal', 'Empower', 'Enlighten', 'Vaal Haste']))
     f.add(Block(theme=t['t2_gems'], _class='Skill Gems', quality=Comparer(13, '>=')))
@@ -168,18 +169,26 @@ def main():
     f.add(Block(theme=t['rare_talisman'], base_type=['Talisman'], rarity='Rare'))
     f.add(Block(theme=t['talisman'], base_type=['Talisman'], rarity=Comparer('Rare', '<')))
     f.add(Block(theme=t['ggg_rare'], item_level=Comparer(84, '>='), base_type=atlas_bases, rarity='Rare'))
-    f.add(Block(theme=t['gg_rare'], item_level=Comparer(84, '>='), rarity='Rare', base_type=gg_es_bases + gg_spell_bases))
+    f.add(
+        Block(theme=t['gg_rare'], item_level=Comparer(84, '>='), rarity='Rare', base_type=gg_es_bases + gg_spell_bases))
     f.add(Block(theme=t['gg_rare'], item_level=Comparer(84, '>='), rarity='Rare', _class=jewellery))
-    f.add(Block(theme=t['gg_rare'], item_level=Comparer(84, '>='), rarity='Rare', base_type=good_spell_bases + good_armour_bases, set_font_size=38))
-    f.add(Block(theme=t['gg_rare'], item_level=Comparer(84, '>='), rarity='Rare', base_type='Sai', _class='Daggers', set_font_size=38))
+    f.add(Block(theme=t['gg_rare'], item_level=Comparer(84, '>='), rarity='Rare',
+                base_type=good_spell_bases + good_armour_bases, set_font_size=38))
+    f.add(Block(theme=t['gg_rare'], item_level=Comparer(84, '>='), rarity='Rare', base_type='Sai', _class='Daggers',
+                set_font_size=38))
     f.add(Block(theme=t['gg_rare'], item_level=Comparer(83, '>='), rarity='Rare', base_type=gg_phys_bases))
-    f.add(Block(theme=t['gg_rare'], item_level=Comparer(83, '>='), rarity='Rare', base_type=good_phys_bases, set_font_size=38))
+    f.add(Block(theme=t['gg_rare'], item_level=Comparer(83, '>='), rarity='Rare', base_type=good_phys_bases,
+                set_font_size=38))
     f.add(Block(theme=t['ggg_rare'], rarity='Rare', base_type=gg_atlas_bases))
-    f.add(Block(theme=t['ggg_rare'], rarity='Rare', play_alert_sound=None, set_font_size=42, base_type=other_atlas_bases))
+    f.add(
+        Block(theme=t['ggg_rare'], rarity='Rare', play_alert_sound=None, set_font_size=42, base_type=other_atlas_bases))
     f.add(Block(theme=t['good_rare_ilvl'], rarity='Rare', base_type=good_phys_bases, item_level=Comparer(73, '>=')))
-    f.add(Block(theme=t['good_rare_ilvl'], item_level=Comparer(72, '>='), rarity='Rare', base_type='Sai', _class='Daggers'))
-    f.add(Block(theme=t['good_rare_ilvl'], item_level=Comparer(72, '>='), rarity='Rare', base_type=good_armour_bases + gg_es_bases))
-    f.add(Block(theme=t['good_rare'], rarity='Rare', base_type=good_phys_bases + gg_es_bases + good_armour_bases + gg_spell_bases + good_spell_bases))
+    f.add(Block(theme=t['good_rare_ilvl'], item_level=Comparer(72, '>='), rarity='Rare', base_type='Sai',
+                _class='Daggers'))
+    f.add(Block(theme=t['good_rare_ilvl'], item_level=Comparer(72, '>='), rarity='Rare',
+                base_type=good_armour_bases + gg_es_bases))
+    f.add(Block(theme=t['good_rare'], rarity='Rare',
+                base_type=good_phys_bases + gg_es_bases + good_armour_bases + gg_spell_bases + good_spell_bases))
     ilvl_swap(f, Block(theme=t['good_rare_ilvl'], item_level=Comparer(75, '>='), rarity='Rare', _class=jewellery,
                        set_font_size=40), t['good_rare'], set_font_size=40)
     ilvl_swap(f, Block(theme=t['good_rare_ilvl'], set_font_size=35, rarity='Rare', item_level=Comparer(73, '>='),
@@ -199,9 +208,12 @@ def main():
                 rarity='Rare'))
     f.add(Block(theme=t['shit_rare'], item_level=Comparer(65, '>='), drop_level=Comparer(50, '<='), _class='Shields',
                 rarity='Rare'))
-    f.add(Block(theme=t['shit_rare'], item_level=Comparer(65, '>='), drop_level=Comparer(47, '<='), _class='Body Armour', rarity='Rare'))
+    f.add(
+        Block(theme=t['shit_rare'], item_level=Comparer(65, '>='), drop_level=Comparer(47, '<='), _class='Body Armour',
+              rarity='Rare'))
     f.add(Block(theme=t['good_rare'], set_font_size=45, item_level=Comparer(30, '<'), rarity='Rare', _class='Boots'))
-    f.add(Block(theme=t['good_rare'], item_level=Comparer(65, '<'), rarity='Rare', _class=['Boots', 'Helmets', 'Gloves', 'Sceptres', 'Daggers', 'Wands']))
+    f.add(Block(theme=t['good_rare'], item_level=Comparer(65, '<'), rarity='Rare',
+                _class=['Boots', 'Helmets', 'Gloves', 'Sceptres', 'Daggers', 'Wands']))
     f.add(Block(theme=t['good_rare'], item_level=Comparer(10, '<'), rarity='Rare'))
     # nice example of what you can do with PoEFilter
     for drop_level in range(5, 56):
@@ -215,7 +227,8 @@ def main():
                 item_level=Comparer(65, '<'), rarity='Rare'))
     f.add(Block(theme=Theme(background_color=Color(0, 0, 0, 225), border_color=Color(150, 150, 150), font_size=26),
                 rarity='Rare', width=Comparer(2, '>='), height=Comparer(4, '>=')))
-    small_sizes(f, Block(rarity='Rare', theme=Theme(background_color=Colors.BLACK, border_color=Color(150, 150, 150), font_size=35)))
+    small_sizes(f, Block(rarity='Rare',
+                         theme=Theme(background_color=Colors.BLACK, border_color=Color(150, 150, 150), font_size=35)))
     f.add(Block(theme=Theme(background_color=Color(0, 0, 0, 180), border_color=Color(150, 150, 150), font_size=35),
                 rarity='Rare'))
 
@@ -226,7 +239,8 @@ def main():
     f.add(Block(theme=t['gg_atlas_base'], base_type=atlas_bases, item_level=Comparer(84, '>=')))
     f.add(Block(theme=t['gg_white_base'], item_level=Comparer(84, '>='), base_type=gg_es_bases + gg_spell_bases))
     f.add(Block(theme=t['gg_white_base'], item_level=Comparer(84, '>='), _class=jewellery))
-    f.add(Block(theme=t['ok_white_base'], item_level=Comparer(84, '>='), base_type=good_spell_bases + good_armour_bases))
+    f.add(
+        Block(theme=t['ok_white_base'], item_level=Comparer(84, '>='), base_type=good_spell_bases + good_armour_bases))
     f.add(Block(theme=t['ok_white_base'], item_level=Comparer(84, '>='), base_type='Sai', _class='Daggers'))
     f.add(Block(theme=t['gg_white_base'], item_level=Comparer(83, '>='), base_type=gg_phys_bases))
     f.add(Block(theme=t['ok_white_base'], item_level=Comparer(83, '>='), base_type=good_phys_bases))
@@ -236,11 +250,13 @@ def main():
         small_sizes(f, Block(theme=t['chromatic_item'], socket_group='RGB'))
     if chromatic_recipe == 2:
         f.add(Block(theme=t['chromatic_item'], set_font_size=30, socket_group='RGB'))
-    f.add(Block(theme=t['chance_item'], rarity='Normal', base_type=['Sorcerer Boots', 'Occultist\'s Vestment', 'Sapphire Flask',
-                                                               'Spike-Point Arrow Quiver', 'Imperial Staff']))
+    f.add(Block(theme=t['chance_item'], rarity='Normal',
+                base_type=['Sorcerer Boots', 'Occultist\'s Vestment', 'Sapphire Flask',
+                           'Spike-Point Arrow Quiver', 'Imperial Staff']))
     if show_jewellery >= 2:
         f.add(Block(theme=t['alch_whites'], item_level=Comparer(67, '>='), rarity='Normal', _class=jewellery,
-                    base_type=['Onyx', 'Ruby', 'Sapphire', 'Topaz', 'Two-Stone', 'Diamond', 'Prismatic', 'Unset', 'Gold',
+                    base_type=['Onyx', 'Ruby', 'Sapphire', 'Topaz', 'Two-Stone', 'Diamond', 'Prismatic', 'Unset',
+                               'Gold',
                                'Citrine', 'Turquoise', 'Agate', 'Coral Ring', 'Moonstone', 'Leather', 'Heavy', 'Amber',
                                'Jade', 'Lapis', 'Rustic', 'Iron Ring']))
     if show_jewellery >= 1:
@@ -251,8 +267,10 @@ def main():
     f.add(Comment('Section: #0012 - Flasks\n'))
     if flasks >= 1:
         f.add(Block(theme=t['high_quality_flask'], quality=Comparer(18, '>='), rarity='Magic', _class='Utility Flasks'))
-        f.add(Block(theme=t['high_quality_flask'], quality=Comparer(15, '>='), rarity='Normal', _class='Utility Flasks'))
-        f.add(Block(theme=t['high_quality_flask'], quality=Comparer(1, '>='), _class='Utility Flasks', set_font_size=38))
+        f.add(
+            Block(theme=t['high_quality_flask'], quality=Comparer(15, '>='), rarity='Normal', _class='Utility Flasks'))
+        f.add(
+            Block(theme=t['high_quality_flask'], quality=Comparer(1, '>='), _class='Utility Flasks', set_font_size=38))
     f.add(Block(theme=t['utility_flask'], _class='Utility Flasks', item_level=Comparer(10, '<='), set_font_size=38))
     f.add(Block(theme=t['utility_flask'], _class='Utility Flasks', item_level=Comparer(25, '<='), set_font_size=37))
     f.add(Block(theme=t['utility_flask'], _class='Utility Flasks', item_level=Comparer(50, '<='), set_font_size=36))
@@ -396,9 +414,9 @@ def themes():
                              font_size=45),
         't3_currency': Theme(background_color=break_3, text_color=Colors.WHITE, border_color=Colors.WHITE,
                              alert_sound=1, font_size=41),
-        't4_currency': Theme(background_color=highlight_1.change_opacity(0.5), text_color=Colors.WHITE,
-                             border_color=Colors.WHITE, font_size=38),
-        't5_currency': Theme(background_color=highlight_1.change_opacity(0.5), text_color=break_2,
+        't4_currency': Theme(background_color=highlight_1, text_color=Colors.WHITE, border_color=Colors.WHITE,
+                             font_size=38),
+        't5_currency': Theme(background_color=highlight_1.change_opacity(0.5), text_color=Colors.WHITE,
                              border_color=break_2),
 
         't1_div': Theme(text_color=t1_highlight, border_color=highlight_1, background_color=t1_background, font_size=45,
@@ -419,21 +437,27 @@ def themes():
         'five_link': Theme(background_color=highlight_1, border_color=Colors.WHITE, font_size=38, alert_sound=1),
         'six_socket': Theme(background_color=break_3, border_color=Colors.WHITE, alert_sound=7, font_size=45),
 
-        'leaguestone': Theme(background_color=highlight_2.darken(0.3), text_color=Colors.WHITE, border_color=Colors.WHITE,
+        'leaguestone': Theme(background_color=highlight_2.darken(0.3), text_color=Colors.WHITE,
+                             border_color=Colors.WHITE,
                              alert_sound=4, font_size=38),
         'breach': Theme(background_color=breach, text_color=Colors.BLOOD_RED, border_color=Colors.BLOOD_RED),
 
-        'rare_jewel': Theme(background_color=good_rare, text_color=Colors.WHITE, border_color=Colors.WHITE, font_size=45),
-        'ggg_rare': Theme(background_color=good_rare, text_color=break_3, border_color=break_3, font_size=45, alert_sound=5),
+        'rare_jewel': Theme(background_color=good_rare, text_color=Colors.WHITE, border_color=Colors.WHITE,
+                            font_size=45),
+        'ggg_rare': Theme(background_color=good_rare, text_color=break_3, border_color=break_3, font_size=45,
+                          alert_sound=5),
         'gg_rare': Theme(background_color=good_rare, text_color=Colors.WHITE, border_color=break_3, font_size=45),
-        'good_rare': Theme(background_color=good_rare, text_color=Colors.WHITE, border_color=Colors.BLACK, font_size=40),
-        'good_rare_ilvl': Theme(background_color=good_rare, text_color=Colors.WHITE, border_color=break_3, font_size=42),
+        'good_rare': Theme(background_color=good_rare, text_color=Colors.WHITE, border_color=Colors.BLACK,
+                           font_size=40),
+        'good_rare_ilvl': Theme(background_color=good_rare, text_color=Colors.WHITE, border_color=break_3,
+                                font_size=42),
         'shit_rare': Theme(text_color=rare, border_color=Colors.BLOOD_RED, font_size=30),
         'rare_talisman': Theme(background_color=good_rare, text_color=Colors.BLOOD_RED, border_color=Colors.BLOOD_RED,
                                font_size=45, alert_sound=1),
         'talisman': Theme(border_color=Colors.BLOOD_RED, font_size=38),
 
-        'gg_atlas_base': Theme(background_color=Colors.WHITE, text_color=break_3, border_color=break_3, font_size=45, alert_sound=5),
+        'gg_atlas_base': Theme(background_color=Colors.WHITE, text_color=break_3, border_color=break_3, font_size=45,
+                               alert_sound=5),
         'atlas_base': Theme(background_color=Colors.WHITE, text_color=break_3, border_color=break_3, font_size=40),
         'gg_white_base': Theme(font_size=45, border_color=break_3),
         'ok_white_base': Theme(font_size=40, border_color=highlight_1),
