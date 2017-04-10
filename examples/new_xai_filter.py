@@ -39,6 +39,25 @@ def main():
     t4_currency = ['Orb of Alchemy', 'Silver Coin', 'Orb of Chance', 'Jeweller\'s Orb', 'Orb of Alteration',
                    'Cartographer\'s Chisel']
 
+    t1_divs = ['House of Mirrors', 'The Doctor', 'The Fiend', 'Hunter\'s Reward', 'The Dragon\'s Heart', 'Mawr Blaidd',
+               'The Last One Standing', 'The Offering', 'The Ethereal', 'The Queen', 'Abandoned Wealth',
+               'The Brittle Emperor', 'The Immortal', 'The Artist', 'Wealth and Power', 'Pride Before the Fall',
+               'The Enlightened', 'The King\'s Heart', 'Bowyer\'s Dream', 'The Hunger', 'The Celestial Justicar',
+               'Spark and the Flame', 'Polymath']
+    t2_divs = ['Chaotic Disposition', 'The Void', 'The Cartographer', 'The Dapper Prodigy', 'The Vast', 'The Dark Mage',
+               'Last Hope', 'The Valkyrie', 'The Sephirot', 'The Hoarder', 'The Chains that Bind', 'The Warlord',
+               'The Aesthete', 'Saint\'s Treasure', 'The Thaumaturgist', 'Heterochromia', 'The Porcupine',
+               'The Stormcaller', 'The Soul', 'Emperor of Purity', 'The Road to Power', 'The Arena Champion',
+               'The Gladiator', 'Glimmer of Hope', 'The Tyrant', 'The Union', 'The Risk', 'The Trial',
+               'Scholar of the Seas', 'Lucky Deck', 'Humility', 'The Penitent', 'The Penitent', 'The Surveyor',
+               'Lysah\'s Respite', 'The Inventor', 'The Jester', 'Vinia\'s Token', 'Rats', 'The Wrath', 'Hope',
+               'Treasure Hunter', 'The Explorer', 'The Body', 'Jack in the Box', 'The Traitor', 'Valley of Steel Boxes',
+               'Wolven King\'s Bite', 'Wretched', 'The Opulent', 'Might is Right', 'The Fletcher', 'The Forsaken',
+               'The Formless Sea', 'The Demoness', 'Time-Lost Relic', 'The Wolf', 'Earth Drinker', 'Standoff',
+               'Merciless Armament']
+    t4_divs = ['The Flora\'s Gift', 'Her Mask', 'Rain of Chaos', 'Thunderous Skies', 'The Gambler']
+    shit_divs = ['The Carrion Crow', 'Doedre\'s Madness']
+
     f = Filter()
     t = themes()
 
@@ -120,24 +139,15 @@ def main():
     f.add(Comment('Section: #0007 - Divination Cards\n'))
     f.add(Block(theme=t['t4_div'], base_type='The Wolf\'s Shadow',
                 comment='Added here so that "The Wolf" doesn\'t get confused with "The Wolf\'s Shadow"(Thanks Neversink for this tip!)'))
-    f.add(Block(theme=t['t1_div'],
-                base_type=['Abandoned Wealth', 'The Doctor', 'The Fiend', 'Mawr Blaidd', 'The Offering',
-                           'The Brittle Emperor', 'The Harvester', 'The Last One Standing',
-                           'The Dragon\'s Heart', 'The Ethereal', 'The Queen', 'The Enlightened', 'The Hunger',
-                           'Pride Before the Fall', 'The King\'s Heart', 'The Vast', 'Wealth and Power',
-                           'The Immortal', 'The Devastator', 'Hunter\'s Reward', 'The Spark and the Flame']))
-    f.add(Block(theme=t['t2_div'],
-                base_type=['Bowyer\'s Dream', 'The Formless Sea', 'The Penitent', 'Heterochromia',
-                           'Lucky Deck', 'The Stormcaller', 'The Wolf', 'The Artist', 'Earth Drinker',
-                           'The Trial', 'The Celestial Justicar', 'The Surveyor', 'The Valkyrie',
-                           'Chaotic Disposition', 'The Sephirot', 'The Void', 'The Dark Mage',
-                           'The Dapper Prodigy', 'Time-Lost Relic', 'The Chains that Bind',
-                           'Dialla\'s Subjugation', 'Emperor of Purity', 'The Soul', 'The Polymath', 'The Porcupine',
-                           'The Saint\'s Treasure', 'The Wolven King\'s Bite']))
-    f.add(Block(theme=t['t4_div'],
-                base_type=['The Flora\'s Gift', 'Her Mask', 'Rain of Chaos', 'Thunderous Skies', 'The Gambler']))
-    f.add(Block(show=False, base_type=['The Carrion Crow', 'Doedre\'s Madness']))
+    f.add(Block(theme=t['t1_div'], base_type=t1_divs))
+    f.add(Block(theme=t['t2_div'], base_type=t2_divs))
+    f.add(Block(theme=t['t4_div'], base_type=t4_divs))
+    f.add(Block(show=False, base_type=shit_divs))
     f.add(Block(theme=t['t3_div'], _class='Divination Card'))
+
+    f.add(Comment('Section: #0008 - Socket/Link Stuff\n'))
+    f.add(Block(theme=t['five_link'], play_alert_sound=Sound(1), linked_sockets=5))
+    f.add(Block(theme=t['six_socket'], sockets=Comparer(6, '>=')))
 
     f.add(Comment('Section: #014 - Failsafe\n'))
     add_failsafe(f)
@@ -197,9 +207,13 @@ def themes():
                         alert_sound=2),
         't3_div': Theme(text_color=highlight_1, border_color=highlight_1, background_color=Colors.WHITE, font_size=40,
                         alert_sound=2),
-        't4_div': Theme(text_color=highlight_1, border_color=highlight_1, background_color=Colors.WHITE.change_opacity(0.5)),
+        't4_div': Theme(text_color=highlight_1, border_color=highlight_1,
+                        background_color=Colors.WHITE.change_opacity(0.5)),
 
-        'leaguestone': Theme(background_color=break_2, text_color=Colors.WHITE, border_color=Colors.WHITE,
+        'five_link': Theme(background_color=highlight_1, border_color=Colors.WHITE, font_size=38, alert_sound=1),
+        'six_socket': Theme(background_color=break_3, border_color=Colors.WHITE, alert_sound=7, font_size=45),
+
+        'leaguestone': Theme(background_color=highlight_2, text_color=Colors.WHITE, border_color=Colors.WHITE,
                              alert_sound=1, font_size=38),
         'breach': Theme(background_color=breach, text_color=Colors.BLOOD_RED, border_color=Colors.BLOOD_RED)
     }
