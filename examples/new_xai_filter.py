@@ -1,8 +1,11 @@
+from copy import deepcopy
+
 from block import Block
 from comment import Comment
 from filter import Filter
 from helpers.colors import Colors
 from helpers.general import add_failsafe
+from helpers.map import get_maps_by_drop_level
 from properties.color import Color
 from properties.comparer import Comparer
 from properties.sound import Sound
@@ -22,6 +25,10 @@ def main():
                   'Wyrmscale Doublet', 'Gold Ring', 'Crystal Belt', 'Citrine Amulet', 'Ebony Tower Shield',
                   'Onyx Amulet', 'Goathide Boots', 'Two-Stone Ring']
     t4_uniques = ['Plank Kite Shield']
+
+    map_no_sound_tier_difference = 5
+    special_maps = ['Beach']
+    shaped_maps_special_tier = 10
 
     f = Filter()
     t = themes()
@@ -44,8 +51,29 @@ def main():
     f.add(Block(theme=t['t1'], rarity='Unique', base_type=t1_uniques))
     f.add(Block(theme=t['t2_unique'], rarity='Unique', _class=['Map']))
     f.add(Block(theme=t['t2_unique'], rarity='Unique', base_type=t2_uniques))
-    f.add(Block(theme=t['t4_unique'], rarity='Unique', base_type=t4_uniques))
+    f.add(Block(theme=t['t4_unique'], rarity='Unique', base_type=t4_uniques, sockets=Comparer(6, '<'), linked_sockets=Comparer(5, '<')))
     f.add(Block(theme=t['t3_unique'], rarity='Unique'))
+
+    f.add(Comment('Section: #004 - Maps\n'))
+    maps = get_maps_by_drop_level()
+    f.add(Block(theme=t['good_map'], _class='Maps', base_type='Shaped', drop_level=Comparer(shaped_maps_special_tier + 67, '>=')))
+    f.add(Block(theme=t['good_map'], _class='Maps', base_type=special_maps))
+    for drop_level in list(maps.keys())[::-1]:
+        if drop_level == 68:
+            drop_level = 58
+        base_block = Block(_class='Maps', drop_level=Comparer(drop_level, '>='), item_level=Comparer(drop_level - map_no_sound_tier_difference, '>='))
+        if drop_level >= 82:
+            base_block.set_theme(t['good_map'])
+        else:
+            base_block.set_theme(t['normal_map'])
+            if drop_level <= 68:
+                base_block.set_property('play_alert_sound', None)
+        f.add(base_block)
+        no_requirement = deepcopy(base_block)
+        no_requirement.set_theme(t['low_map'])
+        no_requirement.set_property('item_level', None)
+        f.add(no_requirement)
+
 
     f.add(Comment('Section: #014 - Failsafe\n'))
     add_failsafe(f)
@@ -75,6 +103,11 @@ def themes():
                            alert_sound=3, font_size=40),
         't4_unique': Theme(text_color=break_1, border_color=break_1, background_color=Colors.UNIQUE,
                            font_size=35),
+        'low_map': Theme(background_color=highlight_1.change_opacity(122), text_color=Colors.WHITE, border_color=Colors.WHITE, font_size=35),
+        'normal_map': Theme(background_color=highlight_1, text_color=Colors.WHITE, border_color=Colors.WHITE,
+                            alert_sound=2, font_size=40),
+        'good_map': Theme(background_color=break_2, text_color=Colors.BLACK, border_color=Colors.BLACK,
+                          alert_sound=9, font_size=45),
     }
 
 

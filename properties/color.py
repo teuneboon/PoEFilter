@@ -33,3 +33,6 @@ class Color(Property):
 
     def __str__(self):
         return '{0} {1} {2} {3}'.format(self.red, self.green, self.blue, self.opacity)
+
+    def change_opacity(self, opacity):
+        return Color(self.red, self.green, self.blue, opacity)
