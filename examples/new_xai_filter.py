@@ -30,10 +30,24 @@ def main():
     special_maps = ['Beach']
     shaped_maps_special_tier = 10
 
+    t1_currency = ['Exalted Orb', 'Eternal Orb', 'Albino Rhoa Feather', 'Ancient Reliquary Key']
+    t2_currency = ['Deafening Essence', 'Shrieking Essence', 'Divine Orb', 'Unshaping Orb', 'Essence of Hysteria',
+                   'Essence of Insanity', 'Essence of Horror', 'Essence of Delirium', 'Blessing']
+    t3_currency = ['Cartographer\'s Sextant', 'Chaos Orb', 'Cartographer\'s Seal', 'Orb of Fusing', 'Orb of Regret',
+                   'Regal Orb', 'Blessed Orb', 'Gemcutter\'s Prism', 'Orb of Scouring', 'Vaal Orb',
+                   'Remnant of Corruption', 'Essence of']
+    t4_currency = ['Orb of Alchemy', 'Silver Coin', 'Orb of Chance', 'Jeweller\'s Orb', 'Orb of Alteration',
+                   'Cartographer\'s Chisel']
+
     f = Filter()
     t = themes()
 
     f.add(Comment('Section: #001 - Special Stuff\n'))
+    f.add(Block(theme=t['t2_unique'],
+                comment='Tabula, we have to put this before everything cause our 6L block will override otherwise',
+                socket_group='W' * 6,
+                rarity='Unique',
+                base_type='Simple Robe'))
     f.add(Block(theme=t['lab_and_shaper_orb'], _class='Quest Items', base_type='Shaper\'s Orb'))
     f.add(Block(theme=t['lab_and_shaper_orb'], base_type='Offering to the Goddess'))
     f.add(Block(theme=t['quest'], _class=['Quest Items', 'Microtransactions', 'Hideout Doodads']))
@@ -48,20 +62,23 @@ def main():
     f.add(Block(theme=t['t1'], linked_sockets=Comparer(6, '>=')))
 
     f.add(Comment('Section: #003 - Uniques\n'))
-    f.add(Block(theme=t['t1'], rarity='Unique', base_type=t1_uniques, comment='T1 Uniques'))
+    f.add(Block(theme=t['t1_unique'], rarity='Unique', base_type=t1_uniques, comment='T1 Uniques'))
     f.add(Block(theme=t['t2_unique'], rarity='Unique', _class=['Map'], comment='T2 Unique Maps'))
     f.add(Block(theme=t['t2_unique'], rarity='Unique', base_type=t2_uniques, comment='T2 Uniques'))
-    f.add(Block(theme=t['t4_unique'], rarity='Unique', base_type=t4_uniques, sockets=Comparer(6, '<'), linked_sockets=Comparer(5, '<'), comment='T4 Uniques'))
+    f.add(Block(theme=t['t4_unique'], rarity='Unique', base_type=t4_uniques, sockets=Comparer(6, '<'),
+                linked_sockets=Comparer(5, '<'), comment='T4 Uniques'))
     f.add(Block(theme=t['t3_unique'], rarity='Unique', comment='Other(T3) Uniques'))
 
     f.add(Comment('Section: #004 - Maps\n'))
     maps = get_maps_by_drop_level()
-    f.add(Block(theme=t['good_map'], _class='Maps', base_type='Shaped', drop_level=Comparer(shaped_maps_special_tier + 67, '>=')))
+    f.add(Block(theme=t['good_map'], _class='Maps', base_type='Shaped',
+                drop_level=Comparer(shaped_maps_special_tier + 67, '>=')))
     f.add(Block(theme=t['good_map'], _class='Maps', base_type=special_maps, comment='Special Maps(usually MF)'))
     for drop_level in list(maps.keys())[::-1]:
         if drop_level == 68:
             drop_level = 58
-        base_block = Block(_class='Maps', drop_level=Comparer(drop_level, '>='), item_level=Comparer(drop_level - map_no_sound_tier_difference, '>='))
+        base_block = Block(_class='Maps', drop_level=Comparer(drop_level, '>='),
+                           item_level=Comparer(drop_level - map_no_sound_tier_difference, '>='))
         if drop_level >= 82:
             base_block.set_theme(t['good_map'])
         else:
@@ -85,26 +102,42 @@ def main():
     f.add(Block(theme=t['t3_fragment'], _class='Map Fragments'))
 
     f.add(Comment('Section: #006 - Currency + Essences + Leaguestones\n'))
-    f.add(Block(theme=t['t1'], base_type=['Exalted Orb', 'Eternal Orb', 'Albino Rhoa Feather', 'Ancient Reliquary Key']))
-    f.add(Block(theme=t['t2_currency'], base_type=['Deafening Essence', 'Shrieking Essence', 'Divine Orb', 'Unshaping Orb',
-                                                'Essence of Hysteria', 'Essence of Insanity', 'Essence of Horror',
-                                                'Essence of Delirium', 'Blessing']))
+    f.add(Block(theme=t['t1'], base_type=t1_currency))
+    f.add(Block(theme=t['t2_currency'], base_type=t2_currency))
     f.add(Block(theme=t['leaguestone'], _class='Leaguestone'))
-    f.add(Block(theme=t['t3_currency'],
-                base_type=['Cartographer\'s Sextant', 'Chaos Orb', 'Cartographer\'s Seal', 'Orb of Fusing',
-                           'Orb of Regret', 'Regal Orb', 'Blessed Orb', 'Gemcutter\'s Prism',
-                           'Orb of Scouring', 'Vaal Orb', 'Remnant of Corruption', 'Essence of']))
+    f.add(Block(theme=t['t3_currency'], base_type=t3_currency))
     f.add(Block(theme=Theme(text_color=Color(231, 180, 120),
                             background_color=Color(0, 0, 0, 180),
                             border_color=Color(231, 180, 120),
                             font_size=45),
                 base_type='Perandus Coin'))
     f.add(Block(theme=t['breach'], _class=['Stackable Currency'], base_type=['Splinter']))
-    f.add(Block(theme=t['t4_currency'], base_type=['Orb of Alchemy', 'Silver Coin', 'Orb of Chance', 'Jeweller\'s Orb',
-                                           'Orb of Alteration', 'Cartographer\'s Chisel']))
+    f.add(Block(theme=t['t4_currency'], base_type=t4_currency))
     f.add(Block(_class=['Currency'], base_type=['Wisdom']))
     f.add(Block(_class=['Currency'], base_type=['Portal']))
     f.add(Block(theme=t['t5_currency'], _class=['Currency', 'Stackable Currency']))
+
+    f.add(Comment('Section: #0007 - Divination Cards\n'))
+    f.add(Block(theme=t['t4_div'], base_type='The Wolf\'s Shadow',
+                comment='Added here so that "The Wolf" doesn\'t get confused with "The Wolf\'s Shadow"(Thanks Neversink for this tip!)'))
+    f.add(Block(theme=t['t1_div'],
+                base_type=['Abandoned Wealth', 'The Doctor', 'The Fiend', 'Mawr Blaidd', 'The Offering',
+                           'The Brittle Emperor', 'The Harvester', 'The Last One Standing',
+                           'The Dragon\'s Heart', 'The Ethereal', 'The Queen', 'The Enlightened', 'The Hunger',
+                           'Pride Before the Fall', 'The King\'s Heart', 'The Vast', 'Wealth and Power',
+                           'The Immortal', 'The Devastator', 'Hunter\'s Reward', 'The Spark and the Flame']))
+    f.add(Block(theme=t['t2_div'],
+                base_type=['Bowyer\'s Dream', 'The Formless Sea', 'The Penitent', 'Heterochromia',
+                           'Lucky Deck', 'The Stormcaller', 'The Wolf', 'The Artist', 'Earth Drinker',
+                           'The Trial', 'The Celestial Justicar', 'The Surveyor', 'The Valkyrie',
+                           'Chaotic Disposition', 'The Sephirot', 'The Void', 'The Dark Mage',
+                           'The Dapper Prodigy', 'Time-Lost Relic', 'The Chains that Bind',
+                           'Dialla\'s Subjugation', 'Emperor of Purity', 'The Soul', 'The Polymath', 'The Porcupine',
+                           'The Saint\'s Treasure', 'The Wolven King\'s Bite']))
+    f.add(Block(theme=t['t4_div'],
+                base_type=['The Flora\'s Gift', 'Her Mask', 'Rain of Chaos', 'Thunderous Skies', 'The Gambler']))
+    f.add(Block(show=False, base_type=['The Carrion Crow', 'Doedre\'s Madness']))
+    f.add(Block(theme=t['t3_div'], _class='Divination Card'))
 
     f.add(Comment('Section: #014 - Failsafe\n'))
     add_failsafe(f)
@@ -130,25 +163,44 @@ def themes():
         'quest': Theme(text_color=break_2, border_color=break_2, font_size=45, alert_sound=1),
         't1': Theme(text_color=t1_highlight, border_color=t1_highlight, background_color=t1_background, font_size=45,
                     alert_sound=8),
+        't1_unique': Theme(text_color=t1_highlight, border_color=t1_highlight, background_color=t1_background,
+                           font_size=45,
+                           alert_sound=6),
         't2_unique': Theme(text_color=Colors.WHITE, border_color=Colors.WHITE, background_color=Colors.UNIQUE,
                            alert_sound=5, font_size=45),
         't3_unique': Theme(text_color=highlight_1, border_color=highlight_1, background_color=Colors.UNIQUE,
                            alert_sound=3, font_size=40),
         't4_unique': Theme(text_color=break_1, border_color=break_1, background_color=Colors.UNIQUE,
                            font_size=35),
-        'low_map': Theme(background_color=highlight_1.change_opacity(122), text_color=Colors.WHITE, border_color=Colors.WHITE, font_size=35),
+        'low_map': Theme(background_color=highlight_1.change_opacity(122), text_color=Colors.WHITE,
+                         border_color=Colors.WHITE, font_size=35),
         'normal_map': Theme(background_color=highlight_1, text_color=Colors.WHITE, border_color=Colors.WHITE,
                             alert_sound=2, font_size=40),
         'good_map': Theme(background_color=break_2, text_color=Colors.BLACK, border_color=Colors.BLACK,
                           alert_sound=9, font_size=45),
-        't2_fragment': Theme(text_color=Colors.BLACK, background_color=Colors.BLOOD_RED, border_color=Colors.BLACK, font_size=45, alert_sound=2),
-        't3_fragment': Theme(text_color=Colors.BLOOD_RED, background_color=Colors.BLACK, border_color=Colors.BLOOD_RED, font_size=38, alert_sound=2),
-        't2_currency': Theme(background_color=highlight_2, text_color=break_3, border_color=break_3, alert_sound=5, font_size=45),
-        't3_currency': Theme(background_color=break_3, text_color=Colors.WHITE, border_color=Colors.WHITE, alert_sound=1, font_size=41),
-        't4_currency': Theme(background_color=highlight_1.change_opacity(0.5), text_color=Colors.WHITE, border_color=Colors.WHITE, font_size=38),
-        't5_currency': Theme(background_color=highlight_1.change_opacity(0.5), text_color=break_2, border_color=break_2),
+        't2_fragment': Theme(text_color=Colors.BLACK, background_color=Colors.BLOOD_RED, border_color=Colors.BLACK,
+                             font_size=45, alert_sound=2),
+        't3_fragment': Theme(text_color=Colors.BLOOD_RED, background_color=Colors.BLACK, border_color=Colors.BLOOD_RED,
+                             font_size=38, alert_sound=2),
+        't2_currency': Theme(background_color=highlight_2, text_color=break_3, border_color=break_3, alert_sound=5,
+                             font_size=45),
+        't3_currency': Theme(background_color=break_3, text_color=Colors.WHITE, border_color=Colors.WHITE,
+                             alert_sound=1, font_size=41),
+        't4_currency': Theme(background_color=highlight_1.change_opacity(0.5), text_color=Colors.WHITE,
+                             border_color=Colors.WHITE, font_size=38),
+        't5_currency': Theme(background_color=highlight_1.change_opacity(0.5), text_color=break_2,
+                             border_color=break_2),
 
-        'leaguestone': Theme(background_color=break_2, text_color=Colors.WHITE, border_color=Colors.WHITE, alert_sound=1, font_size=38),
+        't1_div': Theme(text_color=t1_highlight, border_color=highlight_1, background_color=t1_background, font_size=45,
+                        alert_sound=6),
+        't2_div': Theme(text_color=break_3, border_color=break_3, background_color=Colors.WHITE, font_size=45,
+                        alert_sound=2),
+        't3_div': Theme(text_color=highlight_1, border_color=highlight_1, background_color=Colors.WHITE, font_size=40,
+                        alert_sound=2),
+        't4_div': Theme(text_color=highlight_1, border_color=highlight_1, background_color=Colors.WHITE.change_opacity(0.5)),
+
+        'leaguestone': Theme(background_color=break_2, text_color=Colors.WHITE, border_color=Colors.WHITE,
+                             alert_sound=1, font_size=38),
         'breach': Theme(background_color=breach, text_color=Colors.BLOOD_RED, border_color=Colors.BLOOD_RED)
     }
 
