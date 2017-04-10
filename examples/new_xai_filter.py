@@ -246,6 +246,7 @@ def main():
     if show_jewellery >= 1:
         f.add(Block(theme=t['magic_jewellery'], item_level=Comparer(67, '>='), rarity='Magic', _class=jewellery))
     f.add(Block(theme=t['magic_jewel'], _class='Jewel'))
+    f.add(Block(item_level=Comparer(75, '>='), base_type=gg_es_bases))
 
     f.add(Comment('Section: #0012 - Flasks\n'))
     if flasks >= 1:
