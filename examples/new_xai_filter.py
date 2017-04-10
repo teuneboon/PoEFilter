@@ -37,9 +37,8 @@ def main():
                    'Essence of Insanity', 'Essence of Horror', 'Essence of Delirium', 'Blessing']
     t3_currency = ['Cartographer\'s Sextant', 'Chaos Orb', 'Cartographer\'s Seal', 'Orb of Fusing', 'Orb of Regret',
                    'Regal Orb', 'Blessed Orb', 'Gemcutter\'s Prism', 'Orb of Scouring', 'Vaal Orb',
-                   'Remnant of Corruption', 'Essence of']
-    t4_currency = ['Orb of Alchemy', 'Silver Coin', 'Orb of Chance', 'Jeweller\'s Orb', 'Orb of Alteration',
-                   'Cartographer\'s Chisel']
+                   'Remnant of Corruption', 'Essence of', 'Cartographer\'s Chisel', 'Orb of Alchemy']
+    t4_currency = ['Silver Coin', 'Orb of Chance', 'Jeweller\'s Orb', 'Orb of Alteration']
 
     t1_divs = ['House of Mirrors', 'The Doctor', 'The Fiend', 'Hunter\'s Reward', 'The Dragon\'s Heart', 'Mawr Blaidd',
                'The Last One Standing', 'The Offering', 'The Ethereal', 'The Queen', 'Abandoned Wealth',
@@ -62,6 +61,7 @@ def main():
 
     show_jewellery = 2
     chromatic_recipe = 2
+    flasks = 2
 
     f = Filter()
     t = themes()
@@ -246,103 +246,102 @@ def main():
     if show_jewellery >= 1:
         f.add(Block(theme=t['magic_jewellery'], item_level=Comparer(67, '>='), rarity='Magic', _class=jewellery))
     f.add(Block(theme=t['magic_jewel'], _class='Jewel'))
-    #
-    # f.add(Comment('Section: #0012 - Flasks\n'))
-    # flasks = int(config.get('flasks', '2'))
-    # if flasks >= 1:
-    #     f.add(Block(theme=high_quality_flask, quality=Comparer(18, '>='), rarity='Magic', _class='Utility Flasks'))
-    #     f.add(Block(theme=high_quality_flask, quality=Comparer(15, '>='), rarity='Normal', _class='Utility Flasks'))
-    #     f.add(Block(theme=high_quality_flask, quality=Comparer(1, '>='), _class='Utility Flasks', set_font_size=38))
-    # f.add(Block(theme=utility_flask, _class='Utility Flasks', item_level=Comparer(10, '<='), set_font_size=38))
-    # f.add(Block(theme=utility_flask, _class='Utility Flasks', item_level=Comparer(25, '<='), set_font_size=37))
-    # f.add(Block(theme=utility_flask, _class='Utility Flasks', item_level=Comparer(50, '<='), set_font_size=36))
-    # if flasks >= 2:
-    #     f.add(Block(theme=utility_flask, _class='Utility Flasks'))
-    #     f.add(Block(_class=['Life Flask', 'Mana Flask'], item_level=Comparer(72, '>='), set_font_size=20))
-    # hybrid_flask_ilvl_to_keyword = {
-    #     15: 'Small',
-    #     25: 'Medium',
-    #     35: 'Large',
-    #     45: 'Colossal',
-    #     55: 'Sacred',
-    #     67: 'Hallowed',
-    # }
-    # for ilvl, base_type in sorted(hybrid_flask_ilvl_to_keyword.items()):
-    #     f.add(Block(set_font_size=38, item_level=Comparer(ilvl, '<='), _class='Hybrid Flask', base_type=base_type))
-    #
-    # normal_flask_ilvl_to_keyword = {
-    #     5: 'Small',
-    #     8: 'Medium',
-    #     12: 'Large',
-    #     18: 'Greater',
-    #     24: 'Grand',
-    #     30: 'Giant',
-    #     37: 'Colossal',
-    #     42: 'Sacred',
-    #     48: 'Hallowed',
-    #     55: 'Sanctified',
-    #     66: ['Divine', 'Eternal'],
-    # }
-    # for ilvl, base_type in sorted(normal_flask_ilvl_to_keyword.items()):
-    #     f.add(Block(set_font_size=38, item_level=Comparer(ilvl, '<='), _class='Flask', base_type=base_type))
-    #
-    # if flasks >= 2:
-    #     f.add(Block(rarity=Comparer('Magic', '<='), base_type='Flask', set_font_size=30))
-    #
-    # f.add(Comment('Section: #0013 - Leveling\n'))
-    # f.add(Block(theme=early_survival, item_level=Comparer(12, '<'),
-    #             base_type=['Coral Ring', 'Sapphire Ring', 'Leather Belt']))
-    # f.add(Block(theme=early_survival, item_level=Comparer(12, '<'), set_font_size=38,
-    #             base_type=['Padded Vest', 'Light Brigandine', 'Leather Cap', 'Shabby Jerkin', 'Scale Vest',
-    #                        'Rawhide Boots', 'Rawhide Gloves', 'Leatherscale Boots', 'Wrapped Boots', 'Goathide Gloves',
-    #                        'Fishscale Gauntlets', 'Wrapped Mitts', 'Battered Helm', 'Scare Mask', 'Goathide Buckler',
-    #                        'Pine Buckler', 'Rotted Round Shield', 'Spiked Bundle']))
-    # f.add(Block(item_level=Comparer(35, '<'), rarity='Normal', _class=jewellery))
-    # f.add(Block(item_level=Comparer(66, '<='), rarity='Magic', _class=jewellery))
-    # f.add(Block(item_level=Comparer(68, '<'), rarity='Magic', linked_sockets=4, _class='Boots', theme=Theme(
-    #         border_color=Color(255, 255, 255), font_size=38
-    # )))
-    # f.add(Block(item_level=Comparer(25, '<'), rarity='Magic', set_font_size=38, _class='Boots'))
-    # f.add(Block(item_level=Comparer(35, '<'), rarity=Comparer('Magic', '<='), linked_sockets=3,
-    #             _class=['Sceptres', 'Wands', 'Daggers'],
-    #             theme=Theme(border_color=Color(255, 255, 255), font_size=36)))
-    # f.add(Block(item_level=Comparer(25, '<'), rarity=Comparer('Magic', '<='), _class=['Sceptres', 'Wands', 'Daggers'],
-    #             set_font_size=36))
-    # f.add(Block(item_level=Comparer(66, '<='), linked_sockets=Comparer(4, '>='),
-    #             theme=Theme(border_color=Color(255, 255, 255), font_size=36)))
-    # f.add(Block(item_level=Comparer(25, '<='), linked_sockets=Comparer(3, '>='), _class=['Gloves', 'Boots', 'Helmets'],
-    #             set_font_size=36))
-    # f.add(Block(item_level=Comparer(60, '<='), linked_sockets=Comparer(3, '>='), _class=['Gloves', 'Boots', 'Helmets']))
-    # f.add(Block(item_level=Comparer(12, '<'), linked_sockets=Comparer(3, '>='),
-    #             theme=Theme(font_size=36, background_color=Color(0, 0, 0, 185))))
-    # f.add(Block(item_level=Comparer(12, '<'), rarity='Normal', width=2, height=Comparer(3, '>='),
-    #             _class=['Body Armours', 'Shields'],
-    #             theme=Theme(text_color=Color(200, 200, 200, 180), background_color=Color(0, 0, 0, 165))))
-    # f.add(Block(item_level=Comparer(12, '<'), rarity='Normal', width=2, height=Comparer(4, '>='),
-    #             theme=Theme(text_color=Color(200, 200, 200, 180), background_color=Color(0, 0, 0, 165))))
-    # small_sizes(f, Block(item_level=Comparer(12, '<='), rarity='Normal',
-    #                      theme=Theme(text_color=Color(200, 200, 200), background_color=Color(0, 0, 0, 185))))
-    # f.add(Block(item_level=Comparer(12, '<'), rarity='Normal',
-    #             theme=Theme(font_size=32, background_color=Color(0, 0, 0, 165))))
-    # leveling_weapon_classes = ['Two Hand', 'Bows', 'One Hand', 'Wand', 'Sceptre', 'Staves', 'Claws']
-    # item_and_drop_levels = [(13, 8), (14, 9), (16, 11), (18, 14), (20, 17), (22, 19), (24, 21), (26, 24), (28, 26),
-    #                         (30, 28), (32, 30), (34, 32), (36, 34), (38, 37), (40, 39), (42, 41), (48, 46), (50, 48),
-    #                         (52, 50), (54, 52), (56, 54), (58, 56), (62, 60), (66, 65), (68, 67)]
-    # for i_and_d in item_and_drop_levels:
-    #     f.add(Block(item_level=Comparer(i_and_d[0], '<'), drop_level=Comparer(i_and_d[1], '>='),
-    #                 rarity=Comparer('Magic', '<='),
-    #                 _class=leveling_weapon_classes, theme=Theme(font_size=32, background_color=Color(0, 0, 0, 165))))
-    # f.add(Block(item_level=Comparer(12, '<'), rarity='Magic', width=2, height=Comparer(3, '>='),
-    #             _class=['Body Armours', 'Shields'],
-    #             theme=Theme(text_color=Color(156, 156, 235, 150), background_color=Color(0, 0, 0, 165))))
-    # f.add(Block(item_level=Comparer(12, '<'), rarity='Magic', width=2, height=Comparer(4, '>='),
-    #             theme=Theme(text_color=Color(156, 156, 235, 150), background_color=Color(0, 0, 0, 165))))
-    # small_sizes(f, Block(item_level=Comparer(12, '<='), rarity='Magic',
-    #                      theme=Theme(background_color=Color(0, 0, 0, 185))))
-    # f.add(Block(item_level=Comparer(24, '<'), rarity='Magic',
-    #             theme=Theme(font_size=32, background_color=Color(0, 0, 0, 165))))
-    # f.add(Block(item_level=Comparer(36, '<'), rarity='Magic',
-    #             theme=Theme(font_size=26, background_color=Color(0, 0, 0, 165))))
+
+    f.add(Comment('Section: #0012 - Flasks\n'))
+    if flasks >= 1:
+        f.add(Block(theme=t['high_quality_flask'], quality=Comparer(18, '>='), rarity='Magic', _class='Utility Flasks'))
+        f.add(Block(theme=t['high_quality_flask'], quality=Comparer(15, '>='), rarity='Normal', _class='Utility Flasks'))
+        f.add(Block(theme=t['high_quality_flask'], quality=Comparer(1, '>='), _class='Utility Flasks', set_font_size=38))
+    f.add(Block(theme=t['utility_flask'], _class='Utility Flasks', item_level=Comparer(10, '<='), set_font_size=38))
+    f.add(Block(theme=t['utility_flask'], _class='Utility Flasks', item_level=Comparer(25, '<='), set_font_size=37))
+    f.add(Block(theme=t['utility_flask'], _class='Utility Flasks', item_level=Comparer(50, '<='), set_font_size=36))
+    if flasks >= 2:
+        f.add(Block(theme=t['utility_flask'], _class='Utility Flasks'))
+        f.add(Block(_class=['Life Flask', 'Mana Flask'], item_level=Comparer(72, '>='), set_font_size=20))
+    hybrid_flask_ilvl_to_keyword = {
+        15: 'Small',
+        25: 'Medium',
+        35: 'Large',
+        45: 'Colossal',
+        55: 'Sacred',
+        67: 'Hallowed',
+    }
+    for ilvl, base_type in sorted(hybrid_flask_ilvl_to_keyword.items()):
+        f.add(Block(set_font_size=38, item_level=Comparer(ilvl, '<='), _class='Hybrid Flask', base_type=base_type))
+
+    normal_flask_ilvl_to_keyword = {
+        5: 'Small',
+        8: 'Medium',
+        12: 'Large',
+        18: 'Greater',
+        24: 'Grand',
+        30: 'Giant',
+        37: 'Colossal',
+        42: 'Sacred',
+        48: 'Hallowed',
+        55: 'Sanctified',
+        66: ['Divine', 'Eternal'],
+    }
+    for ilvl, base_type in sorted(normal_flask_ilvl_to_keyword.items()):
+        f.add(Block(set_font_size=38, item_level=Comparer(ilvl, '<='), _class='Flask', base_type=base_type))
+
+    if flasks >= 2:
+        f.add(Block(rarity=Comparer('Magic', '<='), base_type='Flask', set_font_size=30))
+
+    f.add(Comment('Section: #0013 - Leveling\n'))
+    f.add(Block(theme=t['early_survival'], item_level=Comparer(12, '<'),
+                base_type=['Coral Ring', 'Sapphire Ring', 'Leather Belt']))
+    f.add(Block(theme=t['early_survival'], item_level=Comparer(12, '<'), set_font_size=38,
+                base_type=['Padded Vest', 'Light Brigandine', 'Leather Cap', 'Shabby Jerkin', 'Scale Vest',
+                           'Rawhide Boots', 'Rawhide Gloves', 'Leatherscale Boots', 'Wrapped Boots', 'Goathide Gloves',
+                           'Fishscale Gauntlets', 'Wrapped Mitts', 'Battered Helm', 'Scare Mask', 'Goathide Buckler',
+                           'Pine Buckler', 'Rotted Round Shield', 'Spiked Bundle']))
+    f.add(Block(item_level=Comparer(35, '<'), rarity='Normal', _class=jewellery))
+    f.add(Block(item_level=Comparer(66, '<='), rarity='Magic', _class=jewellery))
+    f.add(Block(item_level=Comparer(68, '<'), rarity='Magic', linked_sockets=4, _class='Boots', theme=Theme(
+            border_color=Color(255, 255, 255), font_size=38
+    )))
+    f.add(Block(item_level=Comparer(25, '<'), rarity='Magic', set_font_size=38, _class='Boots'))
+    f.add(Block(item_level=Comparer(35, '<'), rarity=Comparer('Magic', '<='), linked_sockets=3,
+                _class=['Sceptres', 'Wands', 'Daggers'],
+                theme=Theme(border_color=Color(255, 255, 255), font_size=36)))
+    f.add(Block(item_level=Comparer(25, '<'), rarity=Comparer('Magic', '<='), _class=['Sceptres', 'Wands', 'Daggers'],
+                set_font_size=36))
+    f.add(Block(item_level=Comparer(66, '<='), linked_sockets=Comparer(4, '>='),
+                theme=Theme(border_color=Color(255, 255, 255), font_size=36)))
+    f.add(Block(item_level=Comparer(25, '<='), linked_sockets=Comparer(3, '>='), _class=['Gloves', 'Boots', 'Helmets'],
+                set_font_size=36))
+    f.add(Block(item_level=Comparer(60, '<='), linked_sockets=Comparer(3, '>='), _class=['Gloves', 'Boots', 'Helmets']))
+    f.add(Block(item_level=Comparer(12, '<'), linked_sockets=Comparer(3, '>='),
+                theme=Theme(font_size=36, background_color=Color(0, 0, 0, 185))))
+    f.add(Block(item_level=Comparer(12, '<'), rarity='Normal', width=2, height=Comparer(3, '>='),
+                _class=['Body Armours', 'Shields'],
+                theme=Theme(text_color=Color(200, 200, 200, 180), background_color=Color(0, 0, 0, 165))))
+    f.add(Block(item_level=Comparer(12, '<'), rarity='Normal', width=2, height=Comparer(4, '>='),
+                theme=Theme(text_color=Color(200, 200, 200, 180), background_color=Color(0, 0, 0, 165))))
+    small_sizes(f, Block(item_level=Comparer(12, '<='), rarity='Normal',
+                         theme=Theme(text_color=Color(200, 200, 200), background_color=Color(0, 0, 0, 185))))
+    f.add(Block(item_level=Comparer(12, '<'), rarity='Normal',
+                theme=Theme(font_size=32, background_color=Color(0, 0, 0, 165))))
+    leveling_weapon_classes = ['Two Hand', 'Bows', 'One Hand', 'Wand', 'Sceptre', 'Staves', 'Claws']
+    item_and_drop_levels = [(13, 8), (14, 9), (16, 11), (18, 14), (20, 17), (22, 19), (24, 21), (26, 24), (28, 26),
+                            (30, 28), (32, 30), (34, 32), (36, 34), (38, 37), (40, 39), (42, 41), (48, 46), (50, 48),
+                            (52, 50), (54, 52), (56, 54), (58, 56), (62, 60), (66, 65), (68, 67)]
+    for i_and_d in item_and_drop_levels:
+        f.add(Block(item_level=Comparer(i_and_d[0], '<'), drop_level=Comparer(i_and_d[1], '>='),
+                    rarity=Comparer('Magic', '<='),
+                    _class=leveling_weapon_classes, theme=Theme(font_size=32, background_color=Color(0, 0, 0, 165))))
+    f.add(Block(item_level=Comparer(12, '<'), rarity='Magic', width=2, height=Comparer(3, '>='),
+                _class=['Body Armours', 'Shields'],
+                theme=Theme(text_color=Color(156, 156, 235, 150), background_color=Color(0, 0, 0, 165))))
+    f.add(Block(item_level=Comparer(12, '<'), rarity='Magic', width=2, height=Comparer(4, '>='),
+                theme=Theme(text_color=Color(156, 156, 235, 150), background_color=Color(0, 0, 0, 165))))
+    small_sizes(f, Block(item_level=Comparer(12, '<='), rarity='Magic',
+                         theme=Theme(background_color=Color(0, 0, 0, 185))))
+    f.add(Block(item_level=Comparer(24, '<'), rarity='Magic',
+                theme=Theme(font_size=32, background_color=Color(0, 0, 0, 165))))
+    f.add(Block(item_level=Comparer(36, '<'), rarity='Magic',
+                theme=Theme(font_size=26, background_color=Color(0, 0, 0, 165))))
 
     f.add(Comment('Section: #014 - Failsafe\n'))
     add_failsafe(f)
@@ -364,8 +363,8 @@ def themes():
 
     gem_colour = highlight_2.darken(0.4)
 
-    good_rare = Color(216, 205, 54)
-    rare = Color(198, 186, 9)
+    good_rare = Color(198, 186, 9).darken(0.1)
+    rare = good_rare.darken(0.2)
 
     return {
         'lab_and_shaper_orb': Theme(text_color=highlight_1, background_color=break_1, border_color=highlight_1,
@@ -420,7 +419,7 @@ def themes():
         'six_socket': Theme(background_color=break_3, border_color=Colors.WHITE, alert_sound=7, font_size=45),
 
         'leaguestone': Theme(background_color=highlight_2.darken(0.3), text_color=Colors.WHITE, border_color=Colors.WHITE,
-                             alert_sound=1, font_size=38),
+                             alert_sound=4, font_size=38),
         'breach': Theme(background_color=breach, text_color=Colors.BLOOD_RED, border_color=Colors.BLOOD_RED),
 
         'rare_jewel': Theme(background_color=good_rare, text_color=Colors.WHITE, border_color=Colors.WHITE, font_size=45),
@@ -428,7 +427,7 @@ def themes():
         'gg_rare': Theme(background_color=good_rare, text_color=Colors.WHITE, border_color=break_3, font_size=45),
         'good_rare': Theme(background_color=good_rare, text_color=Colors.WHITE, border_color=Colors.BLACK, font_size=38),
         'good_rare_ilvl': Theme(background_color=good_rare, text_color=Colors.WHITE, border_color=break_3, font_size=40),
-        'shit_rare': Theme(text_color=rare, border_color=Colors.BLOOD_RED),
+        'shit_rare': Theme(text_color=rare, border_color=Colors.BLOOD_RED, font_size=30),
         'rare_talisman': Theme(background_color=good_rare, text_color=Colors.BLOOD_RED, border_color=Colors.BLOOD_RED,
                                font_size=45, alert_sound=1),
         'talisman': Theme(border_color=Colors.BLOOD_RED, font_size=38),
@@ -437,12 +436,15 @@ def themes():
         'atlas_base': Theme(background_color=Colors.WHITE, text_color=break_3, border_color=break_3),
         'gg_white_base': Theme(font_size=45, border_color=break_3),
         'ok_white_base': Theme(font_size=40, border_color=highlight_1),
-        'chromatic_item': Theme(border_color=break_2),
-        'chance_item': Theme(border_color=gem_colour),
+        'chromatic_item': Theme(border_color=break_2, background_color=Colors.BLACK.change_opacity(0.5)),
+        'chance_item': Theme(border_color=gem_colour, font_size=40),
 
         'alch_whites': Theme(border_color=rare),
         'magic_jewel': Theme(border_color=break_3, background_color=highlight_1.change_opacity(0.5)),
-        'magic_jewellery': Theme(font_size=25)
+        'magic_jewellery': Theme(font_size=25),
+        'high_quality_flask': Theme(background_color=Color(75, 75, 75), border_color=Colors.WHITE, font_size=45),
+        'utility_flask': Theme(background_color=Color(75, 75, 75), border_color=Colors.BLACK),
+        'early_survival': Theme(border_color=Colors.BLOOD_RED, font_size=40)
 
     }
 
