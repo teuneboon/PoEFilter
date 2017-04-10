@@ -415,8 +415,7 @@ def get_themes():
     shit_unique = Theme(text_color=Colors.UNIQUE, border_color=Colors.UNIQUE, background_color=Color(0, 0, 0, 0.5),
                         font_size=35)
     unique = Theme(text_color=Colors.UNIQUE, border_color=Colors.UNIQUE, font_size=40, alert_sound=3)
-    special_quest_item = Theme(text_color=Colors.WHITE, background_color=Color(0, 128, 0), font_size=45,
-                               alert_sound=1)
+    special_quest_item = Theme(text_color=Colors.WHITE, background_color=Color(0, 128, 0), font_size=45, alert_sound=1)
     quest_item = Theme(text_color=Color(50, 230, 100), border_color=Color(74, 230, 58), font_size=45)
     gg = Theme(text_color=Color(210, 0, 220), background_color=Colors.WHITE, border_color=Color(208, 32, 144),
                font_size=45, alert_sound=8)
