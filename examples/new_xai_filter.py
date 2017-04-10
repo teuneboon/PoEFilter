@@ -213,7 +213,7 @@ def themes():
         'five_link': Theme(background_color=highlight_1, border_color=Colors.WHITE, font_size=38, alert_sound=1),
         'six_socket': Theme(background_color=break_3, border_color=Colors.WHITE, alert_sound=7, font_size=45),
 
-        'leaguestone': Theme(background_color=highlight_2, text_color=Colors.WHITE, border_color=Colors.WHITE,
+        'leaguestone': Theme(background_color=highlight_2.darken(0.3), text_color=Colors.WHITE, border_color=Colors.WHITE,
                              alert_sound=1, font_size=38),
         'breach': Theme(background_color=breach, text_color=Colors.BLOOD_RED, border_color=Colors.BLOOD_RED)
     }

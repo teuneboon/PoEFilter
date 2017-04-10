@@ -36,3 +36,7 @@ class Color(Property):
 
     def change_opacity(self, opacity):
         return Color(self.red, self.green, self.blue, opacity)
+
+    def darken(self, amount):
+        darkness_factor = 1.0 - amount
+        return Color(int(self.red * darkness_factor), int(self.green * darkness_factor), int(self.blue * darkness_factor), self.opacity)
