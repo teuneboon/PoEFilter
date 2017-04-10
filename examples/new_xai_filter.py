@@ -149,6 +149,15 @@ def main():
     f.add(Block(theme=t['five_link'], play_alert_sound=Sound(1), linked_sockets=5))
     f.add(Block(theme=t['six_socket'], sockets=Comparer(6, '>=')))
 
+    f.add(Comment('Section: #0009 - Gems\n'))
+    f.add(Block(theme=t['t1_gems'], _class='Skill Gems', base_type=['Empower', 'Enlighten'], quality=Comparer(10, '>=')))
+    f.add(Block(theme=t['t1_gems'], _class='Skill Gems', quality=Comparer(19, '>=')))
+    f.add(Block(theme=t['t2_gems'], _class='Skill Gems', base_type=['Portal', 'Empower', 'Enlighten', 'Vaal Haste']))
+    f.add(Block(theme=t['t2_gems'], _class='Skill Gems', quality=Comparer(13, '>=')))
+    f.add(Block(theme=t['t3_gems'], _class='Skill Gems', base_type=['Vaal', 'Detonate Mines', 'Added Chaos Damage']))
+    f.add(Block(theme=t['t3_gems'], _class='Skill Gems', quality=Comparer(1, '>=')))
+    f.add(Block(_class='Skill Gems'))
+
     f.add(Comment('Section: #014 - Failsafe\n'))
     add_failsafe(f)
 
@@ -166,6 +175,8 @@ def themes():
     break_2 = Color(122, 255, 148)
     break_3 = Color(0, 52, 112)
     breach = Color(65, 20, 80)
+
+    gem_colour = highlight_2.darken(0.4)
 
     return {
         'lab_and_shaper_orb': Theme(text_color=highlight_1, background_color=break_1, border_color=highlight_1,
@@ -209,6 +220,12 @@ def themes():
                         alert_sound=2),
         't4_div': Theme(text_color=highlight_1, border_color=highlight_1,
                         background_color=Colors.WHITE.change_opacity(0.5)),
+
+        't1_gems': Theme(text_color=break_3, border_color=break_3, background_color=t1_background, font_size=45,
+                         alert_sound=6),
+        't2_gems': Theme(text_color=break_3, border_color=break_3, background_color=Colors.WHITE, font_size=42,
+                         alert_sound=1),
+        't3_gems': Theme(text_color=gem_colour, border_color=gem_colour, background_color=Colors.WHITE, font_size=37),
 
         'five_link': Theme(background_color=highlight_1, border_color=Colors.WHITE, font_size=38, alert_sound=1),
         'six_socket': Theme(background_color=break_3, border_color=Colors.WHITE, alert_sound=7, font_size=45),
