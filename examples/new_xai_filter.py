@@ -396,7 +396,7 @@ def themes():
                            alert_sound=6),
         't2_unique': Theme(text_color=Colors.WHITE, border_color=Colors.WHITE, background_color=Colors.UNIQUE,
                            alert_sound=5, font_size=45),
-        't3_unique': Theme(text_color=highlight_1, border_color=highlight_1, background_color=Colors.UNIQUE,
+        't3_unique': Theme(text_color=Colors.BLACK, border_color=highlight_1, background_color=Colors.UNIQUE,
                            alert_sound=3, font_size=40),
         't4_unique': Theme(text_color=break_1, border_color=break_1, background_color=Colors.UNIQUE,
                            font_size=35),
