@@ -48,16 +48,16 @@ def main():
     f.add(Block(theme=t['t1'], linked_sockets=Comparer(6, '>=')))
 
     f.add(Comment('Section: #003 - Uniques\n'))
-    f.add(Block(theme=t['t1'], rarity='Unique', base_type=t1_uniques))
-    f.add(Block(theme=t['t2_unique'], rarity='Unique', _class=['Map']))
-    f.add(Block(theme=t['t2_unique'], rarity='Unique', base_type=t2_uniques))
-    f.add(Block(theme=t['t4_unique'], rarity='Unique', base_type=t4_uniques, sockets=Comparer(6, '<'), linked_sockets=Comparer(5, '<')))
-    f.add(Block(theme=t['t3_unique'], rarity='Unique'))
+    f.add(Block(theme=t['t1'], rarity='Unique', base_type=t1_uniques, comment='T1 Uniques'))
+    f.add(Block(theme=t['t2_unique'], rarity='Unique', _class=['Map'], comment='T2 Unique Maps'))
+    f.add(Block(theme=t['t2_unique'], rarity='Unique', base_type=t2_uniques, comment='T2 Uniques'))
+    f.add(Block(theme=t['t4_unique'], rarity='Unique', base_type=t4_uniques, sockets=Comparer(6, '<'), linked_sockets=Comparer(5, '<'), comment='T4 Uniques'))
+    f.add(Block(theme=t['t3_unique'], rarity='Unique', comment='Other(T3) Uniques'))
 
     f.add(Comment('Section: #004 - Maps\n'))
     maps = get_maps_by_drop_level()
     f.add(Block(theme=t['good_map'], _class='Maps', base_type='Shaped', drop_level=Comparer(shaped_maps_special_tier + 67, '>=')))
-    f.add(Block(theme=t['good_map'], _class='Maps', base_type=special_maps))
+    f.add(Block(theme=t['good_map'], _class='Maps', base_type=special_maps, comment='Special Maps(usually MF)'))
     for drop_level in list(maps.keys())[::-1]:
         if drop_level == 68:
             drop_level = 58
@@ -74,6 +74,37 @@ def main():
         no_requirement.set_property('item_level', None)
         f.add(no_requirement)
 
+    f.add(Comment('Section: #005 - Fragments\n'))
+    f.add(Block(play_alert_sound=Sound(2), _class='Maps'))  # map failsafe
+    f.add(Block(theme=t['t1'], _class='Map Fragments',
+                base_type=['Mortal Hope', 'Mortal Ignorance', 'Fragment of the Phoenix',
+                           'Fragment of the Minotaur', 'Fragment of the Chimera', 'Fragment of the Hydra']))
+    f.add(Block(theme=t['t2_fragment'], _class='Map Fragments',
+                base_type=['Mortal', 'Sacrifice at Midnight', 'Eber\'s Key', 'Inya\'s Key', 'Volkuur\'s Key',
+                           'Yriel\'s Key', 'Breachstone']))
+    f.add(Block(theme=t['t3_fragment'], _class='Map Fragments'))
+
+    f.add(Comment('Section: #006 - Currency + Essences + Leaguestones\n'))
+    f.add(Block(theme=t['t1'], base_type=['Exalted Orb', 'Eternal Orb', 'Albino Rhoa Feather', 'Ancient Reliquary Key']))
+    f.add(Block(theme=t['t2_currency'], base_type=['Deafening Essence', 'Shrieking Essence', 'Divine Orb', 'Unshaping Orb',
+                                                'Essence of Hysteria', 'Essence of Insanity', 'Essence of Horror',
+                                                'Essence of Delirium', 'Blessing']))
+    f.add(Block(theme=t['leaguestone'], _class='Leaguestone'))
+    f.add(Block(theme=t['t3_currency'],
+                base_type=['Cartographer\'s Sextant', 'Chaos Orb', 'Cartographer\'s Seal', 'Orb of Fusing',
+                           'Orb of Regret', 'Regal Orb', 'Blessed Orb', 'Gemcutter\'s Prism',
+                           'Orb of Scouring', 'Vaal Orb', 'Remnant of Corruption', 'Essence of']))
+    f.add(Block(theme=Theme(text_color=Color(231, 180, 120),
+                            background_color=Color(0, 0, 0, 180),
+                            border_color=Color(231, 180, 120),
+                            font_size=45),
+                base_type='Perandus Coin'))
+    f.add(Block(theme=t['breach'], _class=['Stackable Currency'], base_type=['Splinter']))
+    f.add(Block(theme=t['t4_currency'], base_type=['Orb of Alchemy', 'Silver Coin', 'Orb of Chance', 'Jeweller\'s Orb',
+                                           'Orb of Alteration', 'Cartographer\'s Chisel']))
+    f.add(Block(_class=['Currency'], base_type=['Wisdom']))
+    f.add(Block(_class=['Currency'], base_type=['Portal']))
+    f.add(Block(theme=t['t5_currency'], _class=['Currency', 'Stackable Currency']))
 
     f.add(Comment('Section: #014 - Failsafe\n'))
     add_failsafe(f)
@@ -87,8 +118,10 @@ def themes():
     t1_background = Colors.WHITE
 
     highlight_1 = Color(0, 93, 255)
+    highlight_2 = Color(53, 255, 177)
     break_1 = Color(255, 230, 122)
     break_2 = Color(122, 255, 148)
+    break_3 = Color(0, 52, 112)
     breach = Color(65, 20, 80)
 
     return {
@@ -108,6 +141,15 @@ def themes():
                             alert_sound=2, font_size=40),
         'good_map': Theme(background_color=break_2, text_color=Colors.BLACK, border_color=Colors.BLACK,
                           alert_sound=9, font_size=45),
+        't2_fragment': Theme(text_color=Colors.BLACK, background_color=Colors.BLOOD_RED, border_color=Colors.BLACK, font_size=45, alert_sound=2),
+        't3_fragment': Theme(text_color=Colors.BLOOD_RED, background_color=Colors.BLACK, border_color=Colors.BLOOD_RED, font_size=38, alert_sound=2),
+        't2_currency': Theme(background_color=highlight_2, text_color=break_3, border_color=break_3, alert_sound=5, font_size=45),
+        't3_currency': Theme(background_color=break_3, text_color=Colors.WHITE, border_color=Colors.WHITE, alert_sound=1, font_size=41),
+        't4_currency': Theme(background_color=highlight_1.change_opacity(0.5), text_color=Colors.WHITE, border_color=Colors.WHITE, font_size=38),
+        't5_currency': Theme(background_color=highlight_1.change_opacity(0.5), text_color=break_2, border_color=break_2),
+
+        'leaguestone': Theme(background_color=break_2, text_color=Colors.WHITE, border_color=Colors.WHITE, alert_sound=1, font_size=38),
+        'breach': Theme(background_color=breach, text_color=Colors.BLOOD_RED, border_color=Colors.BLOOD_RED)
     }
 
 
