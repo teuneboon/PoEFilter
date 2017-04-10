@@ -59,7 +59,7 @@ def main():
     t4_divs = ['The Flora\'s Gift', 'Her Mask', 'Rain of Chaos', 'Thunderous Skies', 'The Gambler']
     shit_divs = ['The Carrion Crow', 'Doedre\'s Madness']
 
-    show_jewellery = 2
+    show_jewellery = 0
     chromatic_recipe = 2
     flasks = 2
 
@@ -382,11 +382,11 @@ def themes():
                            alert_sound=3, font_size=40),
         't4_unique': Theme(text_color=break_1, border_color=break_1, background_color=Colors.UNIQUE,
                            font_size=35),
-        'low_map': Theme(background_color=highlight_1.change_opacity(122), text_color=Colors.WHITE,
-                         border_color=Colors.WHITE, font_size=35),
-        'normal_map': Theme(background_color=highlight_1, text_color=Colors.WHITE, border_color=Colors.WHITE,
+        'low_map': Theme(background_color=break_2.change_opacity(122), text_color=Colors.BLACK,
+                         border_color=Colors.BLACK, font_size=35),
+        'normal_map': Theme(background_color=break_2, text_color=Colors.BLACK, border_color=Colors.BLACK,
                             alert_sound=2, font_size=40),
-        'good_map': Theme(background_color=break_2, text_color=Colors.BLACK, border_color=Colors.BLACK,
+        'good_map': Theme(background_color=break_2, text_color=highlight_1, border_color=highlight_1,
                           alert_sound=9, font_size=45),
         't2_fragment': Theme(text_color=Colors.BLACK, background_color=Colors.BLOOD_RED, border_color=Colors.BLACK,
                              font_size=45, alert_sound=2),
