@@ -38,7 +38,7 @@ def main():
     t3_currency = ['Cartographer\'s Sextant', 'Chaos Orb', 'Cartographer\'s Seal', 'Orb of Fusing', 'Orb of Regret',
                    'Regal Orb', 'Blessed Orb', 'Gemcutter\'s Prism', 'Orb of Scouring', 'Vaal Orb',
                    'Remnant of Corruption', 'Essence of', 'Cartographer\'s Chisel', 'Orb of Alchemy']
-    t4_currency = ['Silver Coin', 'Orb of Chance', 'Jeweller\'s Orb', 'Orb of Alteration']
+    t4_currency = ['Silver Coin', 'Orb of Chance', 'Jeweller\'s Orb', 'Orb of Alteration', 'Chromatic Orb']
 
     t1_divs = ['House of Mirrors', 'The Doctor', 'The Fiend', 'Hunter\'s Reward', 'The Dragon\'s Heart', 'Mawr Blaidd',
                'The Last One Standing', 'The Offering', 'The Ethereal', 'The Queen', 'Abandoned Wealth',
