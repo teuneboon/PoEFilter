@@ -135,6 +135,7 @@ def main():
                             border_color=Color(231, 180, 120),
                             font_size=45),
                 base_type='Perandus Coin'))
+    f.add(Block(theme=t['breach_big'], _class=['Stackable Currency'], base_type=['Splinter of Chayula', 'Splinter of Esh']))
     f.add(Block(theme=t['breach'], _class=['Stackable Currency'], base_type=['Splinter']))
     f.add(Block(theme=t['t4_currency'], base_type=t4_currency))
     f.add(Block(_class=['Currency'], base_type=['Wisdom']))
@@ -441,6 +442,7 @@ def themes():
                              border_color=Colors.WHITE,
                              alert_sound=4, font_size=38),
         'breach': Theme(background_color=breach, text_color=Colors.BLOOD_RED, border_color=Colors.BLOOD_RED),
+        'breach_big': Theme(background_color=breach, text_color=Colors.BLOOD_RED, border_color=Colors.BLOOD_RED, font_size=40),
 
         'rare_jewel': Theme(background_color=good_rare, text_color=Colors.WHITE, border_color=Colors.WHITE,
                             font_size=45),
