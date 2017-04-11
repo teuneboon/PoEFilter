@@ -63,6 +63,8 @@ def main():
     chromatic_recipe = 2
     flasks = 2
 
+    crude_bow = True
+
     f = Filter()
     t = themes()
 
@@ -247,6 +249,8 @@ def main():
     f.add(Block(theme=t['ok_white_base'], item_level=Comparer(83, '>='), base_type=good_phys_bases))
     f.add(Block(theme=t['gg_atlas_base'], base_type=gg_atlas_bases))
     f.add(Block(theme=t['atlas_base'], base_type=other_atlas_bases))
+    if crude_bow:
+        f.add(Block(theme=t['gg_white_base'], base_type=['Crude Bow'], item_level=Comparer(50, '>=')))
     if chromatic_recipe >= 1:
         small_sizes(f, Block(theme=t['chromatic_item'], socket_group='RGB'))
     if chromatic_recipe == 2:
